@@ -6,6 +6,7 @@ import Button from "../buttons/Button";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 interface FormProps {
   title: string;
@@ -45,7 +46,14 @@ const LoginForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
       if (callback?.error) {
         setError("Invalid Credentials");
       } else if (callback?.ok) {
-        alert("Logged in");
+        toast("Logged in", {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
         router.push("/dashboard");
       }
     } catch (err) {
@@ -61,8 +69,14 @@ const LoginForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
         setError("Invalid Credentials");
       }
       if (callback?.ok && !callback?.error) {
-        // toast success logged in
-        alert("logged in");
+        toast("Logged in", {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
       }
     });
   };
@@ -106,6 +120,14 @@ const LoginForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
             onChange={(e) => setPassword(e)}
             disabled={loading}
           />
+          <div className="flex justify-end">
+            <Link
+              href={"/reset"}
+              className="font-bold text-sm hover:underline text-end w-full text-primary"
+            >
+              Forgot Password
+            </Link>
+          </div>
           {error && <p className="text-sm text-red-500 italic">{error}</p>}
           <div className="py-6">
             <Button
@@ -124,10 +146,9 @@ const LoginForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
           </div>
 
           <Button
-            text={loading ? "Loading..." : "Continue with Google"}
+            text={"Continue with Google"}
             widthFull
             type="button"
-            disabled={loading}
             transparent
             icon={FcGoogle}
             onClick={googleAction}

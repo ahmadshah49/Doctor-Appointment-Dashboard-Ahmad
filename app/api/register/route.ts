@@ -13,7 +13,7 @@ export const POST = async (req: Request) => {
     validator.errorReporter = () => new ErrorReporter();
     const output = await validator.validate(body);
     const hashedPassword = await bcrypt.hash(output.password, 12);
-    const registerEmail = await prisma.doctor.findUnique({
+    const registerEmail = await prisma.user.findUnique({
       where: {
         email: output.email,
       },
@@ -26,7 +26,7 @@ export const POST = async (req: Request) => {
       );
     }
 
-    const doctor = await prisma.doctor.create({
+    const doctor = await prisma.user.create({
       data: {
         name: output.name,
         email: output.email,

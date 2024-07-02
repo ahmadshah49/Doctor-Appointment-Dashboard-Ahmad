@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers, { AuthProvider } from "./Provider/Provider";
 import { store } from "./redux/store";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers store={store}>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <Toaster />
+            {children}
+          </AuthProvider>
         </Providers>
       </body>
     </html>

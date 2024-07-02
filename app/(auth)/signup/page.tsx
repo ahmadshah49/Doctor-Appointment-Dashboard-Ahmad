@@ -9,7 +9,7 @@ const signup = () => {
         title="Sign Up Here"
         desc="Already Have an Account"
         link="Login"
-        path="/login"
+        path="/"
       />
       <SideDashboard />
     </div>

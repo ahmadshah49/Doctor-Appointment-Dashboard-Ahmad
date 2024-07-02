@@ -4,7 +4,9 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 export const authOptions: AuthOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -21,7 +23,7 @@ export const authOptions: AuthOptions = {
           throw new Error("Invalid Credentials");
         }
 
-        const user = await prisma.doctor.findUnique({
+        const user = await prisma.user.findUnique({
           where: {
             email: credentials?.email,
           },
@@ -47,6 +49,7 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  debug: true,
 };
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

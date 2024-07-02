@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { SiGooglekeep } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
 import { signIn, useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 
 interface FormProps {
   title: string;
@@ -23,6 +24,7 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
   const [error, setError] = useState("");
   useEffect(() => {
     if (status === "authenticated") {
@@ -52,7 +54,7 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
         password,
       });
       console.log("Response", response);
-      router.push("/login");
+      router.push("/");
     } catch (error: any) {
       console.log("Error while registering the user", error);
       setError(
@@ -71,8 +73,14 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
         setError("Invalid Credentials");
       }
       if (callback?.ok && !callback?.error) {
-        // toast success logged in
-        alert("logged in");
+        toast("Logged in", {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
       }
     });
   };
@@ -144,10 +152,9 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
           </div>
 
           <Button
-            text={loading ? "Loading..." : "Continue with Google"}
+            text={"Continue with Google"}
             widthFull
             type="button"
-            disabled={loading}
             transparent
             icon={FcGoogle}
             onClick={googleAction}
