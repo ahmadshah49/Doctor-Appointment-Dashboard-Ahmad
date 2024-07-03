@@ -26,19 +26,23 @@ export const POST = async (req: Request) => {
       );
     }
 
-    const doctor = await prisma.user.create({
+    const User = await prisma.user.create({
       data: {
         name: output.name,
         email: output.email,
         password: hashedPassword,
+        companyName: body.companyName,
       },
     });
     return NextResponse.json({ message: "Register" }, { status: 200 });
-  } catch (error: any) {
+  } 
+  
+  catch (error: any) {
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return NextResponse.json(error.messages, { status: 400 });
     }
     console.log("Registraion Error", error);
     return NextResponse.json("Error While Register", error);
   }
-};
+  
+  };

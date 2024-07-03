@@ -23,6 +23,7 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [companyName, setCompanyName] = useState("");
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState("");
@@ -36,7 +37,7 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
     setLoading(true);
     setError("");
 
-    if (!email || !name || !password) {
+    if (!email || !name || !password || !companyName) {
       setError("Please fill all fields");
       setLoading(false);
       return;
@@ -52,6 +53,7 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
         name,
         email,
         password,
+        companyName,
       });
       console.log("Response", response);
       router.push("/");
@@ -114,6 +116,17 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
             disabled={loading}
             onChange={(e) => setName(e)}
           />
+          <Input
+            id="companyName"
+            type="text"
+            placeHolder="HealthCare Clinic"
+            label="Company Name"
+            name="companyName"
+            value={companyName}
+            disabled={loading}
+            onChange={(e) => setCompanyName(e)}
+          />
+
           <Input
             id="email"
             type="email"
