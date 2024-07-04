@@ -16,7 +16,7 @@ const Navbar = async () => {
   });
 
   return (
-    <div className="h-16 w-full  flex items-center border-b justify-between gap-4 px-4">
+    <div className="h-16 fixed bg-white w-full  flex items-center border-b justify-between gap-4 px-4">
       <div className="border border-gray-400 py-1 rounded flex px-2 justify-between w-1/3">
         <input
           type="text"

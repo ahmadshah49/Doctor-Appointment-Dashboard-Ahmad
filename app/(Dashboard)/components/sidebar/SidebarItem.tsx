@@ -15,17 +15,18 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   active,
 }) => {
   return (
-    <li>
+    <li className="relative">
+      {active && (
+        <span className="w-[6px] rounded-r-2xl h-full absolute bg-primary" />
+      )}
       <Link
         href={href}
         className={clsx(
-          `flex group gap-4 py-4 my-4   `,
-          active
-            ? "border-l-8 rounded-lg  border-primary text-primary"
-            : "text-gray-400 hover:text-gray-700 "
+          `flex group gap-2 my-4 py-2  text-gray-400 hover:text-gray-700`,
+          active && "text-primary"
         )}
       >
-        <Icon className="h-6 w-6" />
+        <Icon className="h-6 w-6 mx-5" />
         <span>{label}</span>
       </Link>
     </li>

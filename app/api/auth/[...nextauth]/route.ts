@@ -49,7 +49,6 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
-  debug: true,
 };
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
