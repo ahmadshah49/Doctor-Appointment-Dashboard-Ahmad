@@ -3,9 +3,43 @@ import DashboardSchedule from "../components/dashboardSchedule/DashboardSchedule
 import DashboardTask from "../components/DashboardTask/DashboardTask";
 import DashboardLayout from "./DashboardLayout";
 const Dashboard = () => {
+  const tasks = [
+    {
+      id: "fajkpgf",
+      title: " string",
+      description: "string;",
+      date: new Date("2023-07-13T00:00:00Z"),
+      completed: false,
+      userId: "6464464646",
+    },
+    {
+      id: "fajkpgf",
+      title: " string",
+      description: "string;",
+      date: new Date("2023-07-13T00:00:00Z"),
+      completed: false,
+      userId: "6464464646",
+    },
+    {
+      id: "fajkpgf",
+      title: " string",
+      description: "string;",
+      date: new Date("2023-07-13T00:00:00Z"),
+      completed: false,
+      userId: "6464464646",
+    },
+    {
+      id: "fajkpgf",
+      title: " string",
+      description: "string;",
+      date: new Date("2023-07-13T00:00:00Z"),
+      completed: false,
+      userId: "6464464646",
+    },
+  ];
   return (
     <DashboardLayout>
-      <div className="p-4">
+      <div className="p-4 h-screen">
         <div className="">
           <h1 className="text-gray-950 font-normal">Dashboard</h1>
         </div>
@@ -16,8 +50,12 @@ const Dashboard = () => {
           <Card title="Online Patients" number={155} />
         </div>
         <div className="flex w-full gap-4 my-4">
-          <DashboardTask />
-          <DashboardSchedule />
+          <div className="w-[60%]">
+            <DashboardTask todoData={tasks} isLink />
+          </div>
+          <div className="w-[40%]">
+            <DashboardSchedule />
+          </div>
         </div>
       </div>
     </DashboardLayout>

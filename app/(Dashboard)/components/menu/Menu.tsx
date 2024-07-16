@@ -1,19 +1,22 @@
+import { MenuProps } from "@/app/types/Type";
 import React from "react";
 import { LuFilter } from "react-icons/lu";
 import { LuSearch } from "react-icons/lu";
 import { LuPlus } from "react-icons/lu";
 import { LuHelpCircle } from "react-icons/lu";
+import ToogleButton from "../modals/addPatient/toogleButton/ToogleButton";
 
-const PatientMenu = () => {
+const Menu: React.FC<MenuProps> = ({ title }) => {
   return (
-    <div className="p-4 px-6 my-4 shadow-md flex items-center justify-between">
+    <div className="p-4 px-6 rounded-md bg-white my-4 shadow-md flex items-center justify-between">
       <div className="font-medium text-xl">
-        Patients <span className="text-gray-400 font-normal">(74)</span>
+        {title} <span className="text-gray-400 font-normal"></span>
       </div>
       <div className="flex items-center justify-between gap-6">
-        <span className="w-10 h-10 rounded-md  border  border-gray-400 flex items-center justify-center">
-          <LuPlus size={25} className="font-bold" />
-        </span>
+        <ToogleButton className="w-10 h-10 rounded-md  border  border-gray-400 flex items-center justify-center">
+          <LuPlus title="Add Paitent" size={25} className="font-bold" />
+        </ToogleButton>
+
         <span className="w-10 h-10 rounded-md  border border-gray-400 flex items-center justify-center">
           <LuSearch size={25} className="font-bold" />
         </span>
@@ -28,4 +31,4 @@ const PatientMenu = () => {
   );
 };
 
-export default PatientMenu;
+export default Menu;

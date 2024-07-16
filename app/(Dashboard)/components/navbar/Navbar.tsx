@@ -16,7 +16,7 @@ const Navbar = async () => {
   });
 
   return (
-    <div className="h-16 fixed bg-white w-full  flex items-center border-b justify-between gap-4 px-4">
+    <div className="h-16 bg-white w-full  flex items-center border-b justify-between gap-4 px-4">
       <div className="border border-gray-400 py-1 rounded flex px-2 justify-between w-1/3">
         <input
           type="text"
@@ -26,7 +26,7 @@ const Navbar = async () => {
         <IoSearchOutline size={20} color="gray" />
       </div>
       <div className="text-right">
-        <p className="text-sm">{currentUser?.name}</p>
+        <p className="text-sm">{currentUser?.id}</p>
         <h1 className="text-sm font-semibold">{currentUser?.companyName}</h1>
       </div>
       <div className="border border-gray-400 py-1 rounded px-2 ">

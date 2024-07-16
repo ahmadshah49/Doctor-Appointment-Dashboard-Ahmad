@@ -8,7 +8,7 @@ const Sidebar = () => {
   const routes = useRoutes();
 
   return (
-    <div className="fixed w-[260px] border-r h-screen bg-white">
+    <div className="relative border-r h-screen bg-white">
       <div className="flex flex-col h-full">
         <div className="p-5 flex-shrink-0">
           <Image

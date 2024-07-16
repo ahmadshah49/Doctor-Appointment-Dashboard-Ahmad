@@ -10,6 +10,7 @@ interface inputProps {
   onChange?: (value: string) => void;
   disabled?: boolean;
   required?: boolean;
+  sup?: boolean;
 }
 const Input: React.FC<inputProps> = ({
   label,
@@ -21,6 +22,7 @@ const Input: React.FC<inputProps> = ({
   onChange,
   disabled,
   required,
+  sup,
 }) => {
   return (
     <div className="w-full my-6">
@@ -31,6 +33,7 @@ const Input: React.FC<inputProps> = ({
         htmlFor={id}
       >
         {label}
+        <sup className="text-red-600 text-base">*</sup>
       </label>
       <div>
         <input

@@ -1,7 +1,6 @@
 "use server";
 import { nanoid } from "nanoid";
 import { prisma } from "../lib/prisma";
-import nodemailer from "nodemailer";
 
 export async function mailAction(email: string) {
   try {

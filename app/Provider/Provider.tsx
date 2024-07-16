@@ -8,7 +8,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
   return <Provider store={store}>{children}</Provider>;
 };
 
-export default Provider;
+export default Providers;
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return <SessionProvider>{children}</SessionProvider>;

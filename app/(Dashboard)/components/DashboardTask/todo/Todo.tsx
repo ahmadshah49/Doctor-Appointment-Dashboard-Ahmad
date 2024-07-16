@@ -1,26 +1,60 @@
+"use client";
 import React from "react";
-import { HiDotsHorizontal } from "react-icons/hi";
-const Todo = () => {
+
+type Todo = {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  completed: boolean;
+};
+
+type todoDataProps = {
+  todoData: Todo[];
+};
+
+const Todo: React.FC<todoDataProps> = ({ todoData }) => {
+  // const todoData = [
+  //   {
+  //     id: 1,
+  //     title: "Buy groceries",
+  //     description: "Milk, Bread, Cheese, Fruits",
+  //     date: "2024-07-05",
+  //     completed: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Finish React project",
+  //     description: "Complete the UI for the new feature",
+  //     date: "2024-07-06",
+  //     completed: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Call mom",
+  //     description: "Check in with mom and update her",
+  //     date: "2024-07-07",
+  //     completed: true,
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Workout",
+  //     description: "Go for a 30-minute run",
+  //     date: "2024-07-08",
+  //     completed: false,
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Read a book",
+  //     description: "Read at least 20 pages of a novel",
+  //     date: "2024-07-09",
+  //     completed: true,
+  //   },
+  // ];
+
   return (
     <div>
-      <div className="flex justify-between h-20 my-3 gap-2">
-        <input type="checkbox" className="w-8 h-8" />
-        <div className="flex justify-between w-full px-4 items-center">
-          <div>
-            <h1 className="font-medium text-base">
-              Task Completed successfully
-            </h1>
-            <p className="font-normal text-xs">Todo Description</p>
-          </div>
-          <p>Date</p>
-        </div>
-
-        <div className="w-7 flex items-center justify-center h-7 rounded-md border border-gray-400">
-          <p className="text-xl flex items-center justify-center font-semibold">
-            <HiDotsHorizontal color="blue" />
-          </p>
-        </div>
-      </div>
+      
     </div>
   );
 };

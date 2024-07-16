@@ -13,7 +13,7 @@ const Card: React.FC<GraphProps> = ({
   value,
 }) => {
   return (
-    <div className="shadow-md px-2 py-4 w-full">
+    <div className="shadow-md bg-white rounded-md p-4 w-full">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-medium">{title}</h1>
         <span className="text-xl font-medium">...</span>

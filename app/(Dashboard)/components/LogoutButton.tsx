@@ -9,6 +9,7 @@ const LogoutButton = () => {
       <IoLogOutOutline
         size={20}
         color="gray"
+        title="Logout"
         className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-all "
       />
     </button>
