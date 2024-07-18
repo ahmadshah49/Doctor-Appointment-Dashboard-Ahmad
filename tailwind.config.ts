@@ -15,6 +15,8 @@ const config: Config = {
       },
       colors: {
         primary: " #0000AC",
+        sky: " #2F80ED",
+        grayLight: " #4F4F4F",
       },
       screens: {
         primary: "850px",

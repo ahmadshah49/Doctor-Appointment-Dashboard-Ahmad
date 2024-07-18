@@ -11,7 +11,7 @@ export const POST = async (req: Request) => {
       return new NextResponse("Unauthenticated!");
     }
 
-    if (!title && !description && !completed && !date) {
+    if (!title && !completed) {
       return new NextResponse(
         "Please add title,description,completed and Date"
       );
@@ -33,21 +33,21 @@ export const POST = async (req: Request) => {
 
 export const GET = async (req: Request) => {
   try {
-    const response = await prisma.user.findMany({
+    const currentUser = await getCurrentUser();
+    if (!currentUser) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+    const userId = currentUser.id;
+    const response = await prisma.task.findMany({
+      where: { userId },
       select: {
-        name: true,
-        email: true,
+        title: true,
+        completed: true,
+        date: true,
+        description: true,
         id: true,
-        task: {
-          select: {
-            title: true,
-            description: true,
-            userId: true,
-            completed: true,
-            date: true,
-            id: true,
-          },
-        },
+
+        userId: true,
       },
     });
     return NextResponse.json(response);

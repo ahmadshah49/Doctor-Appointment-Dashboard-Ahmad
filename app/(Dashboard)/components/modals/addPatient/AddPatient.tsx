@@ -67,13 +67,6 @@ const AddPatient: React.FC<AddPatientTypes> = ({ isUpdate, onClose }) => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isUpdate) {
-      // console.log("data from add", {
-      //   name,
-      //   diagnosis,
-      //   profileImage,
-      //   status,
-      //   appointmentDate,
-      // });
       handleAddPatient();
     } else {
       console.log("data from update", {

@@ -1,6 +1,7 @@
 import Card from "../components/card/Card";
 import DashboardSchedule from "../components/dashboardSchedule/DashboardSchedule";
-import DashboardTask from "../components/DashboardTask/DashboardTask";
+import Task from "../components/task/Task";
+
 import DashboardLayout from "./DashboardLayout";
 const Dashboard = () => {
   const tasks = [
@@ -51,7 +52,7 @@ const Dashboard = () => {
         </div>
         <div className="flex w-full gap-4 my-4">
           <div className="w-[60%]">
-            <DashboardTask todoData={tasks} isLink />
+            <Task />
           </div>
           <div className="w-[40%]">
             <DashboardSchedule />
