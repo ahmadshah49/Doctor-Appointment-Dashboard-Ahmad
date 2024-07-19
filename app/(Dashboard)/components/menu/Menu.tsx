@@ -4,7 +4,7 @@ import { LuFilter } from "react-icons/lu";
 import { LuSearch } from "react-icons/lu";
 import { LuPlus } from "react-icons/lu";
 import { LuHelpCircle } from "react-icons/lu";
-import ToogleButton from "../modals/addPatient/toogleButton/ToogleButton";
+import ToogleButton from "../modals/toogleButton/ToogleButton";
 
 const Menu: React.FC<MenuProps> = ({ title }) => {
   return (

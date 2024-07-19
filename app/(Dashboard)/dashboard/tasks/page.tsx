@@ -8,7 +8,6 @@ const Tasks = () => {
     <DashboardLayout>
       <div className="p-4 h-screen">
         <Task />
-        
       </div>
     </DashboardLayout>
   );

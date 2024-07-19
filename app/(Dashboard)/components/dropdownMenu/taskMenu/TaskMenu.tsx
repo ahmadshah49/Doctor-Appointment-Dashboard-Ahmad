@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect } from "react";
-import ToogleButton from "../toogleButton/ToogleButton";
+import ToogleTodoButton from "../../modals/toogleTodoButton/ToogleTodoButton";
 
 type OptionModalProps = {
   onClose: () => void;
 };
 
-const OptionModal: React.FC<OptionModalProps> = ({ onClose }) => {
+const TaskMenu: React.FC<OptionModalProps> = ({ onClose }) => {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -34,12 +34,12 @@ const OptionModal: React.FC<OptionModalProps> = ({ onClose }) => {
         className="p-2 h-full flex flex-col items-center justify-evenly"
         onClick={handleOverlayClick}
       >
-        <ToogleButton
+        <ToogleTodoButton
           isUpdate
           className="rounded-md px-4 transition-all w-full hover:bg-gray-300/50"
         >
           Update
-        </ToogleButton>
+        </ToogleTodoButton>
         <button
           className="rounded-md px-4 transition-all w-full hover:bg-gray-300/50"
           onClick={onClose}
@@ -51,4 +51,4 @@ const OptionModal: React.FC<OptionModalProps> = ({ onClose }) => {
   );
 };
 
-export default OptionModal;
+export default TaskMenu;

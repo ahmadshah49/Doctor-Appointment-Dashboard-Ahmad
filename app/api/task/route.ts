@@ -16,7 +16,7 @@ export const POST = async (req: Request) => {
         "Please add title,description,completed and Date"
       );
     }
-    await prisma.task.create({
+    const task = await prisma.task.create({
       data: {
         title,
         completed,
@@ -25,7 +25,7 @@ export const POST = async (req: Request) => {
         userId: currentUser?.id,
       },
     });
-    return NextResponse.json({ message: "Task Added" });
+    return NextResponse.json(task);
   } catch (error) {
     return NextResponse.json({ message: "Error while adding task", error });
   }
@@ -40,6 +40,9 @@ export const GET = async (req: Request) => {
     const userId = currentUser.id;
     const response = await prisma.task.findMany({
       where: { userId },
+      orderBy: {
+        date: "desc",
+      },
       select: {
         title: true,
         completed: true,

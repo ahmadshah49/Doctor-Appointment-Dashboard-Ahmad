@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import OptionModal from "../OptionModal";
+import TaskMenu from "../taskMenu/TaskMenu";
 
-const OptionToogle = () => {
+const ToogleTaskMenu = () => {
   const [isOpen, setisOpen] = useState(false);
   const ModalClose = () => {
     setisOpen(false);
@@ -14,9 +14,9 @@ const OptionToogle = () => {
       <button onClick={() => setisOpen((prev) => !prev)}>
         <BsThreeDots />
       </button>
-      {isOpen && <OptionModal onClose={ModalClose} />}
+      {isOpen && <TaskMenu onClose={ModalClose} />}
     </div>
   );
 };
 
-export default OptionToogle;
+export default ToogleTaskMenu;

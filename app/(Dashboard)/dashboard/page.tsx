@@ -52,7 +52,7 @@ const Dashboard = () => {
         </div>
         <div className="flex w-full gap-4 my-4">
           <div className="w-[60%]">
-            <Task />
+            <Task isShow seeAll />
           </div>
           <div className="w-[40%]">
             <DashboardSchedule />

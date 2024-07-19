@@ -28,7 +28,16 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose }) => {
     console.log("Error", isError);
   }
   const handleAddTodo = async () => {
-    disPatch(addTask(taskData));
+    try {
+      await disPatch(addTask(taskData)).unwrap();
+      toast.success("Task added successfully");
+      onClose();
+    } catch (error) {
+      toast.error("Failed to add task");
+      console.log("Error adding task", error);
+    } finally {
+      onClose();
+    }
   };
   const handleUpdateTodo = () => {
     console.log("add todo", { name, status });
@@ -37,7 +46,7 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose }) => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isUpdate) {
-      handleAddTodo();
+      await handleAddTodo();
     } else {
       handleUpdateTodo();
     }

@@ -35,7 +35,7 @@ export type Task = {
   title: string;
   description: string;
   completed: string;
-  date?: Date;
+  date?: string | number;
   id?: string;
 };
 export type initalStateTypes = {

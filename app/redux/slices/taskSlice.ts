@@ -15,7 +15,9 @@ export const addTask = createAsyncThunk(
   async (taskData: Task, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${BASE_URL}/api/task`, taskData);
-      const newTask = await response.data;
+      const newTask = response.data;
+      console.log("New Task", newTask);
+
       return newTask;
     } catch (error) {
       console.log(error);
@@ -25,17 +27,21 @@ export const addTask = createAsyncThunk(
   }
 );
 
-export const fetchTasks = createAsyncThunk("tasks/fetchTask", async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/api/task`);
-    const Tasks = await response.data;
-    return Tasks;
-  } catch (error) {
-    console.log(error);
+export const fetchTasks = createAsyncThunk(
+  "tasks/fetchTask",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/api/task`);
+      const Tasks = await response?.data;
+      console.log("Get Task", Tasks);
+      return Tasks;
+    } catch (error: any) {
+      console.log(error);
 
-    return new Error("Something Went Wrong");
+      return rejectWithValue(error?.response?.data);
+    }
   }
-});
+);
 
 const addTaskSlice = createSlice({
   name: "Add Task",
@@ -47,7 +53,9 @@ const addTaskSlice = createSlice({
     });
     builder.addCase(addTask.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.task = action.payload;
+      state.task = [action.payload, ...state.task].sort(
+        (a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime()
+      );
     });
     builder.addCase(addTask.rejected, (state, action) => {
       state.isError = true;

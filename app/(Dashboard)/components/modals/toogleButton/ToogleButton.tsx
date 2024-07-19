@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import AddTodoModal from "../AddTodoModal";
+import AddPatient from "../addPatient/AddPatient";
 
 type ToogleButtonProps = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type ToogleButtonProps = {
   className?: string;
 };
 
-const ToogleTodoButton: React.FC<ToogleButtonProps> = ({
+const ToogleButton: React.FC<ToogleButtonProps> = ({
   children,
   isUpdate,
   className,
@@ -27,9 +27,9 @@ const ToogleTodoButton: React.FC<ToogleButtonProps> = ({
       <button className={className} onClick={modalOpen}>
         {children}
       </button>
-      {isOpen && <AddTodoModal onClose={modalClose} isUpdate={isUpdate} />}
+      {isOpen && <AddPatient onClose={modalClose} isUpdate={isUpdate} />}
     </div>
   );
 };
 
-export default ToogleTodoButton;
+export default ToogleButton;

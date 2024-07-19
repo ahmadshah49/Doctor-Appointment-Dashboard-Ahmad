@@ -1,6 +1,6 @@
 import person from "@/public/images/person.png";
 import Image from "next/image";
-import ToogleButton from "../modals/addPatient/toogleButton/ToogleButton";
+import ToogleButton from "../modals/toogleButton/ToogleButton";
 
 const PatientTable = () => {
   const sampleData = [
