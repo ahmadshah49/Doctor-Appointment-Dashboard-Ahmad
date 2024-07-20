@@ -20,7 +20,7 @@ export const POST = async (req: Request) => {
       return new NextResponse("UnAuthenticated");
     }
 
-    await prisma.patient.create({
+    const patient = await prisma.patient.create({
       data: {
         name: name,
         diagnosis: diagnosis,
@@ -31,10 +31,7 @@ export const POST = async (req: Request) => {
       },
     });
 
-    return NextResponse.json(
-      { message: "Patient details Added" },
-      { status: 200 }
-    );
+    return NextResponse.json(patient, { status: 200 });
   } catch (error) {
     console.log("error while adding patient details", error);
 
@@ -74,8 +71,6 @@ export const GET = async (req: Request) => {
   }
 };
 
-
-
 export const DELETE = async (req: Request) => {
   try {
     const body = await req.json();
@@ -92,8 +87,6 @@ export const DELETE = async (req: Request) => {
     });
   }
 };
-
-
 
 export const PUT = async (req: Request) => {
   try {

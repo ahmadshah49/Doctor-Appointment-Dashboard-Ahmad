@@ -1,9 +1,11 @@
 "use client";
 import { configureStore } from "@reduxjs/toolkit";
-import addTaskReducer from "./slices/taskSlice";
+import TaskReducer from "./slices/taskSlice";
+import PatientReducer from "./slices/patientSlice";
 export const store = configureStore({
   reducer: {
-    task: addTaskReducer,
+    task: TaskReducer,
+    patient: PatientReducer,
   },
 });
 

@@ -44,3 +44,20 @@ export type initalStateTypes = {
   isError: boolean;
   errorMessage: string | null;
 };
+
+export type Patient = {
+  id?: string;
+  name?: string;
+  diagnosis?: string;
+  profileImage?: string | null;
+  status?: String;
+  appointmentDate?: string;
+  userId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
+export type patientInitialState = {
+  patient: Patient[];
+  isLoading: boolean;
+  isError: boolean;
+};

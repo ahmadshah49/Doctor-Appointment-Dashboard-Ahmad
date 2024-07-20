@@ -9,48 +9,21 @@ import { addTask } from "@/app/redux/slices/taskSlice";
 import axios from "axios";
 import { BASE_URL } from "@/app/utils/axiosInstance";
 import toast from "react-hot-toast";
+import { useTodoModal } from "./useTodoModal";
 
 const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [completed, setCompleted] = useState(TodoStatus.NOT_COMPLETED);
-  const disPatch: AppDispatch = useDispatch();
-  const isLoading = useSelector((state: RootState) => state.task.isLoading);
-  const isError = useSelector((state: RootState) => state.task.isError);
-
-  const taskData = {
-    title,
+  const {
     completed,
     description,
-  };
-
-  if (isError) {
-    console.log("Error", isError);
-  }
-  const handleAddTodo = async () => {
-    try {
-      await disPatch(addTask(taskData)).unwrap();
-      toast.success("Task added successfully");
-      onClose();
-    } catch (error) {
-      toast.error("Failed to add task");
-      console.log("Error adding task", error);
-    } finally {
-      onClose();
-    }
-  };
-  const handleUpdateTodo = () => {
-    console.log("add todo", { name, status });
-    onClose();
-  };
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!isUpdate) {
-      await handleAddTodo();
-    } else {
-      handleUpdateTodo();
-    }
-  };
+    disPatch,
+    isError,
+    isLoading,
+    setCompleted,
+    setDescription,
+    setTitle,
+    submitHandler,
+    title,
+  } = useTodoModal({ isUpdate, onClose });
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -87,7 +60,7 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose }) => {
             <Input
               name="title"
               id="title"
-              label="Title"
+              label="Description"
               placeHolder="Enter Description"
               value={description}
               type="text"

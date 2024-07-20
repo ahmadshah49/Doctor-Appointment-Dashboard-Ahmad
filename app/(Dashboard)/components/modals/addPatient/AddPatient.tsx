@@ -9,13 +9,28 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
+import { useAddPatient } from "./useAddPatient";
 
 const AddPatient: React.FC<AddPatientTypes> = ({ isUpdate, onClose }) => {
-  const [name, setName] = useState("");
-  const [diagnosis, setDiagnosis] = useState("");
-  const [profileImage, setProfileImage] = useState("");
-  const [status, setStatus] = useState(PatientStatus.ONGOING);
-  const [appointmentDate, setAppointmentDate] = useState("");
+  // const [name, setName] = useState("");
+  // const [diagnosis, setDiagnosis] = useState("");
+  // const [profileImage, setProfileImage] = useState("");
+  // const [status, setStatus] = useState(PatientStatus.ONGOING);
+  // const [appointmentDate, setAppointmentDate] = useState("");
+  const {
+    name,
+    diagnosis,
+    appointmentDate,
+    status,
+    profileImage,
+    setName,
+    
+    setAppointmentDate,
+    setDiagnosis,
+    setProfileImage,
+    setStatus,
+    submitHandler,
+  } = useAddPatient({ onClose, isUpdate });
   const [loading, setLoading] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -64,21 +79,21 @@ const AddPatient: React.FC<AddPatientTypes> = ({ isUpdate, onClose }) => {
     onClose();
   };
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!isUpdate) {
-      handleAddPatient();
-    } else {
-      console.log("data from update", {
-        name,
-        diagnosis,
-        profileImage,
-        status,
-        appointmentDate,
-      });
-      onClose();
-    }
-  };
+  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   if (!isUpdate) {
+  //     handleAddPatient();
+  //   } else {
+  //     console.log("data from update", {
+  //       name,
+  //       diagnosis,
+  //       profileImage,
+  //       status,
+  //       appointmentDate,
+  //     });
+  //     onClose();
+  //   }
+  // };
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {

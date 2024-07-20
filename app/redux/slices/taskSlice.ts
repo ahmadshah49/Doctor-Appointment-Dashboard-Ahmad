@@ -1,6 +1,6 @@
-import { AddTodoTypes, initalStateTypes, Task } from "@/app/types/Type";
+import { initalStateTypes, Task } from "@/app/types/Type";
 import { BASE_URL } from "@/app/utils/axiosInstance";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState: initalStateTypes = {
@@ -22,7 +22,7 @@ export const addTask = createAsyncThunk(
     } catch (error) {
       console.log(error);
 
-      return rejectWithValue("Something Went Wrong");
+      return rejectWithValue(error);
     }
   }
 );

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTasks } from "./useTasks";
 import Loader from "../loader/Loader";
-import ToogleTaskMenu from "../dropdownMenu/toogleTaskMenu/ToogleTaskMenu";
 
 type TaskTypes = {
   isShow?: boolean;
@@ -59,8 +58,8 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
                   : "No date provided"}
               </p>
             </div>
-            <div className="w-fit border border-gray-300 text-sky  rounded-md">
-              <ToogleTaskMenu />
+            <div className="w-fit border border-gray-300 text-sky p-2 rounded-md">
+              <BsThreeDots />
             </div>
           </div>
         ))}
