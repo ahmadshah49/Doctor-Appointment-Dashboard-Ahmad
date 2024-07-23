@@ -1,26 +1,38 @@
 "use client";
 
 import { addPatient } from "@/app/redux/slices/patientSlice";
+import { updatePatient } from "@/app/redux/slices/updatePatientSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { AddPatientTypes, PatientStatus } from "@/app/types/Type";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
-export const useAddPatient = ({ onClose, isUpdate }: AddPatientTypes) => {
-  const [name, setName] = useState("");
-  const [diagnosis, setDiagnosis] = useState("");
-  const [profileImage, setProfileImage] = useState("");
-  const [status, setStatus] = useState(PatientStatus.ONGOING);
-  const [appointmentDate, setAppointmentDate] = useState("");
+export const useAddPatient = ({
+  onClose,
+  isUpdate,
+  id,
+  patient,
+}: AddPatientTypes) => {
+  const [name, setName] = useState(patient?.name || "");
+
+  const [diagnosis, setDiagnosis] = useState(patient?.diagnosis || "");
+  const [profileImage, setProfileImage] = useState(patient?.profileImage || "");
+  const [status, setStatus] = useState(
+    patient?.status || PatientStatus.ONGOING
+  );
+  const [appointmentDate, setAppointmentDate] = useState(
+    patient?.appointmentDate || ""
+  );
 
   const dispatch: AppDispatch = useDispatch();
-  const patient = useSelector((state: RootState) => state.patient.patient);
+
   const isError = useSelector((state: RootState) => state.patient.isLoading);
   const isLoading = useSelector((state: RootState) => state.patient.isError);
 
   const handleAddPatient = () => {
     const patientData = {
+      id,
       name,
       diagnosis,
       profileImage,
@@ -32,7 +44,17 @@ export const useAddPatient = ({ onClose, isUpdate }: AddPatientTypes) => {
     onClose();
   };
   const handleUpdatePatient = () => {
-    console.log("Updated");
+    const patientData = {
+      id,
+      name,
+      diagnosis,
+      profileImage,
+      status,
+      appointmentDate,
+    };
+    dispatch(updatePatient(patientData));
+    console.log("Id", id);
+
     toast.success("Patient updated");
     onClose();
   };
@@ -41,7 +63,7 @@ export const useAddPatient = ({ onClose, isUpdate }: AddPatientTypes) => {
     if (!isUpdate) {
       handleAddPatient();
     } else {
-      handleUpdatePatient;
+      handleUpdatePatient();
     }
   };
 

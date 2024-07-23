@@ -1,17 +1,20 @@
 "use client";
 
 import { addTask } from "@/app/redux/slices/taskSlice";
+import { updateTask } from "@/app/redux/slices/updateTaskSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { AddTodoTypes, TodoStatus } from "@/app/types/Type";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
-export const useTodoModal = ({ onClose, isUpdate }: AddTodoTypes) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [completed, setCompleted] = useState(TodoStatus.NOT_COMPLETED);
-
+export const useTodoModal = ({ onClose, isUpdate, data }: AddTodoTypes) => {
+  const [title, setTitle] = useState(data?.title || "");
+  const [description, setDescription] = useState(data?.description || "");
+  const [completed, setCompleted] = useState(
+    data?.completed || TodoStatus.NOT_COMPLETED
+  );
+  const id = data?.id;
   const disPatch: AppDispatch = useDispatch();
   const isLoading = useSelector((state: RootState) => state.task.isLoading);
   const isError = useSelector((state: RootState) => state.task.isError);
@@ -36,8 +39,22 @@ export const useTodoModal = ({ onClose, isUpdate }: AddTodoTypes) => {
   };
 
   const handleUpdateTodo = () => {
-    console.log("add todo", { name, status });
-    onClose();
+    try {
+      const updateData = {
+        title,
+        description,
+        completed,
+        id,
+      };
+      disPatch(updateTask(updateData));
+      onClose();
+      toast.success("Task Deleted");
+    } catch (error) {
+      console.log("Error While Deleting Task");
+      toast.error("Something Went Wrong!");
+    } finally {
+      onClose();
+    }
   };
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {

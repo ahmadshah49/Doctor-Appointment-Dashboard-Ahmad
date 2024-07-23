@@ -23,8 +23,22 @@ export const addPatient = createAsyncThunk(
     }
   }
 );
+export const getPatient = createAsyncThunk(
+  "patient/get",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/api/patient`);
+      const GetPatients = await response?.data;
+      console.log("Get Patient", GetPatients);
+      return GetPatients;
+    } catch (error) {
+      console.log("Error while getting patients", error);
+      rejectWithValue(error);
+    }
+  }
+);
 
-const addPatientSlice = createSlice({
+const PatientSlice = createSlice({
   name: "Add patient",
   initialState,
   reducers: {},
@@ -36,16 +50,28 @@ const addPatientSlice = createSlice({
     builder.addCase(addPatient.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.patient = [action.payload, ...state.patient].sort(
-        (a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime()
-      );
-      builder.addCase(addPatient.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        console.log("error", action.error.message);
-      });
+      state.patient.push(action.payload);
+    });
+    builder.addCase(addPatient.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      console.log("error", action.error.message);
+    });
+    builder.addCase(getPatient.pending, (state) => {
+      state.isLoading = true;
+      state.isError = false;
+    });
+    builder.addCase(getPatient.fulfilled, (state, action) => {
+      state.isError = false;
+      state.isLoading = false;
+      state.patient = action.payload;
+    });
+    builder.addCase(getPatient.rejected, (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+      console.log("Error", action.error.message);
     });
   },
 });
 
-export default addPatientSlice.reducer;
+export default PatientSlice.reducer;

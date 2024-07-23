@@ -27,7 +27,7 @@ model User {
 
 enum PatientStatus {
   ONGOING
-  ON_TREATMENT
+  RECOVERED
   WAITING
 }
 

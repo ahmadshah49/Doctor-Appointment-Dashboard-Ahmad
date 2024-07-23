@@ -82,7 +82,7 @@ export const DELETE = async (req: Request) => {
 export const PUT = async (req: Request) => {
   try {
     const body = await req.json();
-    await prisma.task.update({
+    const data = await prisma.task.update({
       where: {
         id: body.id,
       },
@@ -93,7 +93,7 @@ export const PUT = async (req: Request) => {
         completed: body.completed,
       },
     });
-    return NextResponse.json({ message: "Patient Updated" });
+    return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json({
       message: "Error Updating Patient",

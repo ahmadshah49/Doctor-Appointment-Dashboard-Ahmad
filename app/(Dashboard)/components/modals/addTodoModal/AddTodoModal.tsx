@@ -1,17 +1,10 @@
 "use client";
-import { useState } from "react";
 
 import Input from "@/app/components/Input";
 import { AddTodoTypes, TodoStatus } from "@/app/types/Type";
-import { AppDispatch, RootState } from "@/app/redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { addTask } from "@/app/redux/slices/taskSlice";
-import axios from "axios";
-import { BASE_URL } from "@/app/utils/axiosInstance";
-import toast from "react-hot-toast";
 import { useTodoModal } from "./useTodoModal";
 
-const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose }) => {
+const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose, data }) => {
   const {
     completed,
     description,
@@ -23,7 +16,7 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose }) => {
     setTitle,
     submitHandler,
     title,
-  } = useTodoModal({ isUpdate, onClose });
+  } = useTodoModal({ isUpdate, onClose, data });
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -45,7 +38,7 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose }) => {
             {isUpdate ? "Update Todo" : "Add Todo"}
           </h1>
 
-          <form onSubmit={submitHandler} className="px-10 text-left">
+          <form onSubmit={submitHandler} className="px-10 text-black text-left">
             <Input
               name="title"
               id="title"
@@ -58,8 +51,8 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose }) => {
               sup
             />
             <Input
-              name="title"
-              id="title"
+              name="description"
+              id="description"
               label="Description"
               placeHolder="Enter Description"
               value={description}

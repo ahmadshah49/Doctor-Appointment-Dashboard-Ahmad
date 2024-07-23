@@ -17,14 +17,17 @@ export type taskState = {
 export type AddPatientTypes = {
   onClose: () => void;
   isUpdate?: boolean;
+  id?: string;
+  patient?: Patient;
 };
 export type AddTodoTypes = {
   onClose: () => void;
   isUpdate?: boolean;
+  data?: Task;
 };
 export const PatientStatus = {
   ONGOING: "ONGOING",
-  ON_TREATMENT: "ON_TREATMENT",
+  RECOVERED: "RECOVERED",
   WAITING: "WAITING",
 };
 export const TodoStatus = {
@@ -42,7 +45,7 @@ export type initalStateTypes = {
   task: Task[];
   isLoading: boolean;
   isError: boolean;
-  errorMessage: string | null;
+  errorMessage?: string | null;
 };
 
 export type Patient = {

@@ -2,17 +2,20 @@
 
 import { useState } from "react";
 import AddTodoModal from "../addTodoModal/AddTodoModal";
+import { Task } from "@/app/types/Type";
 
 type ToogleButtonProps = {
   children: React.ReactNode;
   isUpdate?: boolean;
   className?: string;
+  data?: Task;
 };
 
 const ToogleTodoButton: React.FC<ToogleButtonProps> = ({
   children,
   isUpdate,
   className,
+  data,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,7 +30,9 @@ const ToogleTodoButton: React.FC<ToogleButtonProps> = ({
       <button className={className} onClick={modalOpen}>
         {children}
       </button>
-      {isOpen && <AddTodoModal onClose={modalClose} isUpdate={isUpdate} />}
+      {isOpen && (
+        <AddTodoModal onClose={modalClose} isUpdate={isUpdate} data={data} />
+      )}
     </div>
   );
 };

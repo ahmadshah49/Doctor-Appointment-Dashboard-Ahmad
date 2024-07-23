@@ -3,7 +3,7 @@ import Input from "@/app/components/Input";
 import { storage } from "@/app/lib/firebase";
 import { AddPatientTypes, PatientStatus } from "@/app/types/Type";
 import placeholder from "@/public/images/placeholder.png";
-import axios from "axios";
+import clsx from "clsx";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Image from "next/image";
 import { useRef, useState } from "react";
@@ -11,12 +11,12 @@ import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
 import { useAddPatient } from "./useAddPatient";
 
-const AddPatient: React.FC<AddPatientTypes> = ({ isUpdate, onClose }) => {
-  // const [name, setName] = useState("");
-  // const [diagnosis, setDiagnosis] = useState("");
-  // const [profileImage, setProfileImage] = useState("");
-  // const [status, setStatus] = useState(PatientStatus.ONGOING);
-  // const [appointmentDate, setAppointmentDate] = useState("");
+const AddPatient: React.FC<AddPatientTypes> = ({
+  isUpdate,
+  onClose,
+  id,
+  patient,
+}) => {
   const {
     name,
     diagnosis,
@@ -24,13 +24,13 @@ const AddPatient: React.FC<AddPatientTypes> = ({ isUpdate, onClose }) => {
     status,
     profileImage,
     setName,
-    
+    isLoading,
     setAppointmentDate,
     setDiagnosis,
     setProfileImage,
     setStatus,
     submitHandler,
-  } = useAddPatient({ onClose, isUpdate });
+  } = useAddPatient({ onClose, isUpdate, id, patient });
   const [loading, setLoading] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -66,34 +66,6 @@ const AddPatient: React.FC<AddPatientTypes> = ({ isUpdate, onClose }) => {
   const handleRemoveImage = () => {
     setProfileImage("");
   };
-
-  const handleAddPatient = async () => {
-    await axios.post("http://localhost:3000/api/patient", {
-      name,
-      diagnosis,
-      profileImage,
-      status,
-      appointmentDate,
-    });
-    toast.success("Patient added");
-    onClose();
-  };
-
-  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   if (!isUpdate) {
-  //     handleAddPatient();
-  //   } else {
-  //     console.log("data from update", {
-  //       name,
-  //       diagnosis,
-  //       profileImage,
-  //       status,
-  //       appointmentDate,
-  //     });
-  //     onClose();
-  //   }
-  // };
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -150,7 +122,7 @@ const AddPatient: React.FC<AddPatientTypes> = ({ isUpdate, onClose }) => {
               sup
             />
             <div className="w-full my-6">
-              <label className="text-sm text-left" htmlFor={status}>
+              <label className="text-sm text-left">
                 Status <sup className="text-red-600 text-base">*</sup>
               </label>
               <div>
@@ -222,10 +194,22 @@ const AddPatient: React.FC<AddPatientTypes> = ({ isUpdate, onClose }) => {
                 Cancel
               </button>
               <button
+                id={id}
                 type="submit"
-                className="bg-primary px-8 py-3 rounded-md font-semibold text-white w-[150px]"
+                disabled={loading}
+                className={clsx(
+                  `bg-primary px-8 py-3 rounded-md font-semibold text-white w-[150px]`,
+                  loading && "bg-gray-400 cursor-not-allowed",
+                  isLoading && "bg-gray-400 cursor-not-allowed"
+                )}
               >
-                {isUpdate ? "Save" : "Add"}
+                {isUpdate
+                  ? isLoading
+                    ? "Loading..."
+                    : "Save"
+                  : isLoading
+                  ? "Loading..."
+                  : "Add"}
               </button>
             </div>
           </form>

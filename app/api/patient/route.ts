@@ -44,22 +44,25 @@ export const POST = async (req: Request) => {
 
 export const GET = async (req: Request) => {
   try {
-    const response = await prisma.user.findMany({
+    const currentUser = await getCurrentUser();
+    if (!currentUser) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+    const userId = currentUser.id;
+    const response = await prisma.patient.findMany({
+      where: { userId },
+      orderBy: {
+        appointmentDate: "desc",
+      },
+
       select: {
         name: true,
-        email: true,
+        diagnosis: true,
+        userId: true,
+        status: true,
         id: true,
-        patients: {
-          select: {
-            name: true,
-            diagnosis: true,
-            userId: true,
-            status: true,
-            id: true,
-            appointmentDate: true,
-            profileImage: true,
-          },
-        },
+        appointmentDate: true,
+        profileImage: true,
       },
     });
     return NextResponse.json(response);
@@ -91,7 +94,7 @@ export const DELETE = async (req: Request) => {
 export const PUT = async (req: Request) => {
   try {
     const body = await req.json();
-    await prisma.patient.update({
+    const updatedPatient = await prisma.patient.update({
       where: {
         id: body.id,
       },
@@ -103,11 +106,11 @@ export const PUT = async (req: Request) => {
         profileImage: body.profileImage,
       },
     });
-    return NextResponse.json({ message: "Patient Updated" });
+    return NextResponse.json(updatedPatient);
   } catch (error) {
+    console.log(error);
     return NextResponse.json({
       message: "Error Updating Patient",
-      error,
     });
   }
 };

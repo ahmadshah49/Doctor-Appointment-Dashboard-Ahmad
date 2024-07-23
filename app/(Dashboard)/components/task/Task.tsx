@@ -1,18 +1,20 @@
 "use client";
-import { FaPlus } from "react-icons/fa6";
-import { BsThreeDots } from "react-icons/bs";
-import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
 import Link from "next/link";
+import { useState } from "react";
+import { FaPlus } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { useTasks } from "./useTasks";
 import Loader from "../loader/Loader";
+import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
+import ThreeDotsBox from "../threeDots/ThreeDots";
+import { useTasks } from "./useTasks";
+import { BsThreeDots } from "react-icons/bs";
 
 type TaskTypes = {
   isShow?: boolean;
   seeAll?: boolean;
 };
-
 const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
+  const [isOpen, setisOpen] = useState(false);
   const { todos, isError, isLoading } = useTasks();
 
   const Todos = isShow ? todos.slice(0, 3) : todos;
@@ -47,6 +49,7 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
               readOnly
               className="cursor-not-allowed w-[31px] h-[31px] p-2 rounded-md"
             />
+
             <div className="flex items-center w-full justify-between">
               <div>
                 <h1 className="py-2 font-medium text-base ">{todo?.title}</h1>
@@ -58,9 +61,9 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
                   : "No date provided"}
               </p>
             </div>
-            <div className="w-fit border border-gray-300 text-sky p-2 rounded-md">
+            <ThreeDotsBox id={todo.id} data={todo}>
               <BsThreeDots />
-            </div>
+            </ThreeDotsBox>
           </div>
         ))}
 
