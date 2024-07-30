@@ -48,7 +48,7 @@ export const useTodoModal = ({ onClose, isUpdate, data }: AddTodoTypes) => {
       };
       disPatch(updateTask(updateData));
       onClose();
-      toast.success("Task Deleted");
+      toast.success("Task Updated!");
     } catch (error) {
       console.log("Error While Deleting Task");
       toast.error("Something Went Wrong!");

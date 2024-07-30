@@ -25,6 +25,16 @@ export type AddTodoTypes = {
   isUpdate?: boolean;
   data?: Task;
 };
+export type AddAppointmentTypes = {
+  onClose: () => void;
+  isUpdate?: boolean;
+  data?: Appointment;
+};
+export enum PatientStatusType {
+  ONGOING = "ONGOING",
+  RECOVERED = "RECOVERED",
+  WAITING = "WAITING",
+}
 export const PatientStatus = {
   ONGOING: "ONGOING",
   RECOVERED: "RECOVERED",
@@ -63,4 +73,58 @@ export type patientInitialState = {
   patient: Patient[];
   isLoading: boolean;
   isError: boolean;
+};
+export enum AppointmentTypes {
+  Online_Consultation = "Online_Consultation",
+  Offline_Consultation = "Offline_Consultation",
+}
+export const AppointmentType = {
+  Online_Consultation: "Online_Consultation",
+  Offline_Consultation: "Offline_Consultation",
+};
+
+export type Appointment = {
+  name?: string;
+  id?: string;
+  start: string;
+  end: string;
+  purpose?: string;
+  appointmentType?: AppointmentTypes;
+  status?: string;
+};
+export type AppointmentInitialState = {
+  appointment: Appointment[];
+  isLoading: boolean;
+  isError: boolean;
+};
+export type UserInfo = {
+  id: string;
+  email: string | null;
+  name: string | null;
+  password: string | null;
+  image: string | null;
+  companyName: string | null;
+  profileImage: string | null;
+  resetToken: string | null;
+  resetTokenExpiry: Date | null;
+  emailVerified: Date | null;
+};
+
+export type InputTwoTypes = {
+  label: string;
+  placeHolder?: string;
+  type?: string;
+  name: string;
+  id: string;
+  value: string;
+  onChange?: (value: string) => void;
+  disabled?: boolean;
+  required?: boolean;
+  sup?: boolean;
+};
+export type CheckBoxProps<T> = {
+  options: T[];
+  selectedOption: T;
+  setSelectedOption: (option: T) => void;
+  label: string;
 };

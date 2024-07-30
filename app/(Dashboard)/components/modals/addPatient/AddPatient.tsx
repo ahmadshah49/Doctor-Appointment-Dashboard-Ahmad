@@ -121,6 +121,7 @@ const AddPatient: React.FC<AddPatientTypes> = ({
               onChange={(e) => setAppointmentDate(e)}
               sup
             />
+
             <div className="w-full my-6">
               <label className="text-sm text-left">
                 Status <sup className="text-red-600 text-base">*</sup>

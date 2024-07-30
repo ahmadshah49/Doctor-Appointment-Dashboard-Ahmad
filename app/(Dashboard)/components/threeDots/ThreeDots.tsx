@@ -5,6 +5,7 @@ import { Task } from "@/app/types/Type";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "@/app/redux/slices/deleteTaskSlice";
+import toast from "react-hot-toast";
 
 interface ThreeDotsBoxProps {
   children?: ReactNode;
@@ -40,12 +41,9 @@ const ThreeDotsBox: React.FC<ThreeDotsBoxProps> = ({ children, id, data }) => {
     };
   }, [isOpenMenu]);
 
-  const handleUpdate = () => {
-    console.log("Update Click", data);
-  };
   const handleDelete = () => {
     disPatch(deleteTask(id));
-    console.log("Delete Click", id);
+    toast.success("Task Deleted!");
   };
 
   return (
@@ -61,14 +59,11 @@ const ThreeDotsBox: React.FC<ThreeDotsBoxProps> = ({ children, id, data }) => {
       </div>
       {isOpenMenu && (
         <div className="absolute -left-20 bg-white shadow-xl rounded-md border p-2 z-50">
-          <button
-            onClick={handleUpdate}
-            className="block w-full text-center transition ease-linear font-semibold text-blue-600 px-4 py-2 hover:bg-blue-300 rounded-lg"
-          >
+          <div className="block w-full text-center transition ease-linear font-semibold text-blue-600 px-4 py-2 hover:bg-blue-300 rounded-lg">
             <ToogleTodoButton data={data} isUpdate>
               Update
             </ToogleTodoButton>
-          </button>
+          </div>
           <button
             onClick={handleDelete}
             className="block w-full text-center font-semibold transition ease-linear text-red-600 px-4 py-2 hover:bg-red-300 rounded-lg"
