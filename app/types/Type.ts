@@ -86,8 +86,8 @@ export const AppointmentType = {
 export type Appointment = {
   name?: string;
   id?: string;
-  start: string;
-  end: string;
+  start?: string;
+  end?: string;
   purpose?: string;
   appointmentType?: AppointmentTypes;
   status?: string;

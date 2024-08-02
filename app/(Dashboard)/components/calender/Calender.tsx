@@ -1,38 +1,17 @@
 "use client";
-import { fetchAppointment } from "@/app/redux/slices/getAppointmentSlice";
-import { AppDispatch, RootState } from "@/app/redux/store";
-import { Appointment } from "@/app/types/Type";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import axios from "axios";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
 import { BiSpreadsheet } from "react-icons/bi";
 import { FaDisease, FaRegUser } from "react-icons/fa6";
 import { MdAccessTimeFilled } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useCalender } from "./useCalender";
 
 const Calender = () => {
-  const [events, setEvents] = useState<Appointment[]>([]);
-  const disPatch: AppDispatch = useDispatch();
-  const { appointment, isError, isLoading } = useSelector(
-    (state: RootState) => state.getAppointment
-  );
-  useEffect(() => {
-    disPatch(fetchAppointment());
-  }, [disPatch]);
-  useEffect(() => {
-    setEvents(appointment);
-  }, [appointment, setEvents]);
-
-  const formatTime = (date: any) => {
-    return new Date(date).toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  };
+  const {  events, formatTime} = useCalender();
+  
+  
 
   return (
     <div className="rounded-md bg-white p-4">
@@ -82,7 +61,7 @@ const Calender = () => {
           return (
             <div
               className={clsx(
-                `overflow-hidden  w-full h-full ${bgColor} ${textColor}`
+                `overflow-x-auto  w-full h-full ${bgColor} ${textColor}`
               )}
             >
               <div

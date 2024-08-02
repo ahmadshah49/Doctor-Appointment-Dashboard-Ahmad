@@ -18,6 +18,7 @@ import {
 } from "../../../../types/Type";
 import CheckBox from "../../checkBox/CheckBox";
 import InputTwo from "../../inputTwo/InputTwo";
+import toast from "react-hot-toast";
 
 const AddAppointment: React.FC<AddAppointmentTypes> = ({
   isUpdate,
@@ -36,7 +37,7 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
 
   const disPatch: AppDispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.currentUser);
-  const { appointment, isError } = useSelector(
+  const { appointment, isError, isLoading } = useSelector(
     (state: RootState) => state.addAppointment
   );
   useEffect(() => {
@@ -89,6 +90,7 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
     };
     disPatch(addAppointment(data));
     onClose();
+    toast.success("Schedule Added!");
   };
 
   return (
@@ -206,12 +208,12 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
               </button>
               <button
                 type="submit"
-                // disabled={loading}
+                disabled={isLoading}
                 className={clsx(
-                  `border-[1px] border-primary py-[7px] px-[11px] rounded-md  text-base font-medium text-primary `
+                  `border-[1px] border-primary py-[7px] px-[11px] rounded-md disabled:bg-gray-400 disabled:cursor-not-allowed  text-base font-medium text-primary `
                 )}
               >
-                Save
+                {isLoading ? "Saving" : "Save"}
               </button>
             </div>
           </form>
