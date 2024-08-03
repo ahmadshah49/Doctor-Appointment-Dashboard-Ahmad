@@ -6,9 +6,12 @@ import SidebarItem from "./SidebarItem";
 import Link from "next/link";
 import clsx from "clsx";
 import { IoSettingsOutline } from "react-icons/io5";
+import { usePathname, useRouter } from "next/navigation";
 
 const Sidebar = () => {
   const routes = useRoutes();
+  const pathname = usePathname();
+  const isActive = pathname === "/dashboard/settings";
 
   return (
     <div className="relative border-r h-screen bg-white">
@@ -41,17 +44,21 @@ const Sidebar = () => {
           <div>
             <Link
               href={"/dashboard/settings"}
-
               className={clsx(
-                `flex group
+                `flex 
+                items-center
+                group
                 gap-2
-              active:text-primary
                 my-4
                 py-2
               text-gray-400
-              hover:text-gray-700`
+              hover:text-gray-700`,
+                isActive && "text-primary "
               )}
             >
+              {isActive && (
+                <span className="w-[6px] rounded-r-2xl absolute h-[40px]  bg-primary" />
+              )}
               <IoSettingsOutline className="h-6 w-6 mx-5" /> Settings
             </Link>
           </div>
