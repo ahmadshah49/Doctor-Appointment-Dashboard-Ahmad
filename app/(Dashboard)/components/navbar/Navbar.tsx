@@ -26,8 +26,8 @@ const Navbar = async () => {
         <IoSearchOutline size={20} color="gray" />
       </div>
       <div className="text-right">
-        <p className="text-sm">{currentUser?.id}</p>
-        <h1 className="text-sm font-semibold">{currentUser?.companyName}</h1>
+        <p className="text-sm">{currentUser?.name}</p>
+        <h1 className="text-sm font-semibold">{currentUser?.companyName || " Medical Clinc "}</h1>
       </div>
       <div className="border border-gray-400 py-1 rounded px-2 ">
         {formatedDate}

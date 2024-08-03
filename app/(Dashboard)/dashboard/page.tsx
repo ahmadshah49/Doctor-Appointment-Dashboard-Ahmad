@@ -4,40 +4,6 @@ import Task from "../components/task/Task";
 
 import DashboardLayout from "./DashboardLayout";
 const Dashboard = () => {
-  const tasks = [
-    {
-      id: "fajkpgf",
-      title: " string",
-      description: "string;",
-      date: new Date("2023-07-13T00:00:00Z"),
-      completed: false,
-      userId: "6464464646",
-    },
-    {
-      id: "fajkpgf",
-      title: " string",
-      description: "string;",
-      date: new Date("2023-07-13T00:00:00Z"),
-      completed: false,
-      userId: "6464464646",
-    },
-    {
-      id: "fajkpgf",
-      title: " string",
-      description: "string;",
-      date: new Date("2023-07-13T00:00:00Z"),
-      completed: false,
-      userId: "6464464646",
-    },
-    {
-      id: "fajkpgf",
-      title: " string",
-      description: "string;",
-      date: new Date("2023-07-13T00:00:00Z"),
-      completed: false,
-      userId: "6464464646",
-    },
-  ];
   return (
     <DashboardLayout>
       <div className="p-4 h-screen">

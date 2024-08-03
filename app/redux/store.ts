@@ -9,6 +9,7 @@ import DeleteTaskReducer from "./slices/deleteTaskSlice";
 import CurrentUserReducer from "./slices/userSlice";
 import AddAppointmentReducer from "./slices/addAppointmentSlice";
 import GetAppointmentReducer from "./slices/getAppointmentSlice";
+import UpdateUserReducer from "./slices/getAppointmentSlice";
 export const store = configureStore({
   reducer: {
     task: TaskReducer,
@@ -20,6 +21,7 @@ export const store = configureStore({
     currentUser: CurrentUserReducer,
     addAppointment: AddAppointmentReducer,
     getAppointment: GetAppointmentReducer,
+    updateUser: UpdateUserReducer,
   },
 });
 

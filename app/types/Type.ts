@@ -101,13 +101,13 @@ export type UserInfo = {
   id: string;
   email: string | null;
   name: string | null;
-  password: string | null;
-  image: string | null;
+  password?: string | null;
+  image?: string | null;
   companyName: string | null;
-  profileImage: string | null;
-  resetToken: string | null;
-  resetTokenExpiry: Date | null;
-  emailVerified: Date | null;
+  profileImage?: string | null;
+  resetToken?: string | null;
+  resetTokenExpiry?: Date | null;
+  emailVerified?: Date | null;
 };
 
 export type InputTwoTypes = {
@@ -127,4 +127,21 @@ export type CheckBoxProps<T> = {
   selectedOption: T;
   setSelectedOption: (option: T) => void;
   label: string;
+};
+export type UserState = {
+  user: UserInfo | null;
+  loading: boolean;
+  error: string | null;
+};
+export type ProfileInputProps = {
+  type: string;
+  name: string;
+  id: string;
+  value: string;
+  readonly?: boolean;
+  onChange: (value: string) => void;
+  label: string;
+  htmlFor: string;
+  required?: boolean;
+  hidden?: boolean;
 };

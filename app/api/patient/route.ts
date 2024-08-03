@@ -75,6 +75,10 @@ export const GET = async (req: Request) => {
 };
 
 export const DELETE = async (req: Request) => {
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
   try {
     const body = await req.json();
     await prisma.patient.delete({
@@ -92,6 +96,10 @@ export const DELETE = async (req: Request) => {
 };
 
 export const PUT = async (req: Request) => {
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
   try {
     const body = await req.json();
     const updatedPatient = await prisma.patient.update({
