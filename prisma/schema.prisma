@@ -8,21 +8,29 @@ datasource db {
 }
 
 model User {
-  id               String        @id @default(auto()) @map("_id") @db.ObjectId
-  email            String?       @unique
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  email            String?        @unique
   name             String?
   password         String?
   image            String?
   companyName      String?
   profileImage     String?
-  resetToken       String?       @unique
+  resetToken       String?        @unique
   resetTokenExpiry DateTime?
   emailVerified    DateTime?
   patients         Patient[]
-  appointments     Appointment[] @relation("DoctorAppointments")
+  appointments     Appointment[]  @relation("DoctorAppointments")
   accounts         Account[]
+  notifications    Notification[]
+  task             Task[]
+}
 
-  task Task[]
+model Notification {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  data      String
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.ObjectId
 }
 
 enum PatientStatus {
@@ -50,11 +58,10 @@ enum AppointmentType {
 }
 
 model Appointment {
-  id    String   @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  start DateTime
-  end   DateTime
-
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  start           DateTime
+  end             DateTime
   purpose         String
   status          PatientStatus
   appointmentType AppointmentType
@@ -62,10 +69,6 @@ model Appointment {
   user   User?   @relation("DoctorAppointments", fields: [userId], references: [id])
   userId String? @db.ObjectId
 }
-
-// name 
-
-// Appointment Details Screen: Appointments include details such as date, time, purpose, and appointment type (e.g., online consultation).
 
 enum TaskStatus {
   NOT_COMPLETED

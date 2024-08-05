@@ -145,3 +145,13 @@ export type ProfileInputProps = {
   required?: boolean;
   hidden?: boolean;
 };
+export type Notification = {
+  data: string;
+  date?: string;
+};
+
+export type NotificationInitialState = {
+  data: Notification[];
+  isLoading: boolean;
+  isError: boolean;
+};

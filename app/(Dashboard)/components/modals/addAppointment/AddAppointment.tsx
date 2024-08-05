@@ -19,6 +19,7 @@ import {
 import CheckBox from "../../checkBox/CheckBox";
 import InputTwo from "../../inputTwo/InputTwo";
 import toast from "react-hot-toast";
+import { addNotification } from "@/app/redux/slices/notificationsSlice";
 
 const AddAppointment: React.FC<AddAppointmentTypes> = ({
   isUpdate,
@@ -34,7 +35,7 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
   const [appointmentType, setAppointmentType] = useState(
     AppointmentTypes.Offline_Consultation
   );
-
+  const [notification, setNotification] = useState("");
   const disPatch: AppDispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.currentUser);
   const { appointment, isError, isLoading } = useSelector(
@@ -76,7 +77,10 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
       onClose();
     }
   };
-
+  const formattedStartDate = formatDate(new Date(start));
+  const formattedEndDate = formatDate(new Date(end));
+  const formattedStartTime = formatTime(new Date(start));
+  const formattedEndTime = formatTime(new Date(end));
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -88,7 +92,10 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
       status,
       appointmentType,
     };
+    const notificationData = `${name}'s appointment on ${formattedStartDate}  at ${formattedStartTime} - ${formattedEndTime},  appointment is ${appointmentType} and Purpose is ${purpose}`;
+
     disPatch(addAppointment(data));
+    disPatch(addNotification(notificationData));
     onClose();
     toast.success("Schedule Added!");
   };

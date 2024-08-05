@@ -5,6 +5,8 @@ import { IoLogOutOutline } from "react-icons/io5";
 
 import getCurrentUser from "@/app/action/getCurrentUser";
 import LogoutButton from "../LogoutButton";
+import NotificationModal from "../notificationModal/NotificationModal";
+import { BsBell } from "react-icons/bs";
 
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
@@ -27,21 +29,26 @@ const Navbar = async () => {
       </div>
       <div className="text-right">
         <p className="text-sm">{currentUser?.name}</p>
-        <h1 className="text-sm font-semibold">{currentUser?.companyName || " Medical Clinc "}</h1>
+        <h1 className="text-sm font-semibold">
+          {currentUser?.companyName || " Medical Clinc "}
+        </h1>
       </div>
       <div className="border border-gray-400 py-1 rounded px-2 ">
         {formatedDate}
       </div>
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center cursor-not-allowed justify-between gap-4">
         <HiOutlineEnvelope
           size={20}
-          className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-all "
+          className="h-6 w-6 text-gray-400 transition-all "
         />
-        <HiOutlineBell
-          size={20}
-          color="gray"
-          className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-all "
-        />
+        <NotificationModal>
+          <BsBell
+            size={20}
+            title="Notifications"
+            color="gray"
+            className="h-6 w-6 text-gray-400  hover:text-gray-600 transition-all "
+          />
+        </NotificationModal>
         <LogoutButton />
       </div>
     </div>

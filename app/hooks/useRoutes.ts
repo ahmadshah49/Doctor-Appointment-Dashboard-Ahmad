@@ -6,6 +6,7 @@ import { RiCalendarScheduleLine } from "react-icons/ri";
 import { BiTask } from "react-icons/bi";
 import { PiUsers } from "react-icons/pi";
 import { TbBrandGoogleAnalytics } from "react-icons/tb";
+import { IoNotificationsOutline } from "react-icons/io5";
 
 import { useMemo } from "react";
 
@@ -38,11 +39,17 @@ const useRoutes = () => {
         icon: PiUsers,
         active: pathname === "/dashboard/patients",
       },
+      // {
+      //   label: "Analytics",
+      //   href: "/dashboard/analytics",
+      //   icon: TbBrandGoogleAnalytics,
+      //   active: pathname === "/dashboard/analytics",
+      // },
       {
-        label: "Analytics",
-        href: "/dashboard/analytics",
-        icon: TbBrandGoogleAnalytics,
-        active: pathname === "/dashboard/analytics",
+        label: "Notifications",
+        href: "/dashboard/notifications",
+        icon: IoNotificationsOutline,
+        active: pathname === "/dashboard/notifications",
       },
     ],
     [pathname]

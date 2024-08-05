@@ -1,0 +1,99 @@
+"use client"; // This tells Next.js to render this component on the client side.
+
+import { useEffect, useState } from "react"; // React hooks for side effects and state management.
+import { useDispatch, useSelector } from "react-redux"; // Redux hooks for dispatching actions and selecting state.
+import { useRouter } from "next/router"; // Next.js hook for navigation.
+import Link from "next/link"; // Next.js component for linking between pages.
+import { getNotification } from "@/app/redux/slices/notificationsSlice"; // Redux action to get notifications.
+import { AppDispatch, RootState } from "@/app/redux/store"; // Types for Redux dispatch and state.
+
+const Notification = () => {
+  const dispatch: AppDispatch = useDispatch(); // Redux dispatch function.
+  const { data, isError, isLoading } = useSelector(
+    (state: RootState) => state.notifications
+  );
+
+  // State to track visited notifications
+  const [visitedNotifications, setVisitedNotifications] = useState<number[]>([]);
+
+  // Next.js router for navigation
+  const router = useRouter();
+
+  useEffect(() => {
+    dispatch(getNotification()); // Fetch notifications when the component mounts.
+  }, [dispatch]);
+
+  // Function to mark a notification as visited and navigate
+  const handleNotificationClick = (index: number) => {
+    if (!visitedNotifications.includes(index)) {
+      setVisitedNotifications([...visitedNotifications, index]); // Mark as visited
+    }
+    router.push(`/dashboard/notifications?notification=${index}`); // Navigate to details page
+  };
+
+  return (
+    <div>
+      <div className="flex flex-col my-4 gap-2">
+        {data?.map((notification, index) => (
+          <div
+            key={index}
+            className={`border hover:bg-primary/20 transition-all p-2 rounded-md cursor-pointer ${
+              visitedNotifications.includes(index) ? 'font-medium' : 'font-semibold'
+            }`}
+            onClick={() => handleNotificationClick(index)}
+          >
+            {notification.data}
+          </div>
+        ))}
+        <Link
+          href={"/dashboard/notifications"}
+          className="font-semibold text-primary underline text-right"
+        >
+          See All
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Notification;
+"use client"; // Client side rendering
+
+import { useRouter } from "next/router"; // Next.js hook for routing
+import { useEffect, useRef } from "react"; // React hooks
+import { useSelector } from "react-redux"; // Redux hook for selecting state
+import { RootState } from "@/app/redux/store"; // Type for Redux state
+
+const NotificationDetails = () => {
+  const router = useRouter(); // Next.js router for accessing query params
+  const { notification } = router.query; // Extracting notification query param
+  const { data } = useSelector((state: RootState) => state.notifications); // Selecting notifications from state
+  const notificationRef = useRef<HTMLDivElement | null>(null); // Reference for specific notification div
+
+  useEffect(() => {
+    if (notification && notificationRef.current) {
+      notificationRef.current.scrollIntoView({ behavior: "smooth" }); // Scroll to specific notification
+    }
+  }, [notification]);
+
+  return (
+    <div>
+      <h1>Notifications</h1>
+      <div className="flex flex-col my-4 gap-2">
+        {data?.map((notif, index) => (
+          <div
+            key={index}
+            className={`border p-2 rounded-md ${
+              notification === index.toString() ? 'bg-primary/20' : ''
+            }`}
+            ref={notification === index.toString() ? notificationRef : null}
+          >
+            {notif.data}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default NotificationDetails;
