@@ -46,8 +46,9 @@ const Navbar = async () => {
             size={20}
             title="Notifications"
             color="gray"
-            className="h-6 w-6 text-gray-400  hover:text-gray-600 transition-all "
+            className="h-6 w-6 text-gray-400 relative  hover:text-gray-600 transition-all "
           />
+          <span className="w-2 h-2 absolute top-0 right-1 ring-2 ring-white text-yellow-100 bg-red-600 rounded-full z-50" />
         </NotificationModal>
         <LogoutButton />
       </div>
