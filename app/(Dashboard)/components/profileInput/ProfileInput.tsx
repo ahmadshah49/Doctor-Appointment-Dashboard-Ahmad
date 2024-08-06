@@ -32,8 +32,10 @@ const ProfileInput: React.FC<ProfileInputProps> = ({
         readOnly={readonly}
         required={required}
         className="
-        w-[50%]
+        md:w-[50%]
+        w-full
         py-4
+        px-4
         rounded-xl
         active:outline-none
         active:border-1 

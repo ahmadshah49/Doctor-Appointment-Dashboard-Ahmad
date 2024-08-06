@@ -17,7 +17,7 @@ const SideDashboard = () => {
       </p>
       <button
         disabled
-        className="cursor-not-allowed text-xs font-normal text-primary bg-white rounded-md px-4 py-2 border-none outline-none"
+        className="cursor-not-allowed text-xs font-normal flex items-center justify-center text-primary bg-white rounded-md px-4 py-2 border-none outline-none"
       >
         Learn More
       </button>

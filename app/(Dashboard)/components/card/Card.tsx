@@ -1,19 +1,15 @@
-interface GraphProps {
-  title: string;
-  number?: number;
-  dcrement?: boolean;
-  value?: string;
-}
+import { GraphProps } from "@/app/types/Type";
+import OnlinePatientsChart from "../charts/onlinePatientsChart/OnlinePatientsChart";
 
 const Card: React.FC<GraphProps> = ({
   title,
   number,
-
+  data,
   dcrement,
   value,
 }) => {
   return (
-    <div className="shadow-md bg-white rounded-md p-4 w-full">
+    <div className="shadow-md bg-white rounded-md p-4 w-full max-h-64">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-medium">{title}</h1>
         <span className="text-xl font-medium">...</span>
@@ -28,7 +24,9 @@ const Card: React.FC<GraphProps> = ({
                   dcrement ? "bg-red-600" : "bg-green-600"
                 } flex items-center justify-center`}
               >
-                <p className="font-extrabold text-white text-sm">↑</p>
+                <p className="font-extrabold text-white text-sm">
+                  {dcrement ? "↓" : "↑"}
+                </p>
               </div>
               <p
                 className={`text-xs font-bold ${
@@ -40,7 +38,7 @@ const Card: React.FC<GraphProps> = ({
             </div>
           )}
         </div>
-        <div>Graph</div>
+        <OnlinePatientsChart  />
       </div>
     </div>
   );

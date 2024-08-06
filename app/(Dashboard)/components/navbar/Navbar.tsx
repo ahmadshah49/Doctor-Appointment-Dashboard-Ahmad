@@ -1,12 +1,10 @@
-import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineEnvelope } from "react-icons/hi2";
-import { HiOutlineBell } from "react-icons/hi";
-import { IoLogOutOutline } from "react-icons/io5";
+import { IoSearchOutline } from "react-icons/io5";
 
 import getCurrentUser from "@/app/action/getCurrentUser";
+import { BsBell } from "react-icons/bs";
 import LogoutButton from "../LogoutButton";
 import NotificationModal from "../notificationModal/NotificationModal";
-import { BsBell } from "react-icons/bs";
 
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
@@ -19,7 +17,7 @@ const Navbar = async () => {
 
   return (
     <div className="h-16 bg-white w-full  flex items-center border-b justify-between gap-4 px-4">
-      <div className="border border-gray-400 py-1 rounded flex px-2 justify-between w-1/3">
+      <div className="border border-gray-400 py-1 rounded lg:flex px-2 justify-between xl:min-w-[580px] hidden">
         <input
           type="text"
           placeholder="Search"
@@ -27,19 +25,19 @@ const Navbar = async () => {
         />
         <IoSearchOutline size={20} color="gray" />
       </div>
-      <div className="text-right">
+      <div className="lg:text-right text-left">
         <p className="text-sm">{currentUser?.name}</p>
         <h1 className="text-sm font-semibold">
           {currentUser?.companyName || " Medical Clinc "}
         </h1>
       </div>
-      <div className="border border-gray-400 py-1 rounded px-2 ">
+      <div className="border sm:block hidden border-gray-400 py-1 rounded px-2 ">
         {formatedDate}
       </div>
       <div className="flex items-center cursor-not-allowed justify-between gap-4">
         <HiOutlineEnvelope
           size={20}
-          className="h-6 w-6 text-gray-400 transition-all "
+          className="h-6 w-6 md:block hidden text-gray-400 transition-all "
         />
         <NotificationModal>
           <BsBell

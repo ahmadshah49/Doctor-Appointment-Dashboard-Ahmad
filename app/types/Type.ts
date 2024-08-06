@@ -155,3 +155,10 @@ export type NotificationInitialState = {
   isLoading: boolean;
   isError: boolean;
 };
+export type GraphProps = {
+  title: string;
+  number?: number;
+  dcrement?: boolean;
+  value?: string;
+  data: Appointment[];
+};

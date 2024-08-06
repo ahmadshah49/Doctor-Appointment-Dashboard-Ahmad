@@ -22,12 +22,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       <Link
         href={href}
         className={clsx(
-          `flex group gap-2 my-4 py-2  text-gray-400 hover:text-gray-700`,
+          `flex group gap-2  py-2 min-h-[44px] text-gray-400 hover:text-gray-700`,
           active && "text-primary"
         )}
       >
         <Icon className="h-6 w-6 mx-5" />
-        <span>{label}</span>
+        <span className="lg:block hidden">{label}</span>
       </Link>
     </li>
   );
