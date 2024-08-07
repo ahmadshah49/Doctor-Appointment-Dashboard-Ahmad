@@ -17,7 +17,7 @@ const AnalyticCards = () => {
 
   return (
     <>
-      <div className="flex mt-7 gap-4 w-full justify-between">
+      <div className="flex lg:flex-row flex-col mt-7 gap-4 w-full justify-between">
         <Card
           title="Online consultations"
           number={onlineConsultations?.length || 0}
@@ -32,7 +32,7 @@ const AnalyticCards = () => {
           data={offlineConsultations}
         />
         <Card
-          title="Total consultations"
+          title="Total Patients"
           number={totalPatients || 0}
           value="+10.7%"
           data={events}

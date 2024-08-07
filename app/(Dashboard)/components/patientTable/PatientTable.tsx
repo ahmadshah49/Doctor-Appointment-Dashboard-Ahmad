@@ -25,23 +25,21 @@ const PatientTable = () => {
 
   return (
     <div className="p-4 px-6 rounded-md overflow-x-auto bg-white shadow-md h-full">
-      <table className="w-full table-fixed min-w-[1000px]">
+      <table className="w-full table-fixed  min-w-[1000px]">
         <thead className="text-center h-16 border-b">
           <tr>
-            <th className="w-1/7 font-normal text-base text-gray-400">Name</th>
-            <th className="w-1/7 font-normal text-base text-gray-400">
+            <th className="w-24  font-normal text-base text-gray-400">Name</th>
+            <th className="w-24 font-normal text-base text-gray-400">
               Diagnosis
             </th>
-            <th className="w-1/7 font-normal text-base text-gray-400">
+            <th className="w-24 font-normal text-base text-gray-400">
               Picture
             </th>
-            <th className="w-1/7 font-normal text-base text-gray-400">
-              Status
-            </th>
-            <th className="w-1/7 font-normal text-base text-gray-400">
+            <th className="w-24 font-normal text-base text-gray-400">Status</th>
+            <th className="w-24 font-normal text-base text-gray-400">
               Appointment Date
             </th>
-            <th className="w-1/7 font-normal text-base text-gray-400">
+            <th className="w-24 font-normal text-base text-gray-400">
               Actions
             </th>
           </tr>

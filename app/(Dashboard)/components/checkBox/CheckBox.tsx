@@ -11,14 +11,17 @@ const CheckBox = <T extends string>({
   };
 
   return (
-    <div className="flex items-center   my-12">
-      <span className="font-normal lg:w-52 text-base">{label}:</span>
-      <div className="flex space-x-4">
+    <div className="flex  max-sm:justify-between items-center gap-4  my-12">
+      <p className="md:text-[18px] text-sm text-grayLight lg:w-52 sm:w-40 w-28  font-normal">
+        {label}
+      </p>
+
+      <div className="flex md:flex-row flex-col md:space-y-0 max-sm:w-full space-y-6 md:space-x-4">
         {options.map((option) => (
           <div key={option}>
             <label
               htmlFor={option}
-              className={`p-4  cursor-pointer rounded ${
+              className={`md:p-4 p-2  cursor-pointer rounded ${
                 selectedOption === option
                   ? "bg-primary text-white"
                   : "border border-gray-400 text-black"

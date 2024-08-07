@@ -1,5 +1,5 @@
-import LoginForm from "./components/auth/LoginForm";
-import SideDashboard from "./components/auth/SideDashboard";
+import LoginForm from "./components/auth/loginForm/LoginForm";
+import SideDashboard from "./components/auth/sideDashboard/SideDashboard";
 
 export default function Home() {
   return (

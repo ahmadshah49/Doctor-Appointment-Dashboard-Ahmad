@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import Input from "../Input";
+import Input from "../../input/Input";
 import Link from "next/link";
-import Button from "../buttons/Button";
+import Button from "../../button/Button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { SiGooglekeep } from "react-icons/si";

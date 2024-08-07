@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Mukta } from "next/font/google";
 import "./globals.css";
 import Providers, { AuthProvider } from "./Provider/Provider";
 import { store } from "./redux/store";
 import { Toaster } from "react-hot-toast";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Mukta({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",

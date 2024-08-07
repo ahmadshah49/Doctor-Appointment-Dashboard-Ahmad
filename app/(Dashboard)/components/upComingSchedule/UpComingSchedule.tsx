@@ -34,15 +34,17 @@ const UpComingSchedule = () => {
         <div key={index} className="flex w-full items-start  relative">
           <div className="rounded-full h-4 w-4 bg-black mt-2.5 flex-shrink-0 relative z-10" />
           {index !== events?.length - 1 && (
-            <div className="absolute left-2 top-8 h-full w-px bg-gray-300" />
+            <div className="absolute left-[7.5px] top-[28px] h-full w-px bg-gray-300" />
           )}
 
-          <div className="ml-2 p-4 flex flex-col gap-4 w-full">
+          <div className="sm:ml-2 p-1 sm:p-4 flex flex-col sm:gap-4 gap-2 w-full">
             <button
               onClick={() => toggleOpen(index)}
               className="flex justify-between p-2 bg-white rounded-lg border border-gray-200 w-full items-center"
             >
-              <h3 className="text-xl font-semibold">{event?.name}</h3>
+              <h3 className="md:text-xl text-sm font-semibold">
+                {event?.name}
+              </h3>
 
               <div className="text-xs border p-1 rounded-md border-gray-300">
                 {isOpen[index] ? (
@@ -64,23 +66,33 @@ const UpComingSchedule = () => {
               }`}
             >
               <div className="flex flex-col  bg-white rounded-lg border border-gray-200 w-full">
-                <div className="p-2 px-4">
-                  <div className="flex gap-8">
-                    <span className="w-24 font-bold">Patient</span>
-                    <span>{event?.name}</span>
+                <div className="p-2 sm:px-4 px-2">
+                  <div className="flex items-center  sm:gap-8">
+                    <span className="sm:w-24 w-16 md:text-base text-sm font-bold">
+                      Patient
+                    </span>
+                    <span className="sm:text-base text-[10px]">
+                      {event?.name}
+                    </span>
                   </div>
-                  <div className="flex gap-8">
-                    <span className="w-24 font-bold">Time</span>
-                    <span>
+                  <div className="flex items-center sm:gap-8">
+                    <span className="sm:w-24 w-16 md:text-base text-sm font-bold">
+                      Time
+                    </span>
+                    <span className="sm:text-base text-[10px]">
                       {formatTime(event?.start)} - {formatTime(event?.end)}
                     </span>
                   </div>
-                  <div className="flex gap-8">
-                    <span className="w-24 font-bold">Purpose</span>
-                    <span>{event?.purpose}</span>
+                  <div className="flex items-center sm:gap-8">
+                    <span className="sm:w-24 w-16 md:text-base text-sm font-bold">
+                      Purpose
+                    </span>
+                    <span className="sm:text-base text-[10px]">
+                      {event?.purpose}
+                    </span>
                   </div>
                 </div>
-                <div className=" border-gray-200 flex items-center justify-between py-4 px-2 border-t">
+                <div className=" border-gray-200 flex items-center justify-between py-4 sm:px-2 border-t">
                   <div className="p-2 flex items-center gap-2">
                     <div className="text-xs border p-1 cursor-not-allowed w-fit rounded-md border-gray-300">
                       <MdDeleteOutline
@@ -101,7 +113,7 @@ const UpComingSchedule = () => {
                       />
                     </div>
                   </div>
-                  <button className="bg-primary cursor-not-allowed py-2 px-4 rounded-md text-white">
+                  <button className="bg-primary md:block hidden cursor-not-allowed md:py-2 py-1 px-2 md:text-base text-xs md:px-4 rounded-md text-white">
                     Begin Appointment
                   </button>
                 </div>

@@ -28,18 +28,20 @@ const Notification = () => {
               )}
               key={index}
             >
-              {notification?.data}
+              <p className="sm:text-base text-xs">{notification?.data}</p>
             </div>
           ))
         ) : (
           <div>No notifications found</div>
         )}
-        <Link
-          href={"/dashboard/notifications"}
-          className=" text-primary underline text-right sticky  z-50  right-2 -bottom-2 font-medium bg-white py-1"
-        >
-          See All
-        </Link>
+        {data && Array.isArray(data) && data.length < 0 && (
+          <Link
+            href={"/dashboard/notifications"}
+            className=" text-primary underline text-right sticky  z-50  right-2 -bottom-2 font-medium bg-white py-1"
+          >
+            See All
+          </Link>
+        )}
       </div>
     </div>
   );

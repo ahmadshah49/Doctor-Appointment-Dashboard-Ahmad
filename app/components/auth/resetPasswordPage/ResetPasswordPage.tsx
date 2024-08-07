@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
 import { useEffect, useState } from "react";
-import Input from "../Input";
+import Input from "../input/Input";
 import Link from "next/link";
 import Button from "../buttons/Button";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { FcGoogle } from "react-icons/fc";
-import { mailAction } from "@/app/action/mailAction";
+import { useSession } from "next-auth/react";
+import { redirect, useParams, useRouter } from "next/navigation";
+import { updatePassword } from "@/app/action/updatePasswordAction";
 import toast from "react-hot-toast";
 
 interface FormProps {
@@ -15,12 +14,21 @@ interface FormProps {
   desc: string;
   link?: string;
   path?: string;
+  param?: string;
 }
 
-const ResetPassword: React.FC<FormProps> = ({ title, desc, link, path }) => {
+const ResetPasswordPage: React.FC<FormProps> = ({
+  title,
+  desc,
+  link,
+  path,
+  param,
+}) => {
   const router = useRouter();
+  const { token } = useParams();
   const { status } = useSession();
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
@@ -33,12 +41,29 @@ const ResetPassword: React.FC<FormProps> = ({ title, desc, link, path }) => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    if (!password || !confirmPassword) {
+      setError("Please fill all fields");
+      setLoading(false);
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError("Password & Confirm password must be same");
+      setLoading(false);
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be 6 charcter long");
+      setLoading(false);
+      return;
+    }
     try {
-      await mailAction(email);
-      toast.success("Reset link sent on your email");
-      setEmail("");
+      await updatePassword(password, token);
+      console.log(password, token);
+      toast.success("Password Changed🎉");
+      router.push("/");
     } catch (error) {
-      setError("Something went wrong!");
+      console.log(error);
+      setError("Failed to reset password.");
     } finally {
       setLoading(false);
     }
@@ -64,20 +89,30 @@ const ResetPassword: React.FC<FormProps> = ({ title, desc, link, path }) => {
         </div>
         <form onSubmit={submitHandler} className="mt-6 w-full">
           <Input
-            id="email"
-            type="email"
-            placeHolder="John@Doe.com"
-            label="Enter Your registered Email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e)}
+            id="password"
+            type="password"
+            placeHolder="******"
+            label="Enter new password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e)}
+            disabled={loading}
+          />
+          <Input
+            id="ConfirmPassword"
+            type="password"
+            placeHolder="******"
+            label="Confirm password"
+            name="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e)}
             disabled={loading}
           />
 
           {error && <p className="text-sm text-red-500 italic">{error}</p>}
           <div className="py-6">
             <Button
-              text={loading ? "Loading..." : "Send"}
+              text={loading ? "Loading..." : "Submit"}
               widthFull
               type="submit"
               disabled={loading}
@@ -89,4 +124,4 @@ const ResetPassword: React.FC<FormProps> = ({ title, desc, link, path }) => {
   );
 };
 
-export default ResetPassword;
+export default ResetPasswordPage;

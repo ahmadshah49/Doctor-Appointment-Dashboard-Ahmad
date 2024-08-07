@@ -12,10 +12,10 @@ const InputTwo: React.FC<InputTwoTypes> = ({
   type,
 }) => {
   return (
-    <div className="flex items-center my-4 ">
+    <div className="flex lg:gap-4 gap-2   items-center my-4 ">
       <label
         htmlFor={id}
-        className="text-[18px] text-grayLight lg:w-52 gap-8 font-normal"
+        className="md:text-[18px] text-sm text-grayLight lg:w-52 sm:w-40 w-28  font-normal"
       >
         {label}
       </label>
@@ -33,7 +33,8 @@ const InputTwo: React.FC<InputTwoTypes> = ({
           outline-none
           focus:border-black
           p-2
-          w-[415px]
+          md:w-[415px]
+          w-full
           rounded-[5px]
           primary:text-[22px]
           md:text-[18px]

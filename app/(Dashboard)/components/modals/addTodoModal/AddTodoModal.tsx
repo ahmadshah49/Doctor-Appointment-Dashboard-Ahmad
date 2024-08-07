@@ -1,6 +1,6 @@
 "use client";
 
-import Input from "@/app/components/Input";
+import Input from "@/app/components/input/Input";
 import { AddTodoTypes, TodoStatus } from "@/app/types/Type";
 import { useTodoModal } from "./useTodoModal";
 
@@ -32,13 +32,16 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose, data }) => {
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="bg-white rounded-[20px] transition-all ease-in-out w-[50%] py-10"
+          className="bg-white rounded-[20px] transition-all ease-in-out lg:w-[50%] md:w-[80%] w-[90%] py-10"
         >
-          <h1 className="text-center text-4xl font-bold text-primary my-6">
+          <h1 className="text-center lg:text-4xl md:text-3xl text-2xl font-bold text-primary my-6">
             {isUpdate ? "Update Todo" : "Add Todo"}
           </h1>
 
-          <form onSubmit={submitHandler} className="px-10 text-black text-left">
+          <form
+            onSubmit={submitHandler}
+            className="lg:px-10 md:px-8 px-6 text-black text-left"
+          >
             <Input
               name="title"
               id="title"
@@ -98,13 +101,13 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose, data }) => {
               <button
                 type="button"
                 onClick={onClose}
-                className="bg-red-600 px-8 py-3 w-[150px] rounded-md font-semibold text-white"
+                className="bg-red-600 md:px-8 md:py-3 px-4 py-2 w-[150px] rounded-md font-semibold text-white"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="bg-primary px-8 py-3 rounded-md font-semibold text-white w-[150px]"
+                className="bg-primary md:px-8 md:py-3 px-4 py-2 rounded-md font-semibold text-white w-[150px]"
               >
                 {isUpdate ? "Save" : isLoading ? "Loading..." : "Add"}
               </button>

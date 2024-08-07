@@ -9,18 +9,15 @@ import { MdAccessTimeFilled } from "react-icons/md";
 import { useCalender } from "./useCalender";
 
 const Calender = () => {
-  const {  events, formatTime} = useCalender();
-  
-  
+  const { events, formatTime } = useCalender();
 
   return (
-    <div className="rounded-md bg-white p-4">
+    <div className="rounded-md bg-white p-4 overflow-x-auto overflow-y-auto">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView="dayGridMonth"
         dayMaxEventRows={1}
         moreLinkClick="popover"
-        headerToolbar={{}}
         events={events.map((item) => ({
           title: item.name,
           start: item.start,

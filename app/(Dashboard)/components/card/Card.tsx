@@ -9,12 +9,12 @@ const Card: React.FC<GraphProps> = ({
   value,
 }) => {
   return (
-    <div className="shadow-md bg-white rounded-md p-4 w-full max-h-64">
+    <div className="shadow-md bg-white rounded-md p-4 w-full min-h-[192px]">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-medium">{title}</h1>
         <span className="text-xl font-medium">...</span>
       </div>
-      <div className=" flex justify-between items-center">
+      <div className=" flex lg:flex-row flex-col justify-between items-center">
         <div>
           <p className="text-2xl py-2 font-medium">{number}</p>
           {value && (
@@ -38,7 +38,7 @@ const Card: React.FC<GraphProps> = ({
             </div>
           )}
         </div>
-        <OnlinePatientsChart  />
+        <OnlinePatientsChart />
       </div>
     </div>
   );

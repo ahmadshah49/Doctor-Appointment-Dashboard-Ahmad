@@ -18,7 +18,7 @@ const Sidebar = () => {
     <>
       <div className="relative border-r w-full h-screen bg-white">
         <div className="flex flex-col h-full">
-          <div className="w-full mx-auto p-4">
+          <div className="w-full border-b lg:h-[92px] mx-auto px-2 py-[7px]">
             <Image
               alt="Logo"
               src={Logo}
@@ -33,7 +33,7 @@ const Sidebar = () => {
               height={200}
               width={200}
               layout="fixed"
-              className="w-full lg:hidden block "
+              className="w-fit lg:hidden block "
             />
           </div>
           <div className="flex-grow mt-[30px] overflow-y-auto">

@@ -1,6 +1,6 @@
 import React from "react";
-import ResetPassword from "../../components/auth/ResetPassword";
-import SideDashboard from "../../components/auth/SideDashboard";
+import ResetPassword from "../../components/auth/resetPassword/ResetPassword";
+import SideDashboard from "../../components/auth/sideDashboard/SideDashboard";
 const ResetPage = () => {
   return (
     <div className="w-full h-screen flex justify-between ">

@@ -40,7 +40,7 @@ const NotificationModal = ({ children }: { children: React.ReactNode }) => {
         {children}
       </div>
       {isOpenMenu && (
-        <div className="absolute -left-96 bg-white cursor-default shadow-2xl w-96 h-96 overflow-y-auto rounded-md border p-2 z-50">
+        <div className="absolute md:-left-96 mt-2 -left-44 bg-white cursor-default shadow-2xl w-60 h-60 md:w-96 md:h-96 overflow-y-auto rounded-md border p-2 z-50">
           <h1 className="border-b border-primary px-4 py-2 text-primary font-semibold ">
             All Notifications
           </h1>

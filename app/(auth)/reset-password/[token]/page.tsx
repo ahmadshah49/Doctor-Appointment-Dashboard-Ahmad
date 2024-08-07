@@ -1,5 +1,5 @@
-import ResetPasswordPage from "@/app/components/auth/ResetPasswordPage";
-import SideDashboard from "@/app/components/auth/SideDashboard";
+import ResetPasswordPage from "@/app/components/auth/resetPasswordPage/ResetPasswordPage";
+import SideDashboard from "@/app/components/auth/sideDashboard/SideDashboard";
 import React from "react";
 
 const ResetPassword = () => {

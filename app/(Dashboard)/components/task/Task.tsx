@@ -14,7 +14,6 @@ type TaskTypes = {
   seeAll?: boolean;
 };
 const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
-  const [isOpen, setisOpen] = useState(false);
   const { todos, isError, isLoading } = useTasks();
 
   const Todos = isShow ? todos.slice(0, 3) : todos;
@@ -42,7 +41,7 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
         !isError &&
         todos.length > 0 &&
         Todos.map((todo, index) => (
-          <div key={index} className="flex items-start gap-8 my-8 ">
+          <div key={index} className="flex items-start md:gap-8 gap-2 my-8 ">
             <input
               type="checkbox"
               checked={todo.completed === "COMPLETED"}
@@ -50,7 +49,7 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
               className="cursor-not-allowed w-[31px] h-[31px] p-2 rounded-md"
             />
 
-            <div className="flex items-center w-full justify-between">
+            <div className="flex sm:gap-0 gap-2 items-center w-full justify-between">
               <div>
                 <h1 className="py-2 font-medium text-base ">{todo?.title}</h1>
                 <p className="py-2 font-normal text-xs ">{todo?.description}</p>
@@ -72,7 +71,7 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
           href={"/dashboard/tasks"}
           className="flex items-center gap-4 font-semibold  text-xs justify-end text-primary"
         >
-          See all{" "}
+          See all
           <div className="text-xs border p-2 rounded-md border-gray-300">
             <MdKeyboardArrowRight />
           </div>

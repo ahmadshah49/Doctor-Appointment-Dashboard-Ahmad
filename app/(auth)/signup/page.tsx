@@ -1,5 +1,5 @@
-import SideDashboard from "@/app/components/auth/SideDashboard";
-import SignUpForm from "@/app/components/auth/SignUpForm";
+import SideDashboard from "@/app/components/auth/sideDashboard/SideDashboard";
+import SignUpForm from "@/app/components/auth/signUpForm/SignUpForm";
 import React from "react";
 
 const signup = () => {
