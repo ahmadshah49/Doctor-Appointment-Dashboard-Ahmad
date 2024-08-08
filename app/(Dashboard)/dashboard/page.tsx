@@ -1,6 +1,12 @@
+import { Metadata } from "next";
 import AnalyticCards from "../components/analyticCards/AnalyticCards";
 import DashboardSchedule from "../components/dashboardSchedule/DashboardSchedule";
 import Task from "../components/task/Task";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "Medicare Doctor Appointment Dashboard ",
+};
 
 const Dashboard = () => {
   return (

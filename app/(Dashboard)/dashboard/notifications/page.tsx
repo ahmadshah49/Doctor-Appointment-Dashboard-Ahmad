@@ -1,5 +1,9 @@
+import { Metadata } from "next";
 import AllNotifications from "../../components/allNotifications/AllNotifications";
-
+export const metadata: Metadata = {
+  title: "All Notifications",
+  description: "Medicare Doctor Appointment Dashboard ",
+};
 const NotificationsPage = () => {
   return (
     <div className="p-4 min-h-screen">

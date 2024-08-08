@@ -1,4 +1,5 @@
 import { AppointmentInitialState } from "@/app/types/Type";
+import { BASE_URL } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -12,7 +13,7 @@ export const fetchAppointment = createAsyncThunk(
   "getAppointment/fetchAppointments",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:3000/api/appointment");
+      const response = await axios.get(`${BASE_URL}/api/appointment`);
       const data = response.data;
       console.log("Appointment Data", data);
       return data;

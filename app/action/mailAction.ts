@@ -1,6 +1,7 @@
 "use server";
 import { nanoid } from "nanoid";
 import { prisma } from "../lib/prisma";
+import { BASE_URL } from "../utils/axiosInstance";
 
 export async function mailAction(email: string) {
   try {
@@ -34,14 +35,14 @@ export async function mailAction(email: string) {
       },
     });
 
-    const htmlBody = `Click here to <a href="http://localhost:3000/reset-password/${token}">Reset Password</a>`;
+    const htmlBody = `Click here to <a href="${BASE_URL}/reset-password/${token}">Reset Password</a>`;
 
     const info = await transporter.sendMail({
       from: '"No Reply" <noreply@noreply.com>',
 
       to: email,
       subject: "Password Reset",
-      text: `Click the following link to reset your password: http://localhost:3000/reset-password/${token}`,
+      text: `Click the following link to reset your password: ${BASE_URL}/reset-password/${token}`,
       html: htmlBody,
     });
 

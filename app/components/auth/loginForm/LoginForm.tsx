@@ -1,85 +1,88 @@
 "use client";
-import { useEffect, useState } from "react";
-import Input from "../../input/Input";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Button from "../../button/Button";
-import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
-import toast from "react-hot-toast";
-
-interface FormProps {
-  title: string;
-  desc: string;
-  link?: string;
-  path?: string;
-}
+import Button from "../../button/Button";
+import Input from "../../input/Input";
+import { useLoginForm } from "./useLoginForm";
+import { FormProps } from "@/app/types/Type";
 
 const LoginForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
+  const {
+    email,
+    googleAction,
+    password,
+    submitHandler,
+    setEmail,
+    setPassword,
+    error,
+    loading,
+  } = useLoginForm();
   const router = useRouter();
   const { status } = useSession();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [loading, setLoading] = useState<boolean>(false);
+  // const [error, setError] = useState<string>("");
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/dashboard");
     }
   }, [status, router]);
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    if (!email || !password) {
-      setError("Please fill all fields");
-    }
-    try {
-      const callback = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
+  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setError("");
+  //   if (!email || !password) {
+  //     setError("Please fill all fields");
+  //   }
+  //   try {
+  //     const callback = await signIn("credentials", {
+  //       email,
+  //       password,
+  //       redirect: false,
+  //     });
 
-      if (callback?.error) {
-        setError("Invalid Credentials");
-      } else if (callback?.ok) {
-        toast("Logged in", {
-          icon: "👏",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
-        router.push("/dashboard");
-      }
-    } catch (err) {
-      console.error("Error during sign-in", err);
-      setError("An unexpected error occurred. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-  const googleAction = () => {
-    signIn("google", { redirect: false }).then((callback) => {
-      if (callback?.error) {
-        setError("Invalid Credentials");
-      }
-      if (callback?.ok && !callback?.error) {
-        toast("Logged in", {
-          icon: "👏",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
-      }
-    });
-  };
+  //     if (callback?.error) {
+  //       setError("Invalid Credentials");
+  //     } else if (callback?.ok) {
+  //       toast("Logged in", {
+  //         icon: "👏",
+  //         style: {
+  //           borderRadius: "10px",
+  //           background: "#333",
+  //           color: "#fff",
+  //         },
+  //       });
+  //       router.push("/dashboard");
+  //     }
+  //   } catch (err) {
+  //     console.error("Error during sign-in", err);
+  //     setError("An unexpected error occurred. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  // const googleAction = () => {
+  //   signIn("google", { redirect: false }).then((callback) => {
+  //     if (callback?.error) {
+  //       setError("Invalid Credentials");
+  //     }
+  //     if (callback?.ok && !callback?.error) {
+  //       toast("Logged in", {
+  //         icon: "👏",
+  //         style: {
+  //           borderRadius: "10px",
+  //           background: "#333",
+  //           color: "#fff",
+  //         },
+  //       });
+  //     }
+  //   });
+  // };
   return (
     <div className="w-full md:w-3/5 h-screen bg-white flex flex-col items-center justify-center">
       <div className="w-full h-full bg-white flex flex-col items-start justify-center px-6">

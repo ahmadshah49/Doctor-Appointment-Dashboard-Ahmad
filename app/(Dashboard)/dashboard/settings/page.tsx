@@ -1,6 +1,10 @@
 import { IoHelpCircleOutline } from "react-icons/io5";
 import Profile from "../../components/profile/Profile";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Settings",
+  description: "Medicare Doctor Appointment Dashboard ",
+};
 const SettingsPage = () => {
   return (
     <div className="p-4 h-screen">

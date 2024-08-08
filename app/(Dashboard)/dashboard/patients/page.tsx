@@ -1,6 +1,10 @@
+import { Metadata } from "next";
 import Menu from "../../components/menu/Menu";
 import PatientTable from "../../components/patientTable/PatientTable";
-
+export const metadata: Metadata = {
+  title: "Patients",
+  description: "Medicare Doctor Appointment Dashboard ",
+};
 const Patients = () => {
   return (
     <div className="p-4">

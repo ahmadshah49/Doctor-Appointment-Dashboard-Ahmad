@@ -160,5 +160,20 @@ export type GraphProps = {
   number?: number;
   dcrement?: boolean;
   value?: string;
-  data: Appointment[];
+  onLinePatients?: boolean;
+  offLinePatients?: boolean;
+  totalPatients?: boolean;
+};
+export type FormProps = {
+  title: string;
+  desc: string;
+  link?: string;
+  path?: string;
+};
+export type resetFormProps = {
+  title: string;
+  desc: string;
+  link?: string;
+  path?: string;
+  param?: string;
 };

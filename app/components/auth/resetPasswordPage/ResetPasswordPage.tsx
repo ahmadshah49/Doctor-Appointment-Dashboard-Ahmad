@@ -1,23 +1,16 @@
 "use client";
 import React from "react";
 import { useEffect, useState } from "react";
-import Input from "../input/Input";
+import Input from "../../input/Input";
 import Link from "next/link";
-import Button from "../buttons/Button";
+import Button from "../../button/Button";
 import { useSession } from "next-auth/react";
 import { redirect, useParams, useRouter } from "next/navigation";
 import { updatePassword } from "@/app/action/updatePasswordAction";
 import toast from "react-hot-toast";
+import { resetFormProps } from "@/app/types/Type";
 
-interface FormProps {
-  title: string;
-  desc: string;
-  link?: string;
-  path?: string;
-  param?: string;
-}
-
-const ResetPasswordPage: React.FC<FormProps> = ({
+const ResetPasswordPage: React.FC<resetFormProps> = ({
   title,
   desc,
   link,

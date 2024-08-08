@@ -1,48 +1,39 @@
 "use client";
-import React from "react";
-import { useEffect, useState } from "react";
-import Input from "../../input/Input";
+import { FormProps } from "@/app/types/Type";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Button from "../../button/Button";
-import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { FcGoogle } from "react-icons/fc";
-import { mailAction } from "@/app/action/mailAction";
-import toast from "react-hot-toast";
-
-interface FormProps {
-  title: string;
-  desc: string;
-  link?: string;
-  path?: string;
-}
+import React, { useEffect } from "react";
+import Button from "../../button/Button";
+import Input from "../../input/Input";
+import { useResetPassword } from "./useResetPassword";
 
 const ResetPassword: React.FC<FormProps> = ({ title, desc, link, path }) => {
   const router = useRouter();
   const { status } = useSession();
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-
+  // const [email, setEmail] = useState("");
+  // const [loading, setLoading] = useState<boolean>(false);
+  // const [error, setError] = useState<string>("");
+  const { email, error, loading, submitHandler, setEmail } = useResetPassword();
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/dashboard");
     }
   }, [status, router]);
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await mailAction(email);
-      toast.success("Reset link sent on your email");
-      setEmail("");
-    } catch (error) {
-      setError("Something went wrong!");
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   try {
+  //     await mailAction(email);
+  //     toast.success("Reset link sent on your email");
+  //     setEmail("");
+  //   } catch (error) {
+  //     setError("Something went wrong!");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   return (
     <div className="w-full md:w-3/5 h-screen bg-white flex flex-col items-center justify-center">
       <div className="w-full h-full bg-white flex flex-col items-start justify-center px-6">

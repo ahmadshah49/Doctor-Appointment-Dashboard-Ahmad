@@ -1,80 +1,127 @@
-import React, { PureComponent } from "react";
+"use client";
+import { Appointment } from "@/app/types/Type";
 import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
+  CategoryScale,
+  ChartData,
+  Chart as ChartJS,
+  ChartOptions,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
   Tooltip,
-  ResponsiveContainer,
-} from "recharts";
-const OnlinePatientsChart = () => {
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+} from "chart.js";
+import React, { useRef } from "react";
+import { Line } from "react-chartjs-2";
+import { useCalender } from "../../calender/useCalender";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
+
+const OnlinePatientsChart: React.FC = () => {
+  const chartRef = useRef<ChartJS<"line"> | null>(null);
+  const { events } = useCalender();
+
+  const onlineConsultations: Appointment[] =
+    events?.filter(
+      (event: Appointment) => event.appointmentType === "Online_Consultation"
+    ) || [];
+
+  const groupByWeek = (
+    appointments: Appointment[]
+  ): { [key: string]: Appointment[] } => {
+    const weeks: { [key: string]: Appointment[] } = {};
+
+    appointments.forEach((appointment) => {
+      if (appointment.start) {
+        const startDate = new Date(appointment.start);
+        const startWeek = new Date(
+          startDate.setDate(startDate.getDate() - startDate.getDay())
+        );
+        const weekString = startWeek.toISOString().split("T")[0];
+
+        if (!weeks[weekString]) {
+          weeks[weekString] = [];
+        }
+        weeks[weekString].push(appointment);
+      }
+    });
+
+    return weeks;
+  };
+
+  const onlineGroupedByWeek = groupByWeek(onlineConsultations);
+
+  const data: ChartData<"line"> = {
+    labels: Object.keys(onlineGroupedByWeek),
+    datasets: [
+      {
+        label: "Online Consultations",
+        data: Object.values(onlineGroupedByWeek).map(
+          (appointments) => appointments.length
+        ),
+        fill: true,
+        backgroundColor: (context: any) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+
+          if (!chartArea) {
+            return null;
+          }
+
+          const gradient = ctx.createLinearGradient(
+            0,
+            chartArea.top,
+            0,
+            chartArea.bottom
+          );
+          gradient.addColorStop(0, "rgba(75, 192, 192, 1)");
+          gradient.addColorStop(1, "rgba(75, 192, 192, 0)");
+          return gradient;
+        },
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 2,
+        tension: 0.4,
+        pointBackgroundColor: "rgba(75, 192, 192, 1)",
+        pointBorderColor: "rgba(75, 192, 192, 1)",
+        pointBorderWidth: 1,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+      },
+    ],
+  };
+
+  const options: ChartOptions<"line"> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
     },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
+    scales: {
+      x: {
+        display: false,
+      },
+      y: {
+        display: false,
+      },
     },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
+  };
 
   return (
-    <div>
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart
-          width={500}
-          height={400}
-          data={data}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-        </AreaChart>
-      </ResponsiveContainer>
+    <div className="relative w-full h-full">
+      <Line ref={chartRef} data={data} options={options} />
     </div>
   );
 };

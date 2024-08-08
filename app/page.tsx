@@ -1,6 +1,10 @@
+import { Metadata } from "next";
 import LoginForm from "./components/auth/loginForm/LoginForm";
 import SideDashboard from "./components/auth/sideDashboard/SideDashboard";
-
+export const metadata: Metadata = {
+  title: "Login in To Dashboard",
+  description: "Medicare Doctor Appointment Dashboard ",
+};
 export default function Home() {
   return (
     <>
