@@ -1,6 +1,6 @@
 "use client";
 
-import { addPatient } from "@/app/redux/slices/patientSlice";
+import { addPatient, getPatient } from "@/app/redux/slices/patientSlice";
 import { updatePatient } from "@/app/redux/slices/updatePatientSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { AddPatientTypes, PatientStatus } from "@/app/types/Type";
@@ -39,7 +39,7 @@ export const useAddPatient = ({
       status,
       appointmentDate,
     };
-    dispatch(addPatient(patientData));
+    dispatch(addPatient(patientData)).unwrap();
     toast.success("Patient added");
     onClose();
   };
@@ -52,9 +52,8 @@ export const useAddPatient = ({
       status,
       appointmentDate,
     };
-    dispatch(updatePatient(patientData));
-    console.log("Id", id);
-
+    dispatch(updatePatient(patientData)).unwrap();
+    dispatch(getPatient()).unwrap();
     toast.success("Patient updated");
     onClose();
   };

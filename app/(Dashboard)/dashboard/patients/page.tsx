@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 const Patients = () => {
   return (
-    <div className="p-4">
+    <div className="p-4 min-h-screen">
       <h1 className="text-gray-950 font-normal">Patient Register</h1>
       <Menu title="Patients" />
 

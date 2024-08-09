@@ -3,7 +3,7 @@ import { IoSearchOutline } from "react-icons/io5";
 
 import getCurrentUser from "@/app/action/getCurrentUser";
 import { BsBell } from "react-icons/bs";
-import LogoutButton from "../LogoutButton";
+import LogoutButton from "../logoutButton/LogoutButton";
 import NotificationModal from "../notificationModal/NotificationModal";
 
 const Navbar = async () => {

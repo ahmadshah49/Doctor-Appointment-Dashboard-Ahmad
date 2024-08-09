@@ -37,7 +37,10 @@ const UpdateTaskSlice = createSlice({
     builder.addCase(updateTask.fulfilled, (state, action) => {
       state.isError = false;
       state.isLoading = false;
-      state.task = action.payload;
+      state.task = [action.payload, ...state.task];
+      // state.task = state.task.map((task) =>
+      //   task.id === action.payload.id ? action.payload : task
+      // );
     });
     builder.addCase(updateTask.rejected, (state, action) => {
       state.isError = true;

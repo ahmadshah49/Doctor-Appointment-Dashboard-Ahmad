@@ -1,13 +1,14 @@
 "use client";
-import Image from "next/image";
+import useRoutes from "@/app/hooks/useRoutes";
 import Logo from "@/public/images/logo.png";
 import sLogo from "@/public/svg/slLogo.svg";
-import useRoutes from "@/app/hooks/useRoutes";
-import SidebarItem from "./SidebarItem";
-import Link from "next/link";
+import Image from "next/image";
+
 import clsx from "clsx";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { IoSettingsOutline } from "react-icons/io5";
-import { usePathname, useRouter } from "next/navigation";
+import SidebarItem from "./SidebarItem";
 
 const Sidebar = () => {
   const routes = useRoutes();
@@ -25,7 +26,7 @@ const Sidebar = () => {
               height={200}
               width={200}
               layout="fixed"
-              className="w-full lg:block hidden"
+              className="w-full xl:max-w-[265px] xl:max-h-[82px] lg:block hidden"
             />
             <Image
               alt="Small Logo"

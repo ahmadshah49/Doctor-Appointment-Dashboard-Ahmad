@@ -15,7 +15,7 @@ export const usePatientTable = () => {
   const [patientList, setPatientList] = useState<Patient[]>([]);
 
   useEffect(() => {
-    dispatch(getPatient());
+    dispatch(getPatient()).unwrap();
   }, [dispatch]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const usePatientTable = () => {
   const handleDelete = async (id: any) => {
     try {
       dispatch(deletePatient(id)).unwrap();
-      setPatientList((prev) => prev.filter((patient) => patient.id !== id));
+      dispatch(getPatient()).unwrap();
       toast.success("deleted");
     } catch (error) {
       console.log("Error", error);

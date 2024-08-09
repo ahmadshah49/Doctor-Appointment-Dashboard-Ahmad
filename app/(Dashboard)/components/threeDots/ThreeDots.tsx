@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from "@/app/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "@/app/redux/slices/deleteTaskSlice";
 import toast from "react-hot-toast";
+import { fetchTasks } from "@/app/redux/slices/taskSlice";
 
 interface ThreeDotsBoxProps {
   children?: ReactNode;
@@ -43,6 +44,7 @@ const ThreeDotsBox: React.FC<ThreeDotsBoxProps> = ({ children, id, data }) => {
 
   const handleDelete = () => {
     disPatch(deleteTask(id));
+    disPatch(fetchTasks());
     toast.success("Task Deleted!");
   };
 

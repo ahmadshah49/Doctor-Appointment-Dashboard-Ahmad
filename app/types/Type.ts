@@ -1,4 +1,4 @@
-import Task from "../(Dashboard)/components/task/Task";
+import Task from "../(dashboard)/components/task/Task";
 
 export type MenuProps = { title: string };
 export type TodoTypes = {
@@ -176,4 +176,9 @@ export type resetFormProps = {
   link?: string;
   path?: string;
   param?: string;
+};
+export type RegisterErrorType = {
+  name?: string;
+  email?: string;
+  password?: string;
 };

@@ -8,8 +8,6 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose, data }) => {
   const {
     completed,
     description,
-    disPatch,
-    isError,
     isLoading,
     setCompleted,
     setDescription,

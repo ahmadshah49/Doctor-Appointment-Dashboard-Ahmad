@@ -9,6 +9,7 @@ import { AppointmentTypes } from "@/app/types/Type";
 import { addAppointment } from "@/app/redux/slices/addAppointmentSlice";
 import { addNotification } from "@/app/redux/slices/notificationsSlice";
 import toast from "react-hot-toast";
+import { fetchAppointment } from "@/app/redux/slices/getAppointmentSlice";
 
 type useAddAppointmentsTypes = {
   onClose: () => void;
@@ -79,9 +80,9 @@ export const useAddAppointments = ({ onClose }: useAddAppointmentsTypes) => {
         status,
         appointmentType,
       })
-    );
-
-    dispatch(addNotification(notificationData));
+    ).unwrap();
+    dispatch(fetchAppointment()).unwrap();
+    dispatch(addNotification(notificationData)).unwrap();
     onClose();
     toast.success("Schedule Added!");
   };

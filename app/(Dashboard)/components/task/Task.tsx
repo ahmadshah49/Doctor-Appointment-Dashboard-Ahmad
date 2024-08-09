@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Loader from "../loader/Loader";
+
+import { BsThreeDots } from "react-icons/bs";
 import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
 import ThreeDotsBox from "../threeDots/ThreeDots";
 import { useTasks } from "./useTasks";
-import { BsThreeDots } from "react-icons/bs";
 
 type TaskTypes = {
   isShow?: boolean;
@@ -16,7 +16,7 @@ type TaskTypes = {
 const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
   const { todos, isError, isLoading } = useTasks();
 
-  const Todos = isShow ? todos.slice(0, 3) : todos;
+  const Todos = isShow ? todos?.slice(0, 9) : todos;
   return (
     <div className="rounded-md bg-white shadow-md p-4">
       <div className="flex justify-between border-b pb-2 border-gray-200">
@@ -30,21 +30,25 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
       </div>
 
       {isLoading && (
-        <div className="flex items-center justify-center">
+        <div className="flex w-full h-full my-4 items-center justify-center">
           <Loader />
         </div>
       )}
       {!isLoading && isError && <p>Error Loading Tasks</p>}
-      {!isLoading && isError && todos.length === 0 && <p>No task Found!</p>}
-
+      {!isLoading && isError && todos?.length === 0 && <p>No task Found!</p>}
+      {!isLoading && !isError && Todos?.length === 0 && (
+        <div className="text-gray-500 text-center w-full my-2">
+          No Task available.
+        </div>
+      )}
       {!isLoading &&
         !isError &&
-        todos.length > 0 &&
-        Todos.map((todo, index) => (
+        todos?.length > 0 &&
+        Todos?.map((todo, index) => (
           <div key={index} className="flex items-start md:gap-8 gap-2 my-8 ">
             <input
               type="checkbox"
-              checked={todo.completed === "COMPLETED"}
+              checked={todo?.completed === "COMPLETED"}
               readOnly
               className="cursor-not-allowed w-[31px] h-[31px] p-2 rounded-md"
             />
@@ -55,18 +59,18 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
                 <p className="py-2 font-normal text-xs ">{todo?.description}</p>
               </div>
               <p className="font-normal text-xs text-grayLight">
-                {todo.date
-                  ? new Date(todo.date).toLocaleDateString()
+                {todo?.date
+                  ? new Date(todo?.date).toLocaleDateString()
                   : "No date provided"}
               </p>
             </div>
-            <ThreeDotsBox id={todo.id} data={todo}>
+            <ThreeDotsBox id={todo?.id} data={todo}>
               <BsThreeDots />
             </ThreeDotsBox>
           </div>
         ))}
 
-      {Todos.length > 0 && seeAll ? (
+      {Todos?.length > 0 && seeAll ? (
         <Link
           href={"/dashboard/tasks"}
           className="flex items-center gap-4 font-semibold  text-xs justify-end text-primary"

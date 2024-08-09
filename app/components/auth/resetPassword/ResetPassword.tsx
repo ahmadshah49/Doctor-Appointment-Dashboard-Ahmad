@@ -11,9 +11,6 @@ import { useResetPassword } from "./useResetPassword";
 const ResetPassword: React.FC<FormProps> = ({ title, desc, link, path }) => {
   const router = useRouter();
   const { status } = useSession();
-  // const [email, setEmail] = useState("");
-  // const [loading, setLoading] = useState<boolean>(false);
-  // const [error, setError] = useState<string>("");
   const { email, error, loading, submitHandler, setEmail } = useResetPassword();
   useEffect(() => {
     if (status === "authenticated") {
@@ -21,19 +18,6 @@ const ResetPassword: React.FC<FormProps> = ({ title, desc, link, path }) => {
     }
   }, [status, router]);
 
-  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   try {
-  //     await mailAction(email);
-  //     toast.success("Reset link sent on your email");
-  //     setEmail("");
-  //   } catch (error) {
-  //     setError("Something went wrong!");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   return (
     <div className="w-full md:w-3/5 h-screen bg-white flex flex-col items-center justify-center">
       <div className="w-full h-full bg-white flex flex-col items-start justify-center px-6">

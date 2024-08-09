@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Mukta } from "next/font/google";
 import "./globals.css";
-import Providers, { AuthProvider } from "./Provider/Provider";
+import Providers, { AuthProvider } from "./provider/Provider";
 import { store } from "./redux/store";
 import { Toaster } from "react-hot-toast";
 

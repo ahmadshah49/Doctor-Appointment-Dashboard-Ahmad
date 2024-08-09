@@ -1,14 +1,12 @@
 "use client";
-import React from "react";
-import { useEffect, useState } from "react";
-import Input from "../../input/Input";
-import Link from "next/link";
-import Button from "../../button/Button";
-import { useSession } from "next-auth/react";
-import { redirect, useParams, useRouter } from "next/navigation";
-import { updatePassword } from "@/app/action/updatePasswordAction";
-import toast from "react-hot-toast";
 import { resetFormProps } from "@/app/types/Type";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
+import Button from "../../button/Button";
+import Input from "../../input/Input";
+import { useResetPasswordPage } from "./useResetPasswordPage";
 
 const ResetPasswordPage: React.FC<resetFormProps> = ({
   title,
@@ -18,12 +16,18 @@ const ResetPasswordPage: React.FC<resetFormProps> = ({
   param,
 }) => {
   const router = useRouter();
-  const { token } = useParams();
+
   const { status } = useSession();
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+
+  const {
+    confirmPassword,
+    error,
+    loading,
+    password,
+    setConfirmPassword,
+    setPassword,
+    submitHandler,
+  } = useResetPasswordPage();
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -31,36 +35,6 @@ const ResetPasswordPage: React.FC<resetFormProps> = ({
     }
   }, [status, router]);
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    if (!password || !confirmPassword) {
-      setError("Please fill all fields");
-      setLoading(false);
-      return;
-    }
-    if (password !== confirmPassword) {
-      setError("Password & Confirm password must be same");
-      setLoading(false);
-      return;
-    }
-    if (password.length < 6) {
-      setError("Password must be 6 charcter long");
-      setLoading(false);
-      return;
-    }
-    try {
-      await updatePassword(password, token);
-      console.log(password, token);
-      toast.success("Password Changed🎉");
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-      setError("Failed to reset password.");
-    } finally {
-      setLoading(false);
-    }
-  };
   return (
     <div className="w-full md:w-3/5 h-screen bg-white flex flex-col items-center justify-center">
       <div className="w-full h-full bg-white flex flex-col items-start justify-center px-6">

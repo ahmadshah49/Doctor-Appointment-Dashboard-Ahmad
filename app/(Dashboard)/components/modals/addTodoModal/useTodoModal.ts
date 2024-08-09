@@ -1,6 +1,6 @@
 "use client";
 
-import { addTask } from "@/app/redux/slices/taskSlice";
+import { addTask, fetchTasks } from "@/app/redux/slices/taskSlice";
 import { updateTask } from "@/app/redux/slices/updateTaskSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { AddTodoTypes, TodoStatus } from "@/app/types/Type";
@@ -46,9 +46,10 @@ export const useTodoModal = ({ onClose, isUpdate, data }: AddTodoTypes) => {
         completed,
         id,
       };
-      disPatch(updateTask(updateData));
-      onClose();
+      disPatch(updateTask(updateData)).unwrap();
+      disPatch(fetchTasks()).unwrap();
       toast.success("Task Updated!");
+      onClose();
     } catch (error) {
       console.log("Error While Deleting Task");
       toast.error("Something Went Wrong!");

@@ -24,8 +24,8 @@ const TotalPatientsChart: React.FC = () => {
       {
         label: "My Dataset",
         data: [
-          `${onlineConsultations.length}`,
-          `${offlineConsultations.length}`,
+          `${onlineConsultations?.length}`,
+          `${offlineConsultations?.length}`,
         ],
         backgroundColor: ["rgba(54, 162, 235, 1)", "rgba(192, 75, 75, 1)"],
         borderColor: ["rgba(54, 162, 235, 1)", "rgba(192, 75, 75, 1)"],

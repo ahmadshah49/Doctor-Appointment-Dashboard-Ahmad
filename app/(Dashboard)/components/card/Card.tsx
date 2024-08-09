@@ -15,7 +15,7 @@ const Card: React.FC<GraphProps> = ({
   totalPatients,
 }) => {
   return (
-    <div className="shadow-md bg-white rounded-md p-4 xl:max-w-[358px] w-full min-h-[192px]">
+    <div className="shadow-md bg-white rounded-md p-4 xl:min-w-[358px] w-full min-h-[192px]">
       <div className="flex   justify-between">
         <h1 className="text-[22px] font-medium">{title}</h1>
         <span className="text-xl font-medium">...</span>

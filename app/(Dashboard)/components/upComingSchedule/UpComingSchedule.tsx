@@ -1,16 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { useCalender } from "../calender/useCalender";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { MdKeyboardArrowUp } from "react-icons/md";
-import { MdDeleteOutline } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { LuUser2 } from "react-icons/lu";
+import { useCalender } from "../calender/useCalender";
+import Loader from "../loader/Loader";
 
 const UpComingSchedule = () => {
-  const { events } = useCalender();
+  const { events, isError, isLoading } = useCalender();
   const [isOpen, setOpen] = useState<boolean[]>(
-    Array(events?.length).fill(false)
+    Array(events?.length || 0).fill(false)
   );
 
   const toggleOpen = (index: number) => {
@@ -20,6 +19,7 @@ const UpComingSchedule = () => {
       return newOpen;
     });
   };
+
   const formatTime = (date: any) => {
     return new Date(date).toLocaleTimeString("en-US", {
       hour: "2-digit",
@@ -27,11 +27,31 @@ const UpComingSchedule = () => {
       hour12: true,
     });
   };
+
   const selectedEvents = events?.slice(0, 8);
+
   return (
     <div className="flex flex-col items-start w-full my-4">
-      {selectedEvents?.map((event, index) => (
-        <div key={index} className="flex w-full items-start  relative">
+      {isLoading && (
+        <div className="flex justify-center w-full">
+          <Loader />
+        </div>
+      )}
+
+      {isError && (
+        <div className="text-red-500 text-center w-full my-2">
+          Error loading events. Please try again later.
+        </div>
+      )}
+
+      {!isLoading && !isError && selectedEvents?.length === 0 && (
+        <div className="text-gray-500 text-center w-full my-2">
+          No upcoming schedules available.
+        </div>
+      )}
+
+      {!isLoading && !isError && selectedEvents?.map((event, index) => (
+        <div key={index} className="flex w-full items-start relative">
           <div className="rounded-full h-4 w-4 bg-black mt-2.5 flex-shrink-0 relative z-10" />
           {index !== events?.length - 1 && (
             <div className="absolute left-[7.5px] top-[28px] h-full w-px bg-gray-300" />
@@ -55,7 +75,7 @@ const UpComingSchedule = () => {
                 ) : (
                   <MdKeyboardArrowDown
                     size={20}
-                    className="text-primary font-bold "
+                    className="text-primary font-bold"
                   />
                 )}
               </div>
@@ -65,9 +85,9 @@ const UpComingSchedule = () => {
                 isOpen[index] ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              <div className="flex flex-col  bg-white rounded-lg border border-gray-200 w-full">
+              <div className="flex flex-col bg-white rounded-lg border border-gray-200 w-full">
                 <div className="p-2 sm:px-4 px-2">
-                  <div className="flex items-center  sm:gap-8">
+                  <div className="flex items-center sm:gap-8">
                     <span className="sm:w-24 w-16 md:text-base text-sm font-bold">
                       Patient
                     </span>
@@ -92,7 +112,7 @@ const UpComingSchedule = () => {
                     </span>
                   </div>
                 </div>
-                <div className=" border-gray-200 flex items-center justify-between py-4 sm:px-2 border-t">
+                <div className="border-gray-200 flex items-center justify-between py-4 sm:px-2 border-t">
                   <div className="p-2 flex items-center gap-2">
                     <div className="text-xs border p-1 cursor-not-allowed w-fit rounded-md border-gray-300">
                       <MdDeleteOutline
