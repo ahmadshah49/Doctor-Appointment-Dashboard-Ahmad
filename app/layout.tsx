@@ -5,7 +5,6 @@ import "./globals.css";
 import Providers, { AuthProvider } from "./provider/Provider";
 
 const inter = Mukta({ weight: "400", subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "Medicare Doctor Appointment Dashboard",
   description: "Doctor Appointment Dashboard",
