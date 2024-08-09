@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Patient from "@/public/images/Patients.png";
+import Patient from "@/public/images/patients.png";
 const SideDashboard = () => {
   return (
     <div className=" w-full h-full bg-primary  px-8 items-center flex-col justify-center hidden md:flex ">
