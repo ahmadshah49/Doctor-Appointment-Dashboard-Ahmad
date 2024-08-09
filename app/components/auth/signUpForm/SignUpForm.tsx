@@ -17,6 +17,7 @@ interface FormProps {
 
 const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
   const router = useRouter();
+  
   const { status } = useSession();
 
   const {
