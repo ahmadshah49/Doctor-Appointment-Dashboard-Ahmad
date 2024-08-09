@@ -9,7 +9,6 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default Providers;
-
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return <SessionProvider>{children}</SessionProvider>;
 };
