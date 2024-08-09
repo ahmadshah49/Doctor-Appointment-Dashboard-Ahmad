@@ -17,7 +17,6 @@ export const deleteTask = createAsyncThunk(
         data: { id },
       });
       const deleteTask = response?.data;
-      console.log("Deleted", deleteTask);
       return deleteTask;
     } catch (error) {
       rejectWithValue(error);
@@ -42,7 +41,6 @@ const DeleteTaskSlice = createSlice({
     builder.addCase(deleteTask.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log("Error", action.payload);
     });
   },
 });

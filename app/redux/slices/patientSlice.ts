@@ -15,10 +15,9 @@ export const addPatient = createAsyncThunk(
     try {
       const response = await axios.post(`${BASE_URL}/api/patient`, patientData);
       const newPatient = await response?.data;
-      console.log("New Patient", newPatient);
+
       return newPatient;
     } catch (error) {
-      console.log("Error while adding patients", error);
       rejectWithValue(error);
     }
   }
@@ -29,10 +28,9 @@ export const getPatient = createAsyncThunk(
     try {
       const response = await axios.get(`${BASE_URL}/api/patient`);
       const GetPatients = await response?.data;
-      console.log("Get Patient", GetPatients);
+
       return GetPatients;
     } catch (error) {
-      console.log("Error while getting patients", error);
       rejectWithValue(error);
     }
   }
@@ -55,7 +53,6 @@ const PatientSlice = createSlice({
     builder.addCase(addPatient.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      console.log("error", action.error.message);
     });
     builder.addCase(getPatient.pending, (state) => {
       state.isLoading = true;
@@ -69,7 +66,6 @@ const PatientSlice = createSlice({
     builder.addCase(getPatient.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log("Error", action.error.message);
     });
   },
 });

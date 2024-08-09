@@ -38,7 +38,6 @@ export const useLoginForm = () => {
         router.push("/dashboard");
       }
     } catch (err) {
-      console.error("Error during sign-in", err);
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);

@@ -32,7 +32,6 @@ export const useTodoModal = ({ onClose, isUpdate, data }: AddTodoTypes) => {
       onClose();
     } catch (error) {
       toast.error("Failed to add task");
-      console.log("Error adding task", error);
     } finally {
       onClose();
     }
@@ -51,7 +50,6 @@ export const useTodoModal = ({ onClose, isUpdate, data }: AddTodoTypes) => {
       toast.success("Task Updated!");
       onClose();
     } catch (error) {
-      console.log("Error While Deleting Task");
       toast.error("Something Went Wrong!");
     } finally {
       onClose();

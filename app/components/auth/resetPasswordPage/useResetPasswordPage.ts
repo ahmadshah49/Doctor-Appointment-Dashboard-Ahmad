@@ -32,11 +32,9 @@ export const useResetPasswordPage = () => {
     }
     try {
       await updatePassword(password, token);
-      console.log(password, token);
       toast.success("Password Changed🎉");
       router.push("/");
     } catch (error) {
-      console.log(error);
       setError("Failed to reset password.");
     } finally {
       setLoading(false);

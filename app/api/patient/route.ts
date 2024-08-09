@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 export const POST = async (req: Request) => {
   try {
     const currentUser = await getCurrentUser();
-    console.log("currentuser", currentUser?.id);
 
     const body = await req.json();
     const { name, diagnosis, profileImage, status, appointmentDate } = body;
@@ -33,8 +32,6 @@ export const POST = async (req: Request) => {
 
     return NextResponse.json(patient, { status: 200 });
   } catch (error) {
-    console.log("error while adding patient details", error);
-
     return NextResponse.json(
       { messgae: "Patient not added!", error },
       { status: 500 }
@@ -116,7 +113,6 @@ export const PUT = async (req: Request) => {
     });
     return NextResponse.json(updatedPatient);
   } catch (error) {
-    console.log(error);
     return NextResponse.json({
       message: "Error Updating Patient",
     });

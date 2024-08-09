@@ -50,7 +50,6 @@ const notificationSlice = createSlice({
     builder.addCase(addNotification.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log("error", action.payload);
     });
     builder.addCase(getNotification.pending, (state) => {
       state.isError = false;
@@ -64,7 +63,6 @@ const notificationSlice = createSlice({
     builder.addCase(getNotification.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log("error", action.payload);
     });
   },
 });

@@ -17,7 +17,7 @@ export const deletePatient = createAsyncThunk(
         data: { id },
       });
       const deletePatient = response?.data;
-      console.log("Deleted", deletePatient);
+
       return deletePatient;
     } catch (error) {
       rejectWithValue(error);
@@ -42,7 +42,6 @@ const DeletePatientSlice = createSlice({
     builder.addCase(deletePatient.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log("Error", action.payload);
     });
   },
 });

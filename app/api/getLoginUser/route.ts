@@ -31,7 +31,6 @@ export const GET = async (req: Request, res: Response) => {
 
     return NextResponse.json(user);
   } catch (error: any) {
-    console.log("Error", error);
     return NextResponse.json({
       message: "Error While Geting Session Data",
       error: error.message,

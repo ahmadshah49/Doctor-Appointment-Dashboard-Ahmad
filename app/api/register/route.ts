@@ -35,14 +35,11 @@ export const POST = async (req: Request) => {
       },
     });
     return NextResponse.json({ message: "Register" }, { status: 200 });
-  } 
-  
-  catch (error: any) {
+  } catch (error: any) {
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return NextResponse.json(error.messages, { status: 400 });
     }
-    console.log("Registraion Error", error);
+
     return NextResponse.json("Error While Register", error);
   }
-  
-  };
+};

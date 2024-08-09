@@ -15,9 +15,7 @@ export const updateTask = createAsyncThunk(
     try {
       const response = await axios.put(`${BASE_URL}/api/task`, TaskData);
       const updateTask = response?.data;
-      console.log("task data", TaskData);
 
-      console.log("Updated", updateTask);
       return updateTask;
     } catch (error) {
       rejectWithValue(error);
@@ -38,14 +36,10 @@ const UpdateTaskSlice = createSlice({
       state.isError = false;
       state.isLoading = false;
       state.task = [action.payload, ...state.task];
-      // state.task = state.task.map((task) =>
-      //   task.id === action.payload.id ? action.payload : task
-      // );
     });
     builder.addCase(updateTask.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log("Error", action.payload);
     });
   },
 });

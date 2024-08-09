@@ -39,10 +39,9 @@ export const useSignUpForm = () => {
         password,
         companyName,
       });
-      console.log("Response", response);
+
       router.push("/");
     } catch (error: any) {
-      console.log("Error while registering the user", error);
       setError(
         error.response?.data?.message ||
           (error.response && error.response.status === 400

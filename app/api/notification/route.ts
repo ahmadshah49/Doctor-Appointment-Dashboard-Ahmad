@@ -15,10 +15,9 @@ export const POST = async (req: Request) => {
         userId: currentUser?.id,
       },
     });
-    console.log("Notification Add!");
+
     return NextResponse.json({ message: "Notification Add!", data });
   } catch (error: any) {
-    console.log("Error", error);
     return NextResponse.json("Error", error);
   }
 };

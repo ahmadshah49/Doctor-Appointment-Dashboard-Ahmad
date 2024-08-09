@@ -38,7 +38,6 @@ const addAppontentSlice = createSlice({
     builder.addCase(addAppointment.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      console.log("Error", action.payload);
     });
   },
 });

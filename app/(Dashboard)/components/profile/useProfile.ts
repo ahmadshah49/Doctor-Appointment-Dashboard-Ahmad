@@ -36,7 +36,6 @@ export const useProfile = () => {
       companyName,
       id,
     };
-    console.log(data);
 
     disPatch(updateUser(data));
     toast.success("Data Updated!");

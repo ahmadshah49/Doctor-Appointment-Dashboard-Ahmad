@@ -3,27 +3,34 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser } from "@/app/redux/slices/userSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
-import { PatientStatus } from "@/app/types/Type";
+import { Appointment, PatientStatus } from "@/app/types/Type";
 
 import { AppointmentTypes } from "@/app/types/Type";
 import { addAppointment } from "@/app/redux/slices/addAppointmentSlice";
 import { addNotification } from "@/app/redux/slices/notificationsSlice";
 import toast from "react-hot-toast";
 import { fetchAppointment } from "@/app/redux/slices/getAppointmentSlice";
+import { updateAppointment } from "@/app/redux/slices/updateAppointmentSlice";
 
 type useAddAppointmentsTypes = {
   onClose: () => void;
+  isUpdate?: boolean;
+  data?: Appointment;
 };
 
-export const useAddAppointments = ({ onClose }: useAddAppointmentsTypes) => {
-  const [name, setName] = useState("");
-  const [purpose, setPurpose] = useState("");
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
-  const [status, setStatus] = useState(PatientStatus.WAITING);
+export const useAddAppointments = ({
+  onClose,
+  isUpdate,
+  data,
+}: useAddAppointmentsTypes) => {
+  const [name, setName] = useState(data?.name || "");
+  const [purpose, setPurpose] = useState(data?.purpose || "");
+  const [start, setStart] = useState(data?.start || "");
+  const [end, setEnd] = useState(data?.end || "");
+  const [status, setStatus] = useState(data?.status || PatientStatus.WAITING);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [appointmentType, setAppointmentType] = useState(
-    AppointmentTypes.Offline_Consultation
+    data?.appointmentType || AppointmentTypes.Offline_Consultation
   );
 
   const dispatch: AppDispatch = useDispatch();
@@ -37,7 +44,7 @@ export const useAddAppointments = ({ onClose }: useAddAppointmentsTypes) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentDate(new Date());
-    }, 1000);
+    }, 60000);
 
     return () => clearInterval(timer);
   }, []);
@@ -61,30 +68,62 @@ export const useAddAppointments = ({ onClose }: useAddAppointmentsTypes) => {
       hour12: true,
     });
   };
-
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const notificationData = `${name}'s appointment on ${formatDate(
-      new Date(start)
-    )} at ${formatTime(new Date(start))} - ${formatTime(
-      new Date(end)
-    )}, appointment is ${appointmentType} and Purpose is ${purpose}`;
-
-    dispatch(
-      addAppointment({
+  const handleUpdateAppointment = () => {
+    try {
+      const updateData = {
         name,
         start,
         end,
         purpose,
         status,
         appointmentType,
-      })
-    ).unwrap();
-    dispatch(fetchAppointment()).unwrap();
-    dispatch(addNotification(notificationData)).unwrap();
-    onClose();
-    toast.success("Schedule Added!");
+      };
+      dispatch(updateAppointment(updateData)).unwrap();
+      dispatch(fetchAppointment()).unwrap();
+      toast.success("Appointment Updated!");
+      onClose();
+    } catch (error) {
+      toast.error("Something Went Wrong!");
+    } finally {
+      onClose();
+    }
+  };
+  const handleAddAppointment = () => {
+    try {
+      const notificationData = `${name}'s appointment on ${formatDate(
+        new Date(start)
+      )} at ${formatTime(new Date(start))} - ${formatTime(
+        new Date(end)
+      )}, appointment is ${appointmentType} and Purpose is ${purpose}`;
+
+      dispatch(
+        addAppointment({
+          name,
+          start,
+          end,
+          purpose,
+          status,
+          appointmentType,
+        })
+      ).unwrap();
+      dispatch(fetchAppointment()).unwrap();
+      dispatch(addNotification(notificationData)).unwrap();
+      onClose();
+      toast.success("Schedule Added!");
+    } catch (error) {
+      toast.error("Something Went Wrong!");
+    } finally {
+      onClose();
+    }
+  };
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!isUpdate) {
+      handleAddAppointment();
+    } else {
+      handleUpdateAppointment();
+    }
   };
 
   return {

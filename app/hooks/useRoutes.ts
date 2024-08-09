@@ -39,12 +39,7 @@ const useRoutes = () => {
         icon: PiUsers,
         active: pathname === "/dashboard/patients",
       },
-      // {
-      //   label: "Analytics",
-      //   href: "/dashboard/analytics",
-      //   icon: TbBrandGoogleAnalytics,
-      //   active: pathname === "/dashboard/analytics",
-      // },
+
       {
         label: "Notifications",
         href: "/dashboard/notifications",

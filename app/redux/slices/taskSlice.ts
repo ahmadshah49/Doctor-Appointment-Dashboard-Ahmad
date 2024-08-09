@@ -16,10 +16,9 @@ export const addTask = createAsyncThunk(
     try {
       const response = await axios.post(`${BASE_URL}/api/task`, taskData);
       const newTask = response.data;
-      console.log("New Task", newTask);
+
       return newTask;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error);
     }
   }
@@ -31,11 +30,9 @@ export const fetchTasks = createAsyncThunk(
     try {
       const response = await axios.get(`${BASE_URL}/api/task`);
       const Tasks = await response?.data;
-      console.log("Get Task", Tasks);
+
       return Tasks;
     } catch (error: any) {
-      console.log(error);
-
       return rejectWithValue(error?.response?.data);
     }
   }
@@ -58,10 +55,6 @@ const addTaskSlice = createSlice({
     builder.addCase(addTask.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log(
-        "Error While adding task with taskSlice line no 43",
-        action.payload
-      );
     });
     builder.addCase(fetchTasks.pending, (state) => {
       state.isError = false;
@@ -75,7 +68,6 @@ const addTaskSlice = createSlice({
     builder.addCase(fetchTasks.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log("Error While Fetching Tasks", action.payload);
     });
   },
 });

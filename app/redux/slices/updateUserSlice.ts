@@ -38,7 +38,6 @@ const updateUserSlice = createSlice({
     builder.addCase(updateUser.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload as string;
-      console.log("Error While", action.payload);
     });
   },
 });

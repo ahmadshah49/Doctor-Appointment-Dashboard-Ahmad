@@ -14,7 +14,11 @@ import CheckBox from "../../checkBox/CheckBox";
 import InputTwo from "../../inputTwo/InputTwo";
 import { useAddAppointments } from "./useAddAppointments";
 
-const AddAppointment: React.FC<AddAppointmentTypes> = ({ onClose, data }) => {
+const AddAppointment: React.FC<AddAppointmentTypes> = ({
+  onClose,
+  data,
+  isUpdate,
+}) => {
   const {
     appointmentType,
     currentDate,
@@ -34,7 +38,7 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({ onClose, data }) => {
     formatTime,
     isLoading,
     user,
-  } = useAddAppointments({ onClose });
+  } = useAddAppointments({ onClose, isUpdate, data });
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -52,7 +56,9 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({ onClose, data }) => {
           className="bg-white rounded-[5px] transition-all h-4/5 sm:mx-0 mx-2 overflow-y-auto ease-in-out lg:w-[760px]"
         >
           <div className="text-left flex  justify-between w-full items-center px-3 md:px-[31px] py-[23px] rounded-t-[5px] font-bold text-white bg-primary">
-            <h1 className=" md:text-[22px] text-base ">Add Appointment</h1>
+            <h1 className=" md:text-[22px] text-base ">
+              {isUpdate ? "Update" : "Add"} Appointment
+            </h1>
             <span onClick={onClose}>
               <IoCloseSharp size={30} />
             </span>

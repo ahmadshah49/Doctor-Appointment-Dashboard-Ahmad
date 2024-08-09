@@ -20,8 +20,6 @@ export const PUT = async (req: Request) => {
     });
     return NextResponse.json("Profile Updated!");
   } catch (error: any) {
-    console.log("Error", error);
-
     return NextResponse.json("Error", error);
   }
 };

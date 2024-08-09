@@ -32,9 +32,7 @@ export const usePatientTable = () => {
       dispatch(deletePatient(id)).unwrap();
       dispatch(getPatient()).unwrap();
       toast.success("deleted");
-    } catch (error) {
-      console.log("Error", error);
-    }
+    } catch (error) {}
   };
 
   return { handleDelete, sortedPatients, isError, isLoading, patientList };

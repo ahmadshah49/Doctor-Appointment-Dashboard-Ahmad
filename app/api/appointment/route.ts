@@ -25,7 +25,6 @@ export const POST = async (req: Request) => {
 
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    console.log("Error While adding appointment", error);
     return NextResponse.json(
       { message: "Error Adding Appointment!", error },
       {
@@ -34,7 +33,42 @@ export const POST = async (req: Request) => {
     );
   }
 };
+export const PUT = async (req: Request) => {
+  try {
+    const body = await req.json();
+    const data = await prisma.appointment.updateMany({
+      where: {
+        id: body.id,
+      },
+      data: {
+        appointmentType: body.appointmentType,
+        end: body.end,
+        name: body.name,
+        purpose: body.purpose,
+        start: body.start,
+        status: body.status,
+      },
+    });
+    return NextResponse.json(data, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({
+      message: "Error Updating Appointment",
+      error,
+    });
+  }
+};
 
+export const DELETE = async (req: Request) => {
+  try {
+    const body = await req.json();
+    const data = await prisma.appointment.delete({
+      where: { id: body.id },
+    });
+    return NextResponse.json({ data }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json("Error Deleting Appointment!", { status: 400 });
+  }
+};
 export const GET = async (req: Request) => {
   try {
     const currentUser = await getCurrentUser();
@@ -62,7 +96,6 @@ export const GET = async (req: Request) => {
     });
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    console.log("Error While adding appointment", error);
     return NextResponse.json("Error Adding Appointment!", { status: 400 });
   }
 };

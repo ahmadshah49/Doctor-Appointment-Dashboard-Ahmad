@@ -4,43 +4,46 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState: AppointmentInitialState = {
-  appointment: [],
   isError: false,
   isLoading: false,
+  appointment: [],
 };
 
-export const fetchAppointment = createAsyncThunk(
-  "getAppointment/fetchAppointments",
-  async (_, { rejectWithValue }) => {
+export const deleteAppointment = createAsyncThunk(
+  "appointment/delete",
+  async (id: any, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/appointment`);
-      const data = response.data;
-      return data;
+      const response = await axios.delete(`${BASE_URL}/api/appointment`, {
+        data: { id },
+      });
+      const deleteAppointment = response?.data;
+
+      return deleteAppointment;
     } catch (error) {
       rejectWithValue(error);
     }
   }
 );
 
-const getAppointment = createSlice({
-  name: "getAppointment",
+const DeleteAppointmentSlice = createSlice({
+  name: "delete Appointment",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchAppointment.pending, (state) => {
+    builder.addCase(deleteAppointment.pending, (state) => {
       state.isError = false;
       state.isLoading = true;
     });
-    builder.addCase(fetchAppointment.fulfilled, (state, action) => {
+    builder.addCase(deleteAppointment.fulfilled, (state, action) => {
       state.isError = false;
       state.isLoading = false;
       state.appointment = action.payload;
     });
-    builder.addCase(fetchAppointment.rejected, (state, action) => {
+    builder.addCase(deleteAppointment.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
     });
   },
 });
 
-export default getAppointment.reducer;
+export default DeleteAppointmentSlice.reducer;

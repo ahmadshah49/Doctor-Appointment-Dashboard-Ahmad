@@ -15,9 +15,7 @@ export const updatePatient = createAsyncThunk(
     try {
       const response = await axios.put(`${BASE_URL}/api/patient`, patientData);
       const updatePatient = response?.data;
-      console.log("patient data", patientData);
 
-      console.log("Updated", updatePatient);
       return updatePatient;
     } catch (error) {
       rejectWithValue(error);
@@ -42,7 +40,6 @@ const UpdatePatientSlice = createSlice({
     builder.addCase(updatePatient.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
-      console.log("Error", action.payload);
     });
   },
 });

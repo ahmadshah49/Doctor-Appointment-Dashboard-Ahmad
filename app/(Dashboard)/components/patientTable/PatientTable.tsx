@@ -8,7 +8,6 @@ import { usePatientTable } from "./usePatientTable";
 const PatientTable = () => {
   const { handleDelete, isError, isLoading, sortedPatients, patientList } =
     usePatientTable();
-  console.log(patientList);
 
   const getStatusColor = (status: string) => {
     switch (status) {

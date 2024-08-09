@@ -93,10 +93,10 @@ export const PUT = async (req: Request) => {
         completed: body.completed,
       },
     });
-    return NextResponse.json(data);
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
     return NextResponse.json({
-      message: "Error Updating Patient",
+      message: "Error Updating Task",
       error,
     });
   }
