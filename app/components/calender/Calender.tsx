@@ -18,7 +18,7 @@ const Calender = () => {
         initialView="dayGridMonth"
         dayMaxEventRows={1}
         moreLinkClick="popover"
-        events={events.map((item) => ({
+        events={events?.map((item) => ({
           title: item.name,
           start: item.start,
           end: item.end,
@@ -72,7 +72,7 @@ const Calender = () => {
               <div className="p-2">
                 <div className="flex items-center gap-2">
                   <FaRegUser />
-                  <p>{eventInfo.event.title}</p>
+                  <p>{eventInfo?.event?.title}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <BiSpreadsheet />

@@ -32,6 +32,7 @@ export const POST = async (req: Request) => {
         email: output.email,
         password: hashedPassword,
         companyName: body.companyName,
+        
       },
     });
     return NextResponse.json({ message: "Register" }, { status: 200 });
@@ -39,6 +40,7 @@ export const POST = async (req: Request) => {
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return NextResponse.json(error.messages, { status: 400 });
     }
+    console.log(error);
 
     return NextResponse.json("Error While Register", error);
   }
