@@ -3,8 +3,7 @@ import { FaPlus } from "react-icons/fa6";
 import ToogleAppointmentButton from "../modals/toogleAppointmentButton/ToogleAppointmentButton";
 import UpComingSchedule from "../upComingSchedule/UpComingSchedule";
 
-const DashboardSchedule =  () => {
-  
+const DashboardSchedule = () => {
   return (
     <div className=" rounded-md bg-white shadow-md p-4">
       <div className="flex justify-between border-b pb-2 border-gray-200">
@@ -16,7 +15,7 @@ const DashboardSchedule =  () => {
           </div>
         </ToogleAppointmentButton>
       </div>
-      <UpComingSchedule  />
+      <UpComingSchedule />
     </div>
   );
 };

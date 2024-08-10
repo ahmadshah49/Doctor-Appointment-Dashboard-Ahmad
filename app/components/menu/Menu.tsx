@@ -1,10 +1,10 @@
-import { MenuProps } from "@/app/types/Type";
 import React from "react";
 import { LuFilter } from "react-icons/lu";
 import { LuSearch } from "react-icons/lu";
 import { LuPlus } from "react-icons/lu";
 import { LuHelpCircle } from "react-icons/lu";
 import ToogleButton from "../modals/toogleButton/ToogleButton";
+import { MenuProps } from "@/app/types/Type";
 
 const Menu: React.FC<MenuProps> = ({ title }) => {
   return (

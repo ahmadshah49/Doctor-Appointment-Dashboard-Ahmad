@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import axios from "axios";
-import { useCalender } from "../../calender/useCalender";
+import { useCalender } from "../../../../components/calender/useCalender";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

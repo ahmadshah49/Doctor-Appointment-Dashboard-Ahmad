@@ -15,7 +15,7 @@ import {
 } from "chart.js";
 import React, { useRef } from "react";
 import { Line } from "react-chartjs-2";
-import { useCalender } from "../../calender/useCalender";
+import { useCalender } from "../../../../components/calender/useCalender";
 
 ChartJS.register(
   CategoryScale,

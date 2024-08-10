@@ -1,6 +1,6 @@
 import React from "react";
 import { LuFilter, LuHelpCircle, LuPlus, LuSearch } from "react-icons/lu";
-import { MenuProps } from "../../../types/Type";
+import { MenuProps } from "../../types/Type";
 import ToogleAppointmentButton from "../modals/toogleAppointmentButton/ToogleAppointmentButton";
 
 const ScheduleMenu: React.FC<MenuProps> = ({ title }) => {

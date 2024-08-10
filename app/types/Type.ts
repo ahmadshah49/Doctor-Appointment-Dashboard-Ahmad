@@ -1,4 +1,4 @@
-import Task from "../(dashboard)/components/task/Task";
+import Task from "../components/task/Task";
 
 export type MenuProps = { title: string };
 export type TodoTypes = {

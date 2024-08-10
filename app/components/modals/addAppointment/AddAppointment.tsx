@@ -9,7 +9,7 @@ import {
   AddAppointmentTypes,
   AppointmentTypes,
   PatientStatus,
-} from "../../../../types/Type";
+} from "../../../types/Type";
 import CheckBox from "../../checkBox/CheckBox";
 import InputTwo from "../../inputTwo/InputTwo";
 import { useAddAppointments } from "./useAddAppointments";

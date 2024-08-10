@@ -1,20 +1,23 @@
 "use client";
-import { Appointment } from "../../../../types/Type";
-import React, { useState } from "react";
-import AddAppointment from "../addAppointment/AddAppointment";
+
+import { useState } from "react";
+import AddPatient from "../addPatient/AddPatient";
+import { Patient } from "@/app/types/Type";
 
 type ToogleButtonProps = {
   children: React.ReactNode;
   isUpdate?: boolean;
   className?: string;
-  data?: Appointment;
+  id?: string;
+  patient?: Patient;
 };
 
-const ToogleAppointmentButton: React.FC<ToogleButtonProps> = ({
+const ToogleButton: React.FC<ToogleButtonProps> = ({
   children,
   isUpdate,
   className,
-  data,
+  id,
+  patient,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,10 +33,15 @@ const ToogleAppointmentButton: React.FC<ToogleButtonProps> = ({
         {children}
       </button>
       {isOpen && (
-        <AddAppointment onClose={modalClose} isUpdate={isUpdate} data={data} />
+        <AddPatient
+          onClose={modalClose}
+          isUpdate={isUpdate}
+          id={id}
+          patient={patient}
+        />
       )}
     </div>
   );
 };
 
-export default ToogleAppointmentButton;
+export default ToogleButton;

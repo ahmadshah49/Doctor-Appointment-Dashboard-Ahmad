@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Mukta } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import Providers, { AuthProvider } from "./provider/Provider";
+import Providers, { AuthProvider } from "./provider/provider";
 
 const inter = Mukta({ weight: "400", subsets: ["latin"] });
 export const metadata: Metadata = {

@@ -5,9 +5,10 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import Loader from "../loader/Loader";
 
 import { BsThreeDots } from "react-icons/bs";
-import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
+
 import ThreeDotsBox from "../threeDots/ThreeDots";
 import { useTasks } from "./useTasks";
+import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
 
 type TaskTypes = {
   isShow?: boolean;
