@@ -1,1 +1,2 @@
-export const BASE_URL = "http://localhost:3000/";
+export const BASE_URL =
+  "https://doctor-appointment-dashboard-ahmad-1ogpn2sxl.vercel.app/";
