@@ -39,7 +39,7 @@ export const useSignUpForm = () => {
       //   password,
       //   companyName,
       // });
-      axios.post("/api/register", {
+      axios.post(`${BASE_URL}/api/register`, {
         name,
         email,
         password,
