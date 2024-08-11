@@ -33,7 +33,7 @@ export const useSignUpForm = () => {
     }
 
     try {
-      const response = await AxiosInstance.post("/api/register", {
+      const response = await AxiosInstance.post("/register", {
         name,
         email,
         password,
@@ -45,7 +45,6 @@ export const useSignUpForm = () => {
       //         password,
       //         companyName,
       //       });
-     
 
       router.push("/");
     } catch (error: any) {
