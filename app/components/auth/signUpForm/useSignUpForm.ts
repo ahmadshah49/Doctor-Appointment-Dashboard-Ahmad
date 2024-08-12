@@ -45,7 +45,6 @@ export const useSignUpForm = () => {
         password,
         companyName,
       });
-      console.log("data", name, email, password, companyName);
       router.push("/");
     } catch (error: any) {
       setError(
