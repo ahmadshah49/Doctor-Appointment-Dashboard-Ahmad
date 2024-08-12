@@ -7,7 +7,7 @@ export async function updatePassword(
 ) {
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  await prisma.user.update({
+  await prisma.user.updateMany({
     where: {
       resetToken: token as string,
     },

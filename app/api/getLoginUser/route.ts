@@ -21,8 +21,6 @@ export const GET = async (req: Request, res: Response) => {
         companyName: true,
         profileImage: true,
         resetToken: true,
-        resetTokenExpiry: true,
-        emailVerified: true,
       },
     });
     if (!user) {

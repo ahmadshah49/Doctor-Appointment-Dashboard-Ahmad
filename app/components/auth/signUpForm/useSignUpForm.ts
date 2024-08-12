@@ -1,6 +1,6 @@
 "use client";
 
-import { AxiosInstance, BASE_URL } from "@/app/utils/axiosInstance";
+import { BASE_URL } from "@/app/utils/axiosInstance";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -45,7 +45,7 @@ export const useSignUpForm = () => {
         password,
         companyName,
       });
-
+      console.log("data", name, email, password, companyName);
       router.push("/");
     } catch (error: any) {
       setError(

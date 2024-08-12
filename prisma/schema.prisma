@@ -8,21 +8,19 @@ datasource db {
 }
 
 model User {
-  id               String         @id @default(auto()) @map("_id") @db.ObjectId
-  email            String?        @unique
-  name             String?
-  password         String?
-  image            String?
-  companyName      String?
-  profileImage     String?
-  resetToken       String?        @unique
-  resetTokenExpiry DateTime?
-  emailVerified    DateTime?
-  patients         Patient[]
-  appointments     Appointment[]  @relation("DoctorAppointments")
-  accounts         Account[]
-  notifications    Notification[]
-  task             Task[]
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  email         String?        @unique
+  name          String?
+  password      String?
+  image         String?
+  companyName   String?
+  profileImage  String?
+  resetToken    String?
+  patients      Patient[]
+  appointments  Appointment[]  @relation("DoctorAppointments")
+  accounts      Account[]
+  notifications Notification[]
+  task          Task[]
 }
 
 model Notification {

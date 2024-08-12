@@ -32,7 +32,6 @@ export const POST = async (req: Request) => {
         email: output.email,
         password: hashedPassword,
         companyName: body.companyName,
-        
       },
     });
     return NextResponse.json({ message: "Register" }, { status: 200 });
