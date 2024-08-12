@@ -14,12 +14,10 @@ import {
 import { useDispatch } from "react-redux";
 import { useCalender } from "../calender/useCalender";
 import Loader from "../loader/Loader";
-import ToogleAppointmentButton from "../modals/toogleAppointmentButton/ToogleAppointmentButton";
 
 const UpComingSchedule = () => {
   const { events, isError, isLoading } = useCalender();
   const disPatch: AppDispatch = useDispatch();
-
   const [isOpen, setOpen] = useState<boolean[]>(
     Array(events?.length || 0).fill(false)
   );
@@ -140,16 +138,12 @@ const UpComingSchedule = () => {
                           className="text-red-600 duration-300 font-bold"
                         />
                       </div>
-                      <ToogleAppointmentButton
-                        isUpdate
-                        data={event}
-                        className="text-xs border p-1 cursor-pointer  w-fit rounded-md border-gray-300"
-                      >
+                      <button className="text-xs border cursor-not-allowed p-1  w-fit rounded-md border-gray-300">
                         <FiEdit
                           size={20}
                           className="text-blue-600 duration-300 font-bold"
                         />
-                      </ToogleAppointmentButton>
+                      </button>
                       <div className="text-xs border p-1 cursor-not-allowed  w-fit rounded-md border-gray-300">
                         <LuUser2
                           size={20}
