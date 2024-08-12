@@ -15,7 +15,7 @@ import {
 } from "chart.js";
 import React, { useRef } from "react";
 import { Line } from "react-chartjs-2";
-import { useCalender } from "../../../../components/calender/useCalender";
+import { useCalender } from "../../calender/useCalender";
 
 ChartJS.register(
   CategoryScale,
@@ -28,13 +28,13 @@ ChartJS.register(
   Filler
 );
 
-const OfflinePatientsChart: React.FC = () => {
+const OnlinePatientsChart: React.FC = () => {
   const chartRef = useRef<ChartJS<"line"> | null>(null);
   const { events } = useCalender();
 
-  const offlineConsultations: Appointment[] =
+  const onlineConsultations: Appointment[] =
     events?.filter(
-      (event: Appointment) => event.appointmentType === "Offline_Consultation"
+      (event: Appointment) => event.appointmentType === "Online_Consultation"
     ) || [];
 
   const groupByWeek = (
@@ -60,7 +60,7 @@ const OfflinePatientsChart: React.FC = () => {
     return weeks;
   };
 
-  const onlineGroupedByWeek = groupByWeek(offlineConsultations);
+  const onlineGroupedByWeek = groupByWeek(onlineConsultations);
 
   const data: ChartData<"line"> = {
     labels: Object.keys(onlineGroupedByWeek),
@@ -85,15 +85,15 @@ const OfflinePatientsChart: React.FC = () => {
             0,
             chartArea.bottom
           );
-          gradient.addColorStop(0, "rgba(192, 75, 75, 1)");
-          gradient.addColorStop(1, "rgba(192, 75, 75, 0)");
+          gradient.addColorStop(0, "rgba(75, 192, 192, 1)");
+          gradient.addColorStop(1, "rgba(75, 192, 192, 0)");
           return gradient;
         },
-        borderColor: "rgba(192, 75, 75, 1)",
+        borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 2,
         tension: 0.4,
-        pointBackgroundColor: "rgba(192, 75, 75, 1)",
-        pointBorderColor: "rgba(192, 75, 75, 1)",
+        pointBackgroundColor: "rgba(75, 192, 192, 1)",
+        pointBorderColor: "rgba(75, 192, 192, 1)",
         pointBorderWidth: 1,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -126,4 +126,4 @@ const OfflinePatientsChart: React.FC = () => {
   );
 };
 
-export default OfflinePatientsChart;
+export default OnlinePatientsChart;

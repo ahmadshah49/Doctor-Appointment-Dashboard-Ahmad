@@ -41,7 +41,6 @@ export const useAddPatient = ({
     };
     dispatch(addPatient(patientData)).unwrap();
     toast.success("Patient added");
-    onClose();
   };
   const handleUpdatePatient = () => {
     const patientData = {
@@ -55,14 +54,16 @@ export const useAddPatient = ({
     dispatch(updatePatient(patientData)).unwrap();
     dispatch(getPatient()).unwrap();
     toast.success("Patient updated");
-    onClose();
   };
 
-  const submitHandler = () => {
+  const submitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
     if (!isUpdate) {
       handleAddPatient();
+      onClose();
     } else {
       handleUpdatePatient();
+      onClose();
     }
   };
 
