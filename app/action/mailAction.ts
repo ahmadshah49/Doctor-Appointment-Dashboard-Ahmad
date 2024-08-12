@@ -48,8 +48,6 @@ export async function mailAction(email: string) {
 
     return "Email sent successfully!";
   } catch (error) {
-    console.log(error);
-
     throw new Error("Failed to send email.");
   }
 }

@@ -33,13 +33,7 @@ export const useSignUpForm = () => {
     }
 
     try {
-      // const response = await AxiosInstance.post("/register", {
-      //   name,
-      //   email,
-      //   password,
-      //   companyName,
-      // });
-      axios.post(`${BASE_URL}/api/register`, {
+      await axios.post(`${BASE_URL}/api/register`, {
         name,
         email,
         password,

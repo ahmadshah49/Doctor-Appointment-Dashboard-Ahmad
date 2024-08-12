@@ -39,8 +39,6 @@ export const POST = async (req: Request) => {
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return NextResponse.json(error.messages, { status: 400 });
     }
-    console.log(error);
-
     return NextResponse.json("Error While Register", error);
   }
 };
