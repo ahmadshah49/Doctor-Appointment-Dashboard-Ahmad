@@ -36,20 +36,20 @@ const Tasks: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
 
   const handleCheckboxChange = (id: any) => {
     const updatedTodos = todo.map((item) =>
-      item.id === id.toString()
+      item?.id === id.toString()
         ? {
             ...item,
             completed:
-              item.completed === "COMPLETED" ? "NOT_COMPLETED" : "COMPLETED",
+              item?.completed === "COMPLETED" ? "NOT_COMPLETED" : "COMPLETED",
           }
         : item
     );
     setTodo(updatedTodos);
-    const updatedTask = updatedTodos.find((task) => task.id === id);
+    const updatedTask = updatedTodos.find((task) => task?.id === id);
     if (updatedTask) {
       disPatch(
         updateCheckBoxTask({
-          id: updatedTask.id as string,
+          id: updatedTask?.id as string,
           completed: updatedTask?.completed,
         })
       );
