@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import AnalyticCards from "../../components/analyticCards/AnalyticCards";
 import DashboardSchedule from "../../components/dashboardSchedule/DashboardSchedule";
-import Task from "../../components/task/Task";
+import Tasks from "@/app/components/task/Task";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -18,7 +18,7 @@ const Dashboard = () => {
       <AnalyticCards />
       <div className="flex xl:flex-row flex-col w-full gap-4 my-4">
         <div className="xl:w-[60%] w-full">
-          <Task isShow seeAll />
+          <Tasks isShow seeAll />
         </div>
         <div className="xl:w-[40%] w-full">
           <DashboardSchedule />

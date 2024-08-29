@@ -1,5 +1,3 @@
-import Task from "../components/task/Task";
-
 export type MenuProps = { title: string };
 export type TodoTypes = {
   id: string;

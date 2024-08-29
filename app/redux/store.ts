@@ -13,6 +13,7 @@ import UpdateUserReducer from "./slices/getAppointmentSlice";
 import NotificationsReducer from "./slices/notificationsSlice";
 import DeleteAppointmentReducer from "./slices/deleteAppointmentSlice";
 import UpdateAppointmentReducer from "./slices/updateAppointmentSlice";
+import UpdateTaskCheckBoxReducer from "./slices/updateCheckBoxSlice";
 export const store = configureStore({
   reducer: {
     task: TaskReducer,
@@ -28,6 +29,7 @@ export const store = configureStore({
     notifications: NotificationsReducer,
     deleteAppointment: DeleteAppointmentReducer,
     updateAppointment: UpdateAppointmentReducer,
+    updateTaskCheckBox: UpdateTaskCheckBoxReducer,
   },
 });
 

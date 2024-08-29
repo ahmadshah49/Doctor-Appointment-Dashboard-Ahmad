@@ -30,23 +30,25 @@ const PatientTable = () => {
         </div>
       )}
       {!isLoading && (
-        <table className="w-full table-fixed min-w-[1000px]">
-          <thead className="text-center h-16 border-b">
+        <table className="w-full  min-w-[1000px]">
+          <thead className=" h-16 border-b">
             <tr>
-              <th className="w-24 font-normal text-base text-gray-400">Name</th>
-              <th className="w-24 font-normal text-base text-gray-400">
+              <th className="w-20  font-normal text-left text-base text-gray-400">
+                Name
+              </th>
+              <th className="w-24 font-normal  text-base   text-gray-400">
                 Diagnosis
               </th>
-              <th className="w-24 font-normal text-base text-gray-400">
+              <th className="w-24 font-normal text-base  text-gray-400">
                 Picture
               </th>
-              <th className="w-24 font-normal text-base text-gray-400">
+              <th className="w-24 font-normal text-base  text-gray-400">
                 Status
               </th>
-              <th className="w-24 font-normal text-base text-gray-400">
+              <th className="w-24 font-normal text-base  text-gray-400">
                 Appointment Date
               </th>
-              <th className="w-24 font-normal text-base text-gray-400">
+              <th className="w-24 left-0 font-normal text-base  text-gray-400">
                 Actions
               </th>
             </tr>
@@ -69,7 +71,7 @@ const PatientTable = () => {
             {sortedPatients.length > 0 &&
               sortedPatients.map((item) => (
                 <tr className="h-[72px]" key={item.id}>
-                  <td className="text-lg font-normal">{item.name}</td>
+                  <td className="text-lg text-left font-normal">{item.name}</td>
                   <td className="text-lg font-normal">{item.diagnosis}</td>
                   <td className="text-lg font-normal">
                     <Image

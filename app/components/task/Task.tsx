@@ -3,21 +3,59 @@ import Link from "next/link";
 import { FaPlus } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Loader from "../loader/Loader";
-
+import { TiTick } from "react-icons/ti";
 import { BsThreeDots } from "react-icons/bs";
-
 import ThreeDotsBox from "../threeDots/ThreeDots";
 import { useTasks } from "./useTasks";
 import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
+import { useEffect, useState } from "react";
+import { Task } from "@/app/types/Type";
+import { AppDispatch, RootState } from "@/app/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCheckBoxTask } from "@/app/redux/slices/updateCheckBoxSlice";
 
 type TaskTypes = {
   isShow?: boolean;
   seeAll?: boolean;
 };
-const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
-  const { todos, isError, isLoading } = useTasks();
 
-  const Todos = isShow ? todos?.slice(0, 9) : todos;
+const Tasks: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
+  const { todos, isError, isLoading } = useTasks();
+  const [todo, setTodo] = useState<Task[]>([]);
+  const disPatch: AppDispatch = useDispatch();
+  const { completed } = useSelector(
+    (state: RootState) => state.updateTaskCheckBox
+  );
+  useEffect(() => {
+    if (todos) {
+      setTodo(todos);
+    }
+  }, [todos]);
+
+  const Todos = isShow ? todo?.slice(0, 9) : todo;
+
+  const handleCheckboxChange = (id: any) => {
+    const updatedTodos = todo.map((item) =>
+      item.id === id.toString()
+        ? {
+            ...item,
+            completed:
+              item.completed === "COMPLETED" ? "NOT_COMPLETED" : "COMPLETED",
+          }
+        : item
+    );
+    setTodo(updatedTodos);
+    const updatedTask = updatedTodos.find((task) => task.id === id);
+    if (updatedTask) {
+      disPatch(
+        updateCheckBoxTask({
+          id: updatedTask.id as string,
+          completed: updatedTask?.completed,
+        })
+      );
+    }
+  };
+
   return (
     <div className="rounded-md bg-white shadow-md p-4">
       <div className="flex justify-between border-b pb-2 border-gray-200">
@@ -36,7 +74,6 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
         </div>
       )}
       {!isLoading && isError && <p>Error Loading Tasks</p>}
-      {!isLoading && isError && todos?.length === 0 && <p>No task Found!</p>}
       {!isLoading && !isError && Todos?.length === 0 && (
         <div className="text-gray-500 text-center w-full my-2">
           No Task available.
@@ -46,14 +83,21 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
         !isError &&
         todos?.length > 0 &&
         Todos?.map((todo, index) => (
-          <div key={index} className="flex items-start md:gap-8 gap-2 my-8 ">
-            <input
-              type="checkbox"
-              checked={todo?.completed === "COMPLETED"}
-              readOnly
-              className="cursor-not-allowed w-[31px] h-[31px] p-2 rounded-md"
-            />
+          <div key={index} className="flex items-start md:gap-8 gap-2 my-8">
+            <label className="relative flex items-center">
+              <input
+                type="checkbox"
+                checked={todo?.completed === "COMPLETED"}
+                onChange={() => handleCheckboxChange(todo?.id)}
+                className="cursor-pointer appearance-none w-8 h-8 p-2 rounded border checked:bg-sky bg-transparent"
+              />
 
+              {todo?.completed === "COMPLETED" && (
+                <span className="absolute font-bold text-white text-2xl mx-auto">
+                  <TiTick size={30} />
+                </span>
+              )}
+            </label>
             <div className="flex sm:gap-0 gap-2 items-center w-full justify-between">
               <div>
                 <h1 className="py-2 font-medium text-base ">{todo?.title}</h1>
@@ -71,19 +115,19 @@ const Task: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
           </div>
         ))}
 
-      {Todos?.length > 0 && seeAll ? (
+      {Todos?.length > 0 && seeAll && (
         <Link
           href={"/dashboard/tasks"}
-          className="flex items-center gap-4 font-semibold  text-xs justify-end text-primary"
+          className="flex items-center gap-4 font-semibold text-xs justify-end text-primary"
         >
           See all
           <div className="text-xs border p-2 rounded-md border-gray-300">
             <MdKeyboardArrowRight />
           </div>
         </Link>
-      ) : null}
+      )}
     </div>
   );
 };
 
-export default Task;
+export default Tasks;
