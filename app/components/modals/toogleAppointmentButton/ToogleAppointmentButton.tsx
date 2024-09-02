@@ -1,14 +1,7 @@
 "use client";
-import { Appointment } from "../../../types/Type";
+import { Appointment, ToogleButtonProps } from "../../../types/Type";
 import React, { useState } from "react";
 import AddAppointment from "../addAppointment/AddAppointment";
-
-type ToogleButtonProps = {
-  children: React.ReactNode;
-  isUpdate?: boolean;
-  className?: string;
-  data?: Appointment;
-};
 
 const ToogleAppointmentButton: React.FC<ToogleButtonProps> = ({
   children,

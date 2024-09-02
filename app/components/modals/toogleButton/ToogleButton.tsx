@@ -1,18 +1,10 @@
 "use client";
 
+import { ToogleButtonProp } from "@/app/types/Type";
 import { useState } from "react";
 import AddPatient from "../addPatient/AddPatient";
-import { Patient } from "@/app/types/Type";
 
-type ToogleButtonProps = {
-  children: React.ReactNode;
-  isUpdate?: boolean;
-  className?: string;
-  id?: string;
-  patient?: Patient;
-};
-
-const ToogleButton: React.FC<ToogleButtonProps> = ({
+const ToogleButton: React.FC<ToogleButtonProp> = ({
   children,
   isUpdate,
   className,

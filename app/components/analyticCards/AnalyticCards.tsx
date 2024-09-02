@@ -5,15 +5,8 @@ import Card from "../card/Card";
 import { useCalender } from "../calender/useCalender";
 
 const AnalyticCards = () => {
-  const { events } = useCalender();
-  const onlineConsultations = events?.filter(
-    (event) => event.appointmentType === "Online_Consultation"
-  );
-  const offlineConsultations = events?.filter(
-    (event) => event.appointmentType === "Offline_Consultation"
-  );
-  const totalPatients =
-    onlineConsultations?.length + offlineConsultations?.length;
+  const { offlineConsultations, onlineConsultations, totalPatients } =
+    useCalender();
 
   return (
     <>

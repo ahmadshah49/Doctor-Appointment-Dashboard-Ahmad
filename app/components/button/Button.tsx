@@ -1,15 +1,5 @@
+import { ButtonProps } from "@/app/types/Type";
 import clsx from "clsx";
-import { IconType } from "react-icons";
-
-interface ButtonProps {
-  text: string;
-  widthFull?: boolean;
-  disabled?: boolean;
-  type?: "submit" | "reset" | "button";
-  icon?: IconType;
-  transparent?: boolean;
-  onClick?: () => void;
-}
 
 const Button: React.FC<ButtonProps> = ({
   text,

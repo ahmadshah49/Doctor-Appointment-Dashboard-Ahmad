@@ -27,5 +27,23 @@ export const useCalender = () => {
       hour12: true,
     });
   };
-  return { events, appointment, isError, isLoading, formatTime };
+
+  const onlineConsultations = events?.filter(
+    (event) => event.appointmentType === "Online_Consultation"
+  );
+  const offlineConsultations = events?.filter(
+    (event) => event.appointmentType === "Offline_Consultation"
+  );
+  const totalPatients =
+    onlineConsultations?.length + offlineConsultations?.length;
+  return {
+    events,
+    appointment,
+    isError,
+    isLoading,
+    formatTime,
+    onlineConsultations,
+    offlineConsultations,
+    totalPatients,
+  };
 };

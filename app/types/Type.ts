@@ -1,4 +1,6 @@
+import { IconType } from "react-icons";
 export type MenuProps = { title: string };
+
 export type TodoTypes = {
   id: string;
   title: string;
@@ -179,4 +181,26 @@ export type RegisterErrorType = {
   name?: string;
   email?: string;
   password?: string;
+};
+export type ButtonProps = {
+  text: string;
+  widthFull?: boolean;
+  disabled?: boolean;
+  type?: "submit" | "reset" | "button";
+  icon?: IconType;
+  transparent?: boolean;
+  onClick?: () => void;
+};
+export type ToogleButtonProps = {
+  children: React.ReactNode;
+  isUpdate?: boolean;
+  className?: string;
+  data?: Appointment;
+};
+export type ToogleButtonProp = {
+  children: React.ReactNode;
+  isUpdate?: boolean;
+  className?: string;
+  id?: string;
+  patient?: Patient;
 };

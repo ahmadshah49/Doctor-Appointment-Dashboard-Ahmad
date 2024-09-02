@@ -1,21 +1,11 @@
 "use client";
-import { getNotification } from "@/app/redux/slices/notificationsSlice";
-import { AppDispatch, RootState } from "@/app/redux/store";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useAllNotifications } from "./UseAllNotifications";
 
 const AllNotifications = () => {
-  const disPatch: AppDispatch = useDispatch();
-  const { data, isError, isLoading } = useSelector(
-    (state: RootState) => state.notifications
-  );
-
-  useEffect(() => {
-    disPatch(getNotification());
-  }, [disPatch]);
+  const { data } = useAllNotifications();
   return (
     <div>
-      {" "}
       <div className="flex flex-col gap-4">
         {data.map((notification, index) => (
           <div
