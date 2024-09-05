@@ -15,10 +15,6 @@ const ResetPasswordPage: React.FC<resetFormProps> = ({
   path,
   param,
 }) => {
-  const router = useRouter();
-
-  const { status } = useSession();
-
   const {
     confirmPassword,
     error,
@@ -28,12 +24,6 @@ const ResetPasswordPage: React.FC<resetFormProps> = ({
     setPassword,
     submitHandler,
   } = useResetPasswordPage();
-
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/dashboard");
-    }
-  }, [status, router]);
 
   return (
     <div className="w-full md:w-3/5 h-screen bg-white flex flex-col items-center justify-center">

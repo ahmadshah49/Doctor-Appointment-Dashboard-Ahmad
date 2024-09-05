@@ -2,7 +2,7 @@
 import { updatePassword } from "@/app/action/updatePasswordAction";
 import { useSession } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export const useResetPasswordPage = () => {
@@ -12,6 +12,13 @@ export const useResetPasswordPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+
+  const { status } = useSession();
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dashboard");
+    }
+  }, [status, router]);
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -40,6 +47,7 @@ export const useResetPasswordPage = () => {
       setLoading(false);
     }
   };
+
   return {
     submitHandler,
     password,

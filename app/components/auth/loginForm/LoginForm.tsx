@@ -1,13 +1,10 @@
 "use client";
-import { useSession } from "next-auth/react";
+import { FormProps } from "@/app/types/Type";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Button from "../../button/Button";
 import Input from "../../input/Input";
 import { useLoginForm } from "./useLoginForm";
-import { FormProps } from "@/app/types/Type";
 
 const LoginForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
   const {
@@ -20,14 +17,6 @@ const LoginForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
     error,
     loading,
   } = useLoginForm();
-  const router = useRouter();
-  const { status } = useSession();
-
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/dashboard");
-    }
-  }, [status, router]);
 
   return (
     <div className="w-full md:w-3/5 h-screen bg-white flex flex-col items-center justify-center">

@@ -19,14 +19,14 @@ const Calender = () => {
         dayMaxEventRows={1}
         moreLinkClick="popover"
         events={events?.map((item) => ({
-          title: item.name,
-          start: item.start,
-          end: item.end,
+          title: item?.name,
+          start: item?.start,
+          end: item?.end,
           extendedProps: {
-            name: item.name,
-            appointmentType: item.appointmentType,
-            purpose: item.purpose,
-            status: item.status,
+            name: item?.name,
+            appointmentType: item?.appointmentType,
+            purpose: item?.purpose,
+            status: item?.status,
           },
         }))}
         eventContent={(eventInfo) => {
@@ -34,7 +34,7 @@ const Calender = () => {
           let textColor = "";
           let statusBgColor = "";
 
-          switch (eventInfo.event.extendedProps.status) {
+          switch (eventInfo?.event?.extendedProps?.status) {
             case "ONGOING":
               bgColor = "bg-yellow-200";
               textColor = "text-yellow-600";
@@ -67,7 +67,7 @@ const Calender = () => {
                 )}
               >
                 <span className="h-full w-1 bg-black"></span>
-                <p>{eventInfo.event.extendedProps.status}</p>
+                <p>{eventInfo?.event?.extendedProps?.status}</p>
               </div>
               <div className="p-2">
                 <div className="flex items-center gap-2">
@@ -76,17 +76,17 @@ const Calender = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <BiSpreadsheet />
-                  <i>{eventInfo.event.extendedProps.appointmentType}</i>
+                  <i>{eventInfo?.event?.extendedProps?.appointmentType}</i>
                 </div>
                 <div className="flex items-center gap-2">
                   <FaDisease />
-                  <span>{eventInfo.event.extendedProps.purpose}</span>
+                  <span>{eventInfo?.event?.extendedProps?.purpose}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MdAccessTimeFilled />
                   <span>
-                    {formatTime(eventInfo.event.start)} -{" "}
-                    {formatTime(eventInfo.event.end)}
+                    {formatTime(eventInfo?.event?.start)} -{" "}
+                    {formatTime(eventInfo?.event?.end)}
                   </span>
                 </div>
               </div>

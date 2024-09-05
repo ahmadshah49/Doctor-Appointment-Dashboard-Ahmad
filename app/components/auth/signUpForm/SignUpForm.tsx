@@ -17,7 +17,7 @@ interface FormProps {
 
 const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
   const router = useRouter();
-  
+
   const { status } = useSession();
 
   const {
@@ -34,12 +34,6 @@ const SignUpForm: React.FC<FormProps> = ({ title, desc, link, path }) => {
     submitHandler,
     googleAction,
   } = useSignUpForm();
-
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/dashboard");
-    }
-  }, [status, router]);
 
   return (
     <div className="w-full md:w-3/5 h-screen bg-white flex flex-col items-center justify-center">
