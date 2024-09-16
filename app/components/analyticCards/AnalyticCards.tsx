@@ -10,7 +10,7 @@ const AnalyticCards = () => {
 
   return (
     <>
-      <div className="flex xl:flex-row flex-col mt-7 gap-4 w-full justify-between">
+      <div className="flex xl:flex-row flex-col mt-3 gap-4  w-full justify-between">
         <Card
           title="Online consultations"
           number={onlineConsultations?.length || 0}

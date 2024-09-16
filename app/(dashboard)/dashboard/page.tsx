@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <div className="p-4 min-h-screen">
       <div className="">
-        <h1 className="text-gray-950 font-normal">Dashboard</h1>
+        <h1 className="text-gray-950 text-[18px] font-normal">Dashboard</h1>
       </div>
 
       <AnalyticCards />

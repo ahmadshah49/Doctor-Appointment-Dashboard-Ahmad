@@ -83,8 +83,8 @@ const Tasks: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
         !isError &&
         todos?.length > 0 &&
         Todos?.map((todo, index) => (
-          <div key={index} className="flex items-start md:gap-8 gap-2 my-8">
-            <label className="relative flex items-center">
+          <div key={index} className="flex items-start ml-[25px] gap-2 my-8">
+            <label className="relative flex items-center mr-[17px]">
               <input
                 type="checkbox"
                 checked={todo?.completed === "COMPLETED"}
@@ -98,19 +98,19 @@ const Tasks: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
                 </span>
               )}
             </label>
-            <div className="flex sm:gap-0 gap-2 items-center w-full justify-between">
+            <div className="flex sm:gap-0  items-center w-full justify-between">
               <div>
-                <h1 className="py-2 font-medium text-base ">{todo?.title}</h1>
-                <p className="py-2 font-normal text-xs ">{todo?.description}</p>
+                <h1 className="py-1 font-medium text-base ">{todo?.title}</h1>
+                <p className="py-1 font-normal text-xs ">{todo?.description}</p>
               </div>
-              <p className="font-normal text-xs text-grayLight">
+              <p className="font-normal xl:mr-[50px] text-xs text-grayLight">
                 {todo?.date
                   ? new Date(todo?.date).toLocaleDateString()
                   : "No date provided"}
               </p>
             </div>
             <ThreeDotsBox id={todo?.id} data={todo}>
-              <BsThreeDots />
+              <BsThreeDots size={15} />
             </ThreeDotsBox>
           </div>
         ))}

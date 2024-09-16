@@ -14,17 +14,10 @@ import {
 import { useDispatch } from "react-redux";
 import { useCalender } from "../calender/useCalender";
 import Loader from "../loader/Loader";
-import { format, toZonedTime } from "date-fns-tz";
-
-const formatTime = (date: any) => {
-  const timeZone = "Asia/Karachi";
-  const zonedTime = toZonedTime(date, timeZone);
-  return format(zonedTime, "hh:mm a", { timeZone });
-};
 
 const UpComingSchedule = () => {
   const { events, isError, isLoading } = useCalender();
-  const dispatch: AppDispatch = useDispatch();
+  const disPatch: AppDispatch = useDispatch();
   const [isOpen, setOpen] = useState<boolean[]>(
     Array(events?.length || 0).fill(false)
   );
@@ -37,9 +30,18 @@ const UpComingSchedule = () => {
     });
   };
 
+  const formatTime = (date: any) => {
+    return new Date(date).toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Karachi",
+    });
+    
+  };
   const handleDelete = (id: string) => {
-    dispatch(deleteAppointment(id)).unwrap();
-    dispatch(fetchAppointment()).unwrap();
+    disPatch(deleteAppointment(id)).unwrap();
+    disPatch(fetchAppointment()).unwrap();
     toast.success("Appointment Deleted!");
   };
 
@@ -115,7 +117,7 @@ const UpComingSchedule = () => {
                         Time
                       </span>
                       <span className="sm:text-base text-[10px]">
-                        {formatTime(event!.start)} - {formatTime(event!.end)}
+                        {formatTime(event?.start)} - {formatTime(event?.end)}
                       </span>
                     </div>
                     <div className="flex items-center sm:gap-8">

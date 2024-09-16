@@ -5,6 +5,7 @@ import { FaArrowDown } from "react-icons/fa";
 
 import TotalPatientsChart from "../charts/totalPatients/TotalPatientsChart";
 import OfflinePatientsChart from "../charts/offlinePaitentsChart/OfflinePatientsChart";
+import { BsThreeDots } from "react-icons/bs";
 
 const Card: React.FC<GraphProps> = ({
   title,
@@ -16,10 +17,10 @@ const Card: React.FC<GraphProps> = ({
   totalPatients,
 }) => {
   return (
-    <div className="shadow-md bg-white rounded-md p-4 xl:min-w-[358px] w-full min-h-[192px]">
-      <div className="flex   justify-between">
-        <h1 className="text-[22px] font-medium">{title}</h1>
-        <span className="text-xl font-medium">...</span>
+    <div className="shadow-md bg-white rounded-md px-[22px] py-[24px]  xxl:min-w-[358px] w-full xl:max-h-[192px]">
+      <div className="flex items-center  justify-between">
+        <h1 className="text-[22px] font-medium ">{title}</h1>
+        <BsThreeDots size={23} />
       </div>
       <div className=" flex lg:flex-row flex-col h-[80%]  justify-between items-center">
         <div className="lg:flex flex-col h-full py-4 justify-between">
@@ -45,7 +46,7 @@ const Card: React.FC<GraphProps> = ({
             </div>
           )}
         </div>
-        <div className="xl:max-w-[220px]  lg:w-[80%] w-full">
+        <div className="xl:max-w-[164px]  lg:w-[80%] w-full">
           {onLinePatients && <OnlinePatientsChart />}
           {offLinePatients && <OfflinePatientsChart />}
           {totalPatients && <TotalPatientsChart />}

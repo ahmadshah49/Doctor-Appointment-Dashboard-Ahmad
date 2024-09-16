@@ -43,7 +43,7 @@ const TotalPatientsChart: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative xl:max-h-[112px] xl:max-w-[164px] w-full h-full">
       <Doughnut ref={chartRef} data={data} options={options} />
     </div>
   );

@@ -64,40 +64,39 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
             </span>
           </div>
 
-          <form onSubmit={submitHandler} className="md:px-10 px-4 text-left">
-            <div className="flex flex-wrap justify-evenly md:gap-0 gap-2 items-start my-10">
-              <span className="flex flex-col md:my-0 my-4 gap-2 items-center justify-center">
-                <RiUserLine size={25} className=" text-center text-blue-500" />
-                <h1 className="text-blue-500 text-[18px] font-normal">
-                  PRACTITIONER
-                  <p className="text-center text-base font-normal text-black">
-                    {user?.name}
-                  </p>
-                  <p className="text-center font-bold text-black text-base">
-                    General Doctor
-                  </p>
-                </h1>
-              </span>
-              <span className="flex flex-col md:my-0 my-4 gap-2 items-center justify-center">
-                <FaRegClock size={25} className=" text-blue-500" />
-                <h1 className="text-blue-500 text-[18px] font-normal">
-                  DATE AND TIME
-                </h1>
-                <p>{formatDate(currentDate)}</p>
-
-                <p>{formatTime(currentDate)}</p>
-              </span>
-              <span className="flex flex-col gap-2 md:my-0 my-4 items-center justify-center">
-                <SlLocationPin size={25} className=" text-blue-500" />
-                <h1 className="text-blue-500 text-[18px] font-normal">
-                  LOCATION
-                </h1>
+          <div className="flex flex-wrap justify-evenly md:gap-0 gap-2 items-start my-10">
+            <span className="flex flex-col md:my-0 my-[13px] gap-2 items-center justify-center">
+              <RiUserLine size={24} className=" text-center text-blue-500" />
+              <h1 className="text-blue-500 leading-7 text-[18px] font-normal">
+                PRACTITIONER
                 <p className="text-center text-base font-normal text-black">
-                  {user?.companyName}
+                  {user?.name}
                 </p>
-              </span>
-            </div>
+                <p className="text-center font-bold text-black text-base">
+                  General Doctor
+                </p>
+              </h1>
+            </span>
+            <span className="flex flex-col md:my-0 my-4 gap-2 items-center justify-center">
+              <FaRegClock size={24} className=" text-blue-500" />
+              <h1 className="text-blue-500 text-[18px] font-normal">
+                DATE AND TIME
+              </h1>
+              <p>{formatDate(currentDate)}</p>
 
+              <p>{formatTime(currentDate)}</p>
+            </span>
+            <span className="flex flex-col gap-2 md:my-0 my-4 items-center justify-center">
+              <SlLocationPin size={24} className=" text-blue-500" />
+              <h1 className="text-blue-500 text-[18px] font-normal">
+                LOCATION
+              </h1>
+              <p className="text-center text-base font-normal text-black">
+                {user?.companyName}
+              </p>
+            </span>
+          </div>
+          <form onSubmit={submitHandler} className="md:px-10 px-4 text-left">
             <InputTwo
               id="name"
               label="Patient"

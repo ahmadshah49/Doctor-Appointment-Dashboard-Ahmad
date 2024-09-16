@@ -20,6 +20,7 @@ const config: Config = {
       },
       screens: {
         primary: "850px",
+        xxl: "1400px",
       },
     },
   },

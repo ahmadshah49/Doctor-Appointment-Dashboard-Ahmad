@@ -17,13 +17,18 @@ const Navbar = async () => {
 
   return (
     <div className="lg:h-[92px] h-16 bg-white w-full  flex items-center border-b justify-between gap-4 px-4">
-      <div className="border border-gray-400 py-1 rounded lg:flex px-2 justify-between xl:min-w-[580px] hidden">
+      <div className="border border-gray-400 min-h-[40px] py-1 rounded lg:flex px-4  items-center xl:min-w-[580px] hidden">
         <input
           type="text"
           placeholder="Search"
-          className="outline-none border-none bg-transparent text-sm font-medium w-full text-gray-500 "
+          className="outline-none border-none  bg-transparent text-sm font-medium w-full text-gray-500 "
         />
-        <IoSearchOutline size={20} color="gray" />
+
+        <IoSearchOutline
+          size={28}
+          className="mr-[34px] font-bold"
+          color="#828282"
+        />
       </div>
       <div className="lg:text-right text-left">
         <p className="text-sm">{currentUser?.name}</p>
