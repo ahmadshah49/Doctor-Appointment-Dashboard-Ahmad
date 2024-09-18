@@ -1,10 +1,12 @@
 "use client";
 
+import { storage } from "@/app/lib/firebase";
 import { addPatient, getPatient } from "@/app/redux/slices/patientSlice";
 import { updatePatient } from "@/app/redux/slices/updatePatientSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { AddPatientTypes, PatientStatus } from "@/app/types/Type";
-import { useState } from "react";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,7 +17,7 @@ export const useAddPatient = ({
   patient,
 }: AddPatientTypes) => {
   const [name, setName] = useState(patient?.name || "");
-
+  const [loading, setLoading] = useState(false);
   const [diagnosis, setDiagnosis] = useState(patient?.diagnosis || "");
   const [profileImage, setProfileImage] = useState(patient?.profileImage || "");
   const [status, setStatus] = useState(
@@ -67,7 +69,41 @@ export const useAddPatient = ({
     }
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setLoading(true);
+      const storageRef = ref(storage, `patients/${file.name}`);
+      const uploadTask = uploadBytes(storageRef, file);
+
+      uploadTask
+        .then((snapshot) => {
+          return getDownloadURL(snapshot.ref);
+        })
+        .then((downloadUrl) => {
+          setProfileImage(downloadUrl);
+          setLoading(false);
+        })
+        .catch((error) => {
+          toast.error("Upload Failed");
+          setLoading(false);
+        });
+    }
+  };
+
   return {
+    handleImageClick,
+    loading,
+    inputRef,
+    handleImageChange,
     name,
     status,
     patient,

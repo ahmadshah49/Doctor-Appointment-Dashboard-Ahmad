@@ -5,6 +5,7 @@ const CheckBox = <T extends string>({
   selectedOption,
   setSelectedOption,
   label,
+  required
 }: CheckBoxProps<T>) => {
   const handleOptionChange = (value: T) => {
     setSelectedOption(value);
@@ -30,6 +31,7 @@ const CheckBox = <T extends string>({
               {option}
             </label>
             <input
+              required={required}
               type="radio"
               id={option}
               name={label}

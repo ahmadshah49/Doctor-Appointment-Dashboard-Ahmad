@@ -124,9 +124,10 @@ export type InputTwoTypes = {
 };
 export type CheckBoxProps<T> = {
   options: T[];
-  selectedOption: T;
+  selectedOption: T | String;
   setSelectedOption: (option: T) => void;
   label: string;
+  required?: boolean;
 };
 export type UserState = {
   user: UserInfo | null;
