@@ -108,6 +108,8 @@ export const useAddAppointments = ({
       dispatch(fetchAppointment()).unwrap();
       dispatch(addNotification(notificationData)).unwrap();
       onClose();
+      console.log("Timestamp", start, end);
+
       toast.success("Schedule Added!");
     } catch (error) {
       toast.error("Something Went Wrong!");
