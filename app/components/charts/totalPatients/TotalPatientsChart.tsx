@@ -22,14 +22,32 @@ const TotalPatientsChart: React.FC = () => {
       {
         label: "My Dataset",
         data: [
-          `${onlineConsultations?.length}`,
-          `${offlineConsultations?.length}`,
+          onlineConsultations?.length || 0,
+          offlineConsultations?.length || 0,
         ],
         backgroundColor: ["rgba(54, 162, 235, 1)", "rgba(192, 75, 75, 1)"],
         borderColor: ["rgba(54, 162, 235, 1)", "rgba(192, 75, 75, 1)"],
         borderWidth: 1,
       },
     ],
+  };
+
+  const centerText = {
+    id: "centerText",
+    beforeDraw(chart: any, args: any, pluginOptions: any) {
+      const {
+        ctx,
+        chartArea: { width, height },
+      } = chart;
+      ctx.save();
+      const xCoor = width / 2;
+      const yCoor = height / 2;
+      ctx.font = "bold 20px sans-serif";
+      ctx.fillStyle = "rgba(54, 162, 235, 1)";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("Patients", xCoor, yCoor);
+    },
   };
 
   const options = {
@@ -39,7 +57,9 @@ const TotalPatientsChart: React.FC = () => {
       legend: {
         display: false,
       },
+      centerText,
     },
+    cutout: "70%", // Adjust this to change the thickness
   };
 
   return (

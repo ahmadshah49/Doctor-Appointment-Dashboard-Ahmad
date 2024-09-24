@@ -37,12 +37,22 @@ const UpComingSchedule = () => {
       hour12: true,
       timeZone: "Asia/Karachi",
     });
-    
   };
   const handleDelete = (id: string) => {
     disPatch(deleteAppointment(id)).unwrap();
     disPatch(fetchAppointment()).unwrap();
     toast.success("Appointment Deleted!");
+  };
+  const utcTimestamp = (utcTime: any) => {
+    return new Date(utcTime).toISOString();
+  }; // This generates the timestamp in UTC
+
+  const newTime = (date: any) => {
+    return new Date(date).toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
   };
 
   return (
@@ -68,16 +78,25 @@ const UpComingSchedule = () => {
       {!isLoading &&
         !isError &&
         events?.map((event, index) => (
-          <div key={index} className="flex w-full  items-start relative">
-            <div className="rounded-full h-4 w-4 bg-black mt-2.5 flex-shrink-0 relative z-10" />
-            {index !== events?.length - 1 && (
-              <div className="absolute left-[7.5px] top-[28px] h-full w-px bg-gray-300" />
-            )}
+          <div
+            key={index}
+            className="flex w-full h-full relative  items-start "
+          >
+            <span className="text-xs max-w-[36px] mr-[35px] ">
+              {newTime(event?.start)}
+            </span>
 
-            <div className="sm:ml-2 p-1 sm:p-4 flex flex-col sm:gap-4 gap-2 w-full">
+            <div className="h-full absolute md:ml-[86px] ml-[40px] mr-4">
+              <div className="rounded-full h-2 w-2 bg-black mt-2.5 flex-shrink-0 relative z-10" />
+              {index !== events?.length - 1 && (
+                <div className="absolute left-[3.7px] top-[18px] h-full w-px bg-gray-300" />
+              )}
+            </div>
+
+            <div className="sm:ml-2  p-1 sm:p-4 flex flex-col sm:gap-4 gap-2 w-full">
               <button
                 onClick={() => toggleOpen(index)}
-                className="flex justify-between p-2 bg-white rounded-lg border border-gray-200 w-full items-center"
+                className="flex justify-between p-2 ml-2 bg-white rounded-lg border border-gray-200 w-full items-center"
               >
                 <h3 className="md:text-xl text-sm font-semibold">
                   {event?.name}

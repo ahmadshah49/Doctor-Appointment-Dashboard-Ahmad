@@ -2,6 +2,7 @@
 import { nanoid } from "nanoid";
 import { prisma } from "../lib/prisma";
 import { BASE_URL } from "../utils/axiosInstance";
+import nodemailer from "nodemailer";
 
 export async function mailAction(email: string) {
   try {
@@ -23,7 +24,6 @@ export async function mailAction(email: string) {
         resetToken: token,
       },
     });
-    const nodemailer = require("nodemailer");
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",

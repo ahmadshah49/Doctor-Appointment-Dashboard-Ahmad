@@ -11,12 +11,12 @@ const Navbar = async () => {
   const today = new Date();
   const formatedDate = today.toLocaleDateString("en-GB", {
     day: "2-digit",
-    month: "long",
+    month: "short",
     year: "numeric",
   });
 
   return (
-    <div className="lg:h-[92px] h-16 bg-white w-full  flex items-center border-b justify-between gap-4 px-4">
+    <div className="lg:h-[92px] h-16 bg-white w-full  flex items-center border-b justify-between gap-4 px-4 xl:px-[26px]">
       <div className="border border-gray-400 min-h-[40px] py-1 rounded lg:flex px-4  items-center xl:min-w-[580px] hidden">
         <input
           type="text"
@@ -36,7 +36,7 @@ const Navbar = async () => {
           {currentUser?.companyName || " Medical Clinc "}
         </h1>
       </div>
-      <div className="border sm:block hidden border-gray-400 py-1 rounded px-2 ">
+      <div className="border xl:min-w-[137px] md:flex items-center justify-center sm:block hidden border-gray-400 py-1 rounded px-2 ">
         {formatedDate}
       </div>
       <div className="flex items-center cursor-not-allowed justify-between gap-4">
