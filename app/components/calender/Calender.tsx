@@ -10,13 +10,17 @@ import { useCalender } from "./useCalender";
 
 const Calender = () => {
   const { events, formatTime } = useCalender();
+  const dayCellClassNames = () => {
+    return ["fc-daygrid-day,fc-daygrid-body,calendar-container,fc-toolbar"];
+  };
 
   return (
-    <div className="rounded-md bg-white p-4 overflow-x-auto overflow-y-auto">
+    <div className="rounded-md bg-white p-4 overflow-x-auto h-screen overflow-y-auto">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView="dayGridMonth"
         dayMaxEventRows={1}
+        height="1000px"
         moreLinkClick="popover"
         events={events?.map((item) => ({
           title: item?.name,
@@ -29,6 +33,7 @@ const Calender = () => {
             status: item?.status,
           },
         }))}
+        dayCellClassNames={dayCellClassNames}
         eventContent={(eventInfo) => {
           let bgColor = "";
           let textColor = "";
@@ -63,27 +68,28 @@ const Calender = () => {
             >
               <div
                 className={clsx(
-                  `${statusBgColor} rounded-md px-2 py-1 font-semibold`
+                  `${statusBgColor} min-w-full rounded-md px-2 py-1 font-semibold`
                 )}
               >
-                <span className="h-full w-1 bg-black"></span>
-                <p>{eventInfo?.event?.extendedProps?.status}</p>
+                <p className="w-full">
+                  {eventInfo?.event?.extendedProps?.status}
+                </p>
               </div>
               <div className="p-2">
                 <div className="flex items-center gap-2">
-                  <FaRegUser />
+                  <FaRegUser className="w-4 h-4 flex-shrink-0" />
                   <p>{eventInfo?.event?.title}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <BiSpreadsheet />
+                  <BiSpreadsheet className="w-4 h-4 flex-shrink-0" />
                   <i>{eventInfo?.event?.extendedProps?.appointmentType}</i>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaDisease />
+                  <FaDisease className="w-4 h-4 flex-shrink-0" />
                   <span>{eventInfo?.event?.extendedProps?.purpose}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MdAccessTimeFilled />
+                  <MdAccessTimeFilled className="w-4 h-4 flex-shrink-0" />
                   <span>
                     {formatTime(eventInfo?.event?.start)} -{" "}
                     {formatTime(eventInfo?.event?.end)}
