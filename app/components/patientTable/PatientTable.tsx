@@ -61,7 +61,7 @@ const PatientTable = () => {
                 </td>
               </tr>
             )}
-            {!isError && sortedPatients.length === 0 && (
+            {!isError && sortedPatients?.length === 0 && (
               <tr>
                 <td colSpan={6}>
                   <p className="text-center">No Patient Found!</p>

@@ -34,7 +34,7 @@ const OfflinePatientsChart: React.FC = () => {
 
   const offlineConsultations: Appointment[] =
     events?.filter(
-      (event: Appointment) => event.appointmentType === "Offline_Consultation"
+      (event: Appointment) => event?.appointmentType === "Offline_Consultation"
     ) || [];
 
   const groupByWeek = (

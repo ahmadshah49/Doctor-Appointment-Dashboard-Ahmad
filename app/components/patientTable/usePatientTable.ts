@@ -22,7 +22,7 @@ export const usePatientTable = () => {
     setPatientList(patients);
   }, [patients]);
 
-  const sortedPatients = patientList.slice().sort((a, b) => {
+  const sortedPatients = patientList?.slice().sort((a, b) => {
     const dateA = new Date(a.appointmentDate ?? 0);
     const dateB = new Date(b.appointmentDate ?? 0);
     return dateA.getTime() - dateB.getTime();
