@@ -21,7 +21,12 @@ const Calender = () => {
         initialView="dayGridMonth"
         dayMaxEventRows={1}
         height="1000px"
+        allDaySlot={false}
         moreLinkClick="popover"
+        headerToolbar={{
+          left: "prev,next today",
+          right: "dayGridMonth,timeGridWeek,timeGridDay",
+        }}
         events={events?.map((item) => ({
           title: item?.name,
           start: item?.start,

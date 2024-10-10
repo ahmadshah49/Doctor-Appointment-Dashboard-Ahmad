@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 .fc-daygrid-day {
   width: 154px;
   min-width: 120px;
@@ -37,4 +38,11 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
+}
+
+.fc-timegrid-slot {
+  height: 150px !important;
+}
+.fc-timegrid {
+  width: 1500px !important;
 }
