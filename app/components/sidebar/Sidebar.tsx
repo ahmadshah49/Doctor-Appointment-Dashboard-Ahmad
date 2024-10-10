@@ -19,7 +19,7 @@ const Sidebar = () => {
     <>
       <div className="relative border-r w-full h-screen bg-white">
         <div className="flex flex-col h-full">
-          <div className="w-full flex items-center justify-center border-b min-h-[64px] xl:h-[92px]  ">
+          <div className="w-full flex items-center justify-center border-b  min-h-[64px] lg:h-[92px]  ">
             <div className="flex items-center gap-2 xl:min-w-[146px] xl:min-h-[62px] justify-center ">
               <Image
                 alt="Logo"
@@ -87,8 +87,6 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className="lg:hidden block w-full h-11 bg-black"></div> */}
     </>
   );
 };

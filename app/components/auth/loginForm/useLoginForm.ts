@@ -23,6 +23,7 @@ export const useLoginForm = () => {
     setError("");
     if (!email || !password) {
       setError("Please fill all fields");
+      setLoading(false);
     }
     try {
       const callback = await signIn("credentials", {

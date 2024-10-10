@@ -17,10 +17,10 @@ const Dashboard = () => {
 
       <AnalyticCards />
       <div className="flex xl:flex-row flex-col w-full gap-4 my-4">
-        <div className="xl:w-[60%] w-full">
+        <div className="xl:w-[63%] w-full">
           <Tasks isShow seeAll />
         </div>
-        <div className="xl:w-[40%] w-full">
+        <div className="xl:w-[37%] w-full">
           <DashboardSchedule />
         </div>
       </div>

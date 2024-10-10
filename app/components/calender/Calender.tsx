@@ -11,7 +11,9 @@ import { useCalender } from "./useCalender";
 const Calender = () => {
   const { events, formatTime } = useCalender();
   const dayCellClassNames = () => {
-    return ["fc-daygrid-day,fc-daygrid-body,calendar-container,fc-toolbar"];
+    return [
+      "fc-daygrid-day,fc-daygrid-body,calendar-container,fc-toolbar,fc-more,fc-popover-body ,fc-event ",
+    ];
   };
 
   return (
@@ -68,7 +70,7 @@ const Calender = () => {
           return (
             <div
               className={clsx(
-                `overflow-x-auto  w-full h-full ${bgColor} ${textColor}`
+                `overflow-x-auto  w-full min-h-[140px] h-full ${bgColor} ${textColor}`
               )}
             >
               <div

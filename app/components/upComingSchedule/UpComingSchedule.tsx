@@ -108,21 +108,21 @@ const UpComingSchedule = () => {
                 onClick={() => toggleOpen(index)}
                 className="flex relative justify-between p-2 ml-2 bg-white rounded-lg border border-gray-200 w-full items-center"
               >
-                <div className="flex  gap-4 items-center">
+                <div className="flex  gap-2 items-center">
                   <span
                     title={event?.status}
                     className={`h-2 w-2 inline-block rounded-full ${getStatusColor(
                       event?.status as string
                     )}`}
                   />
-                  <span className="md:text-[14px] font-bold">
+                  <span className="md:text-[11px] font-bold">
                     {" "}
                     {newTime(event?.start)}{" "}
                   </span>
-                  <h3 className="md:text-[14px] ml-4 text-sm inline-block font-medium">
+                  <h3 className="md:text-[11px] ml-4 text-sm inline-block font-medium">
                     {event?.name}
                   </h3>
-                  <span className=" sm:absolute  sm:block hidden right-12 text-[10px] text-[#828282]">
+                  <span className=" sm:absolute  sm:block hidden right-10 text-[10px] text-[#828282]">
                     {event?.status}
                   </span>
                 </div>
@@ -143,53 +143,51 @@ const UpComingSchedule = () => {
                 <div className="flex flex-col bg-white rounded-lg border border-gray-200 w-full">
                   <div className="p-2 sm:px-4 px-2">
                     <div className="flex items-center sm:gap-8 ">
-                      <span className="sm:w-24 xl:w-[42px] lg:w-16 w-16  text-sm font-bold">
+                      <span className="sm:w-24 xl:w-[42px] lg:w-16 w-16  text-[11px] font-bold">
                         Patient
                       </span>
-                      <span className="text-sm text-[10px]">{event?.name}</span>
+                      <span className=" text-[11px]">{event?.name}</span>
                     </div>
                     <div className="flex items-center sm:gap-8">
-                      <span className="sm:w-24 xl:w-10 lg:w-16 w-16  text-sm font-bold">
+                      <span className="sm:w-24 xl:w-10 lg:w-16 w-16  text-[11px] font-bold">
                         Time
                       </span>
-                      <span className="text-sm text-[10px]">
+                      <span className=" text-[11px]">
                         {formatTime(event?.start)} - {formatTime(event?.end)}
                       </span>
                     </div>
                     <div className="flex items-center sm:gap-8">
-                      <span className="sm:w-24 xl:w-10 lg:w-16 w-16 text-sm font-bold">
+                      <span className="sm:w-24 xl:w-10 lg:w-16 w-16 text-[11px] font-bold">
                         Purpose
                       </span>
-                      <span className="text-sm text-[10px]">
-                        {event?.purpose}
-                      </span>
+                      <span className=" text-[11px]">{event?.purpose}</span>
                     </div>
                   </div>
                   <div className="border-gray-200 flex items-center justify-between py-2 sm:px-2 border-t">
                     <div className="p-2 flex items-center gap-2">
                       <div
                         onClick={() => handleDelete(event?.id || "")}
-                        className="text-xs border p-1 cursor-pointer w-fit rounded-md border-gray-300"
+                        className="text-xs border w-[17px] h-[17px] cursor-pointer flex items-center justify-center  rounded-md border-gray-300"
                       >
                         <MdDeleteOutline
-                          size={15}
+                          size={14}
                           className="text-red-600 duration-300 font-bold"
                         />
                       </div>
-                      <button className="text-xs border cursor-not-allowed p-1  w-fit rounded-md border-gray-300">
+                      <div className="text-xs border flex items-center justify-center cursor-not-allowed w-[17px] h-[17px]  rounded-md border-gray-300">
                         <FiEdit
-                          size={15}
+                          size={12}
                           className="text-blue-600 duration-300 font-bold"
                         />
-                      </button>
-                      <div className="text-xs border p-1 cursor-not-allowed  w-fit rounded-md border-gray-300">
+                      </div>
+                      <div className="text-xs border  flex items-center justify-center cursor-not-allowed w-[17px] h-[17px]   rounded-md border-gray-300">
                         <LuUser2
-                          size={15}
+                          size={12}
                           className="text-blue-600 duration-300 font-bold"
                         />
                       </div>
                     </div>
-                    <button className="bg-primary md:block hidden cursor-not-allowed md:py-2 py-1 px-2 md:text-sm text-xs md:px-4 rounded-md text-white">
+                    <button className="bg-primary md:block hidden cursor-not-allowed md:py-2 py-1 px-2 md:text-[10px] text-xs md:px-4 rounded-md text-white">
                       Begin Appointment
                     </button>
                   </div>

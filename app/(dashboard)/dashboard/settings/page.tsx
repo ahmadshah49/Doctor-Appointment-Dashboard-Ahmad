@@ -9,7 +9,7 @@ const SettingsPage = () => {
   return (
     <div className="p-4 h-screen">
       <h1 className="text-gray-950 font-normal">Settings</h1>
-      <div className="flex items-center justify-between max-h-[72px] md:px-[25px]">
+      <div className="flex items-center justify-between bg-white rounded-md max-h-[72px] md:px-[25px]">
         <h1 className="text-[22px] font-medium my-8">Edit Profile</h1>
         <div>
           <div className="text-xs border p-1 rounded-md border-gray-300">

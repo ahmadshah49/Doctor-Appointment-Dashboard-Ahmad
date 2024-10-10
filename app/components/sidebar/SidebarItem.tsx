@@ -27,7 +27,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         )}
       >
         <Icon className="h-6 w-6 ml-5" />
-        <span className="lg:block hidden text-base">{label}</span>
+        <span className="md:block md:text-xs  hidden lg:text-base">
+          {label}
+        </span>
       </Link>
     </li>
   );

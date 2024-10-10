@@ -82,14 +82,14 @@ const PatientTable = () => {
                       className="w-8 h-8 mx-auto rounded-full object-center object-cover"
                     />
                   </td>
-                  <td className="lg:text-lg md:text-base text-sm font-normal">
-                    <span
-                      className={`lg:px-4 py-1 md:px-3 px-2 rounded-2xl ${getStatusColor(
+                  <td className="  md:text-base   font-normal">
+                    <div
+                      className={`min-w-[140px] flex items-center justify-center text-[13px] max-w-[140px] max-h-[21px] mx-auto rounded-2xl ${getStatusColor(
                         item?.status as string
                       )}`}
                     >
                       {item?.status}
-                    </span>
+                    </div>
                   </td>
                   <td className="text-lg font-normal">
                     {item?.appointmentDate}
