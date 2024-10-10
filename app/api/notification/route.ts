@@ -46,3 +46,20 @@ export const GET = async () => {
     });
   }
 };
+
+export const DELETE = async (req: Request) => {
+  try {
+    const body = await req.json();
+    const response = await prisma.notification.delete({
+      where: {
+        id: body.id,
+      },
+    });
+    return NextResponse.json(response);
+  } catch (error) {
+    return NextResponse.json({
+      message: "Error While Deleting Notification ",
+      error,
+    });
+  }
+};

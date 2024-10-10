@@ -1,16 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser } from "@/app/redux/slices/userSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { Appointment, PatientStatus } from "@/app/types/Type";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { AppointmentTypes } from "@/app/types/Type";
 import { addAppointment } from "@/app/redux/slices/addAppointmentSlice";
-import { addNotification } from "@/app/redux/slices/notificationsSlice";
-import toast from "react-hot-toast";
 import { fetchAppointment } from "@/app/redux/slices/getAppointmentSlice";
+import { addNotification } from "@/app/redux/slices/notificationsSlice";
 import { updateAppointment } from "@/app/redux/slices/updateAppointmentSlice";
+import { AppointmentTypes } from "@/app/types/Type";
+import toast from "react-hot-toast";
 
 type useAddAppointmentsTypes = {
   onClose: () => void;
@@ -54,8 +54,6 @@ export const useAddAppointments = ({
       weekday: "short",
       day: "2-digit",
       month: "short",
-
-      // timeZone: "Asia/Karachi",
     });
   };
 
@@ -126,7 +124,11 @@ export const useAddAppointments = ({
       handleUpdateAppointment();
     }
   };
-
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
   return {
     name,
     setName,
@@ -146,5 +148,6 @@ export const useAddAppointments = ({
     formatTime,
     isLoading,
     user,
+    handleOverlayClick,
   };
 };

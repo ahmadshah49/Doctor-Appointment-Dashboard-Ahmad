@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import Card from "../card/Card";
 import { useCalender } from "../calender/useCalender";
+import Card from "../card/Card";
 
 const AnalyticCards = () => {
   const { offlineConsultations, onlineConsultations, totalPatients } =

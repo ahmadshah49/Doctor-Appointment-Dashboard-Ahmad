@@ -63,6 +63,11 @@ export const useTodoModal = ({ onClose, isUpdate, data }: AddTodoTypes) => {
       handleUpdateTodo();
     }
   };
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
   return {
     submitHandler,
     title,
@@ -74,5 +79,6 @@ export const useTodoModal = ({ onClose, isUpdate, data }: AddTodoTypes) => {
     setTitle,
     setDescription,
     setCompleted,
+    handleOverlayClick,
   };
 };

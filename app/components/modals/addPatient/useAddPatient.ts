@@ -98,6 +98,9 @@ export const useAddPatient = ({
         });
     }
   };
+  const handleRemoveImage = () => {
+    setProfileImage("");
+  };
 
   return {
     handleImageClick,
@@ -118,5 +121,6 @@ export const useAddPatient = ({
     submitHandler,
     setProfileImage,
     setAppointmentDate,
+    handleRemoveImage,
   };
 };

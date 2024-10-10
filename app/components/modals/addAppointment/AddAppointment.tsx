@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 import { FaRegClock } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
 import { RiUserLine } from "react-icons/ri";
@@ -38,13 +38,9 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
     formatTime,
     isLoading,
     user,
+    handleOverlayClick,
   } = useAddAppointments({ onClose, isUpdate, data });
 
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
   return (
     <div className="bg-black/60 backdrop-blur-sm z-50 w-full h-full fixed inset-0">
       <div

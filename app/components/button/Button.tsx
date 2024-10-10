@@ -1,5 +1,5 @@
-import { ButtonProps } from "@/app/types/Type";
 import clsx from "clsx";
+import { ButtonProps } from "@/app/types/Type";
 
 const Button: React.FC<ButtonProps> = ({
   text,

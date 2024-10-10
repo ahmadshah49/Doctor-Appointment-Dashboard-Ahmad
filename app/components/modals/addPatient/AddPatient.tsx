@@ -34,42 +34,8 @@ const AddPatient: React.FC<AddPatientTypes> = ({
     handleImageClick,
     loading,
     inputRef,
+    handleRemoveImage,
   } = useAddPatient({ onClose, isUpdate, id, patient });
-  // const [loading, setLoading] = useState(false);
-
-  // const inputRef = useRef<HTMLInputElement>(null);
-
-  // const handleImageClick = () => {
-  //   if (inputRef.current) {
-  //     inputRef.current.click();
-  //   }
-  // };
-
-  // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (file) {
-  //     setLoading(true);
-  //     const storageRef = ref(storage, `patients/${file.name}`);
-  //     const uploadTask = uploadBytes(storageRef, file);
-
-  //     uploadTask
-  //       .then((snapshot) => {
-  //         return getDownloadURL(snapshot.ref);
-  //       })
-  //       .then((downloadUrl) => {
-  //         setProfileImage(downloadUrl);
-  //         setLoading(false);
-  //       })
-  //       .catch((error) => {
-  //         toast.error("Upload Failed");
-  //         setLoading(false);
-  //       });
-  //   }
-  // };
-
-  const handleRemoveImage = () => {
-    setProfileImage("");
-  };
 
   return (
     <div className="bg-gray-100 p-4 backdrop-blur-sm z-50 w-full h-full absolute top-[92px] inset-0">

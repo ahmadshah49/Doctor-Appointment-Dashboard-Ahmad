@@ -65,7 +65,7 @@ export const GET = async (req: Request) => {
     return NextResponse.json(response);
   } catch (error) {
     return NextResponse.json({
-      message: "Error While Getting user data",
+      message: "Error While Getting Patient",
       error,
     });
   }
@@ -86,7 +86,7 @@ export const DELETE = async (req: Request) => {
     return NextResponse.json({ message: "Patient Deleted" });
   } catch (error) {
     return NextResponse.json({
-      message: "Error Deleting user",
+      message: "Error Deleting Patient",
       error,
     });
   }

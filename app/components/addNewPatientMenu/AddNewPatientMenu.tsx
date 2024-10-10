@@ -1,8 +1,3 @@
-import React from "react";
-import ToogleButton from "../modals/toogleButton/ToogleButton";
-import { LuFilter, LuHelpCircle, LuPlus, LuSearch } from "react-icons/lu";
-import Button from "../button/Button";
-
 const AddNewPatientMenu = () => {
   return (
     <div className="md:p-4 p-2 px-6 rounded-md bg-white my-4 shadow-md flex items-center justify-between">

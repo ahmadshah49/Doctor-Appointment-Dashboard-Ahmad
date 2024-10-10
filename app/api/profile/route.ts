@@ -10,7 +10,7 @@ export const PUT = async (req: Request) => {
   const body = await req.json();
   const { name, email, companyName, id } = body;
   try {
-    const data = await prisma.user.updateMany({
+    await prisma.user.updateMany({
       where: { id },
       data: {
         name,

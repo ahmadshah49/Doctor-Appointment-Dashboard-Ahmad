@@ -1,5 +1,5 @@
-import Tasks from "@/app/components/task/Task";
 import { Metadata } from "next";
+import Tasks from "@/app/components/task/Task";
 
 export const metadata: Metadata = {
   title: "Tasks",

@@ -149,6 +149,7 @@ export type ProfileInputProps = {
 export type Notification = {
   data: string;
   date?: string;
+  id?: any;
 };
 
 export type NotificationInitialState = {
@@ -204,4 +205,7 @@ export type ToogleButtonProp = {
   className?: string;
   id?: string;
   patient?: Patient;
+};
+export type DeleteAllAppointmentsButtonProps = {
+  onClick: () => void;
 };

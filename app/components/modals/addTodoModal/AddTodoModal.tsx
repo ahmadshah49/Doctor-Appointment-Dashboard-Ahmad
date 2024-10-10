@@ -14,13 +14,8 @@ const AddTodoModal: React.FC<AddTodoTypes> = ({ isUpdate, onClose, data }) => {
     setTitle,
     submitHandler,
     title,
+    handleOverlayClick,
   } = useTodoModal({ isUpdate, onClose, data });
-
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
 
   return (
     <div className="bg-black/60 backdrop-blur-sm z-50 w-full h-full fixed inset-0">

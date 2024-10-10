@@ -1,11 +1,10 @@
 import { GraphProps } from "@/app/types/Type";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import OnlinePatientsChart from "../charts/onlinePatientsChart/OnlinePatientsChart";
-import { FaArrowUp } from "react-icons/fa";
-import { FaArrowDown } from "react-icons/fa";
 
-import TotalPatientsChart from "../charts/totalPatients/TotalPatientsChart";
-import OfflinePatientsChart from "../charts/offlinePaitentsChart/OfflinePatientsChart";
 import { BsThreeDots } from "react-icons/bs";
+import OfflinePatientsChart from "../charts/offlinePaitentsChart/OfflinePatientsChart";
+import TotalPatientsChart from "../charts/totalPatients/TotalPatientsChart";
 
 const Card: React.FC<GraphProps> = ({
   title,

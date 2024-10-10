@@ -33,6 +33,36 @@ export const POST = async (req: Request) => {
     );
   }
 };
+export const GET = async (req: Request) => {
+  try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const userId = currentUser?.id;
+    const data = await prisma.appointment.findMany({
+      where: { userId },
+
+      orderBy: {
+        start: "desc",
+      },
+      select: {
+        appointmentType: true,
+        start: true,
+        end: true,
+        id: true,
+        purpose: true,
+        name: true,
+        status: true,
+      },
+    });
+    return NextResponse.json(data, { status: 200 });
+  } catch (error) {
+    return NextResponse.json("Error Getting Appointment!", { status: 400 });
+  }
+};
 export const PUT = async (req: Request) => {
   try {
     const body = await req.json();
@@ -61,41 +91,11 @@ export const PUT = async (req: Request) => {
 export const DELETE = async (req: Request) => {
   try {
     const body = await req.json();
-    const data = await prisma.appointment.delete({
+    await prisma.appointment.delete({
       where: { id: body.id },
     });
-    return NextResponse.json({ data }, { status: 200 });
+    return NextResponse.json("Appointment Deleted", { status: 200 });
   } catch (error) {
     return NextResponse.json("Error Deleting Appointment!", { status: 400 });
-  }
-};
-export const GET = async (req: Request) => {
-  try {
-    const currentUser = await getCurrentUser();
-
-    if (!currentUser) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
-    const userId = currentUser?.id;
-    const data = await prisma.appointment.findMany({
-      where: { userId },
-
-      orderBy: {
-        start: "desc",
-      },
-      select: {
-        appointmentType: true,
-        start: true,
-        end: true,
-        id: true,
-        purpose: true,
-        name: true,
-        status: true,
-      },
-    });
-    return NextResponse.json(data, { status: 200 });
-  } catch (error) {
-    return NextResponse.json("Error Adding Appointment!", { status: 400 });
   }
 };

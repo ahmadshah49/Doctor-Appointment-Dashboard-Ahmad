@@ -10,7 +10,6 @@ const Schedule = () => {
     <div className="p-4">
       <h1>Schedules</h1>
       <ScheduleMenu title="Weekly Schedule" />
-
       <Calender />
     </div>
   );

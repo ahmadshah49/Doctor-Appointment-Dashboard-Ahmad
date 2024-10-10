@@ -1,6 +1,6 @@
+import { Metadata } from "next";
 import { IoHelpCircleOutline } from "react-icons/io5";
 import Profile from "../../../components/profile/Profile";
-import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Settings",
   description: "Medicare Doctor Appointment Dashboard ",
