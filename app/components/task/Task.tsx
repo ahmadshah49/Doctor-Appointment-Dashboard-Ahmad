@@ -1,18 +1,13 @@
 "use client";
 import Link from "next/link";
+import { BsThreeDots } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import Loader from "../loader/Loader";
 import { TiTick } from "react-icons/ti";
-import { BsThreeDots } from "react-icons/bs";
+import Loader from "../loader/Loader";
+import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
 import ThreeDotsBox from "../threeDots/ThreeDots";
 import { useTasks } from "./useTasks";
-import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
-import { useEffect, useState } from "react";
-import { Task } from "@/app/types/Type";
-import { AppDispatch, RootState } from "@/app/redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { updateCheckBoxTask } from "@/app/redux/slices/updateCheckBoxSlice";
 
 type TaskTypes = {
   isShow?: boolean;
@@ -20,41 +15,8 @@ type TaskTypes = {
 };
 
 const Tasks: React.FC<TaskTypes> = ({ isShow, seeAll }) => {
-  const { todos, isError, isLoading } = useTasks();
-  const [todo, setTodo] = useState<Task[]>([]);
-  const disPatch: AppDispatch = useDispatch();
-  const { completed } = useSelector(
-    (state: RootState) => state.updateTaskCheckBox
-  );
-  useEffect(() => {
-    if (todos) {
-      setTodo(todos);
-    }
-  }, [todos]);
-
-  const Todos = isShow ? todo?.slice(0, 9) : todo;
-
-  const handleCheckboxChange = (id: any) => {
-    const updatedTodos = todo.map((item) =>
-      item?.id === id.toString()
-        ? {
-            ...item,
-            completed:
-              item?.completed === "COMPLETED" ? "NOT_COMPLETED" : "COMPLETED",
-          }
-        : item
-    );
-    setTodo(updatedTodos);
-    const updatedTask = updatedTodos.find((task) => task?.id === id);
-    if (updatedTask) {
-      disPatch(
-        updateCheckBoxTask({
-          id: updatedTask?.id as string,
-          completed: updatedTask?.completed,
-        })
-      );
-    }
-  };
+  const { todos, isError, isLoading, Todos, handleCheckboxChange } =
+    useTasks(isShow);
 
   return (
     <div className="rounded-md bg-white shadow-md p-4">

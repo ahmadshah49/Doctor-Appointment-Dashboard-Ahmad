@@ -1,9 +1,4 @@
 "use client";
-import { deleteAppointment } from "@/app/redux/slices/deleteAppointmentSlice";
-import { fetchAppointment } from "@/app/redux/slices/getAppointmentSlice";
-import { AppDispatch } from "@/app/redux/store";
-import { useState } from "react";
-import toast from "react-hot-toast";
 import { FiEdit } from "react-icons/fi";
 import { LuUser2 } from "react-icons/lu";
 import {
@@ -11,59 +6,21 @@ import {
   MdKeyboardArrowDown,
   MdKeyboardArrowUp,
 } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { useCalender } from "../calender/useCalender";
 import Loader from "../loader/Loader";
+import { useUpComingSchedule } from "./useUpComingSchedule";
 
 const UpComingSchedule = () => {
-  const { events, isError, isLoading } = useCalender();
-  const disPatch: AppDispatch = useDispatch();
-  const [isOpen, setOpen] = useState<boolean[]>(
-    Array(events?.length || 0).fill(false)
-  );
-
-  const toggleOpen = (index: number) => {
-    setOpen((prevOpen) => {
-      const newOpen = [...prevOpen];
-      newOpen[index] = !newOpen[index];
-      return newOpen;
-    });
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "RECOVERED":
-        return "bg-green-600 text-green-800";
-      case "ONGOING":
-        return "bg-yellow-500 text-yellow-800";
-      case "WAITING":
-        return "bg-red-600 text-red-800";
-      default:
-        return "bg-gray-200 text-gray-800";
-    }
-  };
-
-  const formatTime = (date: any) => {
-    return new Date(date).toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-      timeZone: "Asia/Karachi",
-    });
-  };
-  const handleDelete = (id: string) => {
-    disPatch(deleteAppointment(id)).unwrap();
-    disPatch(fetchAppointment()).unwrap();
-    toast.success("Appointment Deleted!");
-  };
-
-  const newTime = (date: any) => {
-    return new Date(date).toLocaleString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: false,
-    });
-  };
+  const {
+    events,
+    formatTime,
+    getStatusColor,
+    handleDelete,
+    isError,
+    isLoading,
+    isOpen,
+    newTime,
+    toogleOpen,
+  } = useUpComingSchedule();
 
   return (
     <div className="flex flex-col max-h-screen overflow-y-auto items-start w-full my-4">
@@ -105,7 +62,7 @@ const UpComingSchedule = () => {
 
             <div className="sm:ml-2  p-1 sm:p-4 flex flex-col sm:gap-4 gap-2 w-full">
               <button
-                onClick={() => toggleOpen(index)}
+                onClick={() => toogleOpen(index)}
                 className="flex relative justify-between p-2 ml-2 bg-white rounded-lg border border-gray-200 w-full items-center"
               >
                 <div className="flex  gap-2 items-center">

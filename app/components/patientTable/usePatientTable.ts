@@ -14,6 +14,19 @@ export const usePatientTable = () => {
   const isLoading = useSelector((state: RootState) => state.patient.isLoading);
   const [patientList, setPatientList] = useState<Patient[]>([]);
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "RECOVERED":
+        return "bg-green-200 text-green-800";
+      case "ONGOING":
+        return "bg-yellow-200 text-yellow-800";
+      case "WAITING":
+        return "bg-red-200 text-red-800";
+      default:
+        return "bg-gray-200 text-gray-800";
+    }
+  };
+
   useEffect(() => {
     dispatch(getPatient()).unwrap();
   }, [dispatch]);
@@ -35,5 +48,12 @@ export const usePatientTable = () => {
     } catch (error) {}
   };
 
-  return { handleDelete, sortedPatients, isError, isLoading, patientList };
+  return {
+    handleDelete,
+    sortedPatients,
+    isError,
+    isLoading,
+    patientList,
+    getStatusColor,
+  };
 };

@@ -6,21 +6,14 @@ import ToogleButton from "../modals/toogleButton/ToogleButton";
 import { usePatientTable } from "./usePatientTable";
 
 const PatientTable = () => {
-  const { handleDelete, isError, isLoading, sortedPatients, patientList } =
-    usePatientTable();
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "RECOVERED":
-        return "bg-green-200 text-green-800";
-      case "ONGOING":
-        return "bg-yellow-200 text-yellow-800";
-      case "WAITING":
-        return "bg-red-200 text-red-800";
-      default:
-        return "bg-gray-200 text-gray-800";
-    }
-  };
+  const {
+    handleDelete,
+    isError,
+    isLoading,
+    sortedPatients,
+    patientList,
+    getStatusColor,
+  } = usePatientTable();
 
   return (
     <div className="p-4 px-6 rounded-md overflow-x-auto bg-white shadow-md h-full">

@@ -1,13 +1,8 @@
 "use client";
-import { ReactNode, useEffect, useRef, useState } from "react";
-
+import { ReactNode } from "react";
 import { Task } from "@/app/types/Type";
-import { AppDispatch, RootState } from "@/app/redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteTask } from "@/app/redux/slices/deleteTaskSlice";
-import toast from "react-hot-toast";
-import { fetchTasks } from "@/app/redux/slices/taskSlice";
 import ToogleTodoButton from "../modals/toogleTodoButton/ToogleTodoButton";
+import { useThreeDots } from "./useThreeDots";
 
 interface ThreeDotsBoxProps {
   children?: ReactNode;
@@ -16,39 +11,7 @@ interface ThreeDotsBoxProps {
 }
 
 const ThreeDotsBox: React.FC<ThreeDotsBoxProps> = ({ children, id, data }) => {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const disPatch: AppDispatch = useDispatch();
-  const { isError, isLoading, task, errorMessage } = useSelector(
-    (state: RootState) => state.deleteTask
-  );
-  const toggleMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
-  };
-
-  const handleClickOutside = (e: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-      setIsOpenMenu(false);
-    }
-  };
-
-  useEffect(() => {
-    if (isOpenMenu) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpenMenu]);
-
-  const handleDelete = () => {
-    disPatch(deleteTask(id));
-    disPatch(fetchTasks());
-    toast.success("Task Deleted!");
-  };
-
+  const { handleDelete, toggleMenu, isOpenMenu, menuRef } = useThreeDots(id);
   return (
     <div ref={menuRef} className="relative cursor-pointer">
       <div

@@ -1,39 +1,39 @@
 "use client";
-
-import { useEffect, useRef, useState } from "react";
 import Notification from "../notification/Notification";
-
+import { useNotificationModal } from "./useNotificationModal";
 const NotificationModal = ({ children }: { children: React.ReactNode }) => {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const { handleClickOutside, toogleMenu, menuRef, isOpenMenu } =
+    useNotificationModal();
+  // const [isOpenMenu, setIsOpenMenu] = useState(false);
+  // const menuRef = useRef<HTMLDivElement>(null);
 
-  const toggleMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
-  };
+  // const toggleMenu = () => {
+  //   setIsOpenMenu(!isOpenMenu);
+  // };
 
-  const handleClickOutside = (e: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-      setIsOpenMenu(false);
-    }
-  };
+  // const handleClickOutside = (e: MouseEvent) => {
+  //   if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+  //     setIsOpenMenu(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (isOpenMenu) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpenMenu]);
+  // useEffect(() => {
+  //   if (isOpenMenu) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //   } else {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   }
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [isOpenMenu]);
 
   return (
     <div ref={menuRef} className="relative  cursor-pointer">
       <div
         onClick={(e) => {
           e.stopPropagation();
-          toggleMenu();
+          toogleMenu();
         }}
         className=""
       >
