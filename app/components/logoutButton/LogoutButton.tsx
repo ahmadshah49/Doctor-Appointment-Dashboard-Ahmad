@@ -10,7 +10,7 @@ const LogoutButton = () => {
         size={20}
         color="gray"
         title="Logout"
-        className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-all "
+        className="h-[29px] w-[29px] text-gray-400 hover:text-gray-600 transition-all "
       />
     </button>
   );

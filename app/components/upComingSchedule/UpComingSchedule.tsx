@@ -97,7 +97,7 @@ const UpComingSchedule = () => {
             </span>
 
             <div className="h-full absolute md:ml-[86px] ml-[40px] mr-4">
-              <div className="rounded-full h-2 w-2 bg-black mt-2.5 flex-shrink-0 relative z-10" />
+              <div className="rounded-full h-[10px] w-[10px] bg-black mt-2.5 flex-shrink-0 relative z-10" />
               {index !== events?.length - 1 && (
                 <div className="absolute left-[3.7px] top-[18px] h-full w-px bg-gray-300" />
               )}
@@ -111,7 +111,7 @@ const UpComingSchedule = () => {
                 <div className="flex  gap-4 items-center">
                   <span
                     title={event?.status}
-                    className={`h-2 w-2 inline-block rounded-full  ${getStatusColor(
+                    className={`h-2 w-2 inline-block rounded-full ${getStatusColor(
                       event?.status as string
                     )}`}
                   />
