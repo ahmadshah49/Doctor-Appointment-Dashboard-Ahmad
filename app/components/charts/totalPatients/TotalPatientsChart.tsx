@@ -65,18 +65,15 @@ const TotalPatientsChart: React.FC = () => {
   return (
     <div className="relative xl:max-h-[112px] xl:max-w-[164px] w-full h-full">
       <span className="absolute inset-0 flex flex-col items-center justify-center">
-        {onlineConsultations?.length && (
-          <p>
-            <span>{onlineConsultations?.length} </span>
-            <span className="text-[#2F80ED] ">Online</span>
-          </p>
-        )}
-        {offlineConsultations?.length && (
-          <p>
-            <span>{offlineConsultations?.length} </span>
-            <span className="text-[#EB5757] ">Offline</span>
-          </p>
-        )}
+        <p>
+          <span>{onlineConsultations?.length} </span>
+          <span className="text-[#2F80ED] ">Online</span>
+        </p>
+
+        <p>
+          <span>{offlineConsultations?.length} </span>
+          <span className="text-[#EB5757] ">Offline</span>
+        </p>
       </span>
 
       <Doughnut
