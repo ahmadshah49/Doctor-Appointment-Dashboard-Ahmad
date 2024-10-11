@@ -1,19 +1,5 @@
 import { IconType } from "react-icons";
 export type MenuProps = { title: string };
-
-export type TodoTypes = {
-  id: string;
-  title: string;
-  description: string;
-  date: Date;
-  completed: boolean;
-  userId: string | null;
-};
-export type taskState = {
-  tasks: TodoTypes[];
-  isLoading: boolean;
-  isError: string | null;
-};
 export type AddPatientTypes = {
   onClose: () => void;
   isUpdate?: boolean;
@@ -30,11 +16,6 @@ export type AddAppointmentTypes = {
   isUpdate?: boolean;
   data?: Appointment;
 };
-export enum PatientStatusType {
-  ONGOING = "ONGOING",
-  RECOVERED = "RECOVERED",
-  WAITING = "WAITING",
-}
 export const PatientStatus = {
   ONGOING: "ONGOING",
   RECOVERED: "RECOVERED",
@@ -78,10 +59,6 @@ export enum AppointmentTypes {
   Online_Consultation = "Online_Consultation",
   Offline_Consultation = "Offline_Consultation",
 }
-export const AppointmentType = {
-  Online_Consultation: "Online_Consultation",
-  Offline_Consultation: "Offline_Consultation",
-};
 
 export type Appointment = {
   name?: string;
@@ -179,11 +156,7 @@ export type resetFormProps = {
   path?: string;
   param?: string;
 };
-export type RegisterErrorType = {
-  name?: string;
-  email?: string;
-  password?: string;
-};
+
 export type ButtonProps = {
   text: string;
   widthFull?: boolean;
@@ -205,7 +178,4 @@ export type ToogleButtonProp = {
   className?: string;
   id?: string;
   patient?: Patient;
-};
-export type DeleteAllAppointmentsButtonProps = {
-  onClick: () => void;
 };

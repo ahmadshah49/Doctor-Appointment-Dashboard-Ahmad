@@ -63,7 +63,7 @@ const UpComingSchedule = () => {
             <div className="sm:ml-2  p-1 sm:p-4 flex flex-col sm:gap-4 gap-2 w-full">
               <button
                 onClick={() => toogleOpen(index)}
-                className="flex relative justify-between p-2 ml-2 bg-white rounded-lg border border-gray-200 w-full items-center"
+                className="flex relative justify-between max-h-[25px] p-2 ml-2 bg-white rounded-lg border border-gray-200 w-full items-center"
               >
                 <div className="flex  gap-2 items-center">
                   <span
@@ -98,14 +98,14 @@ const UpComingSchedule = () => {
                 }`}
               >
                 <div className="flex flex-col bg-white rounded-lg border border-gray-200 w-full">
-                  <div className="p-2 sm:px-4 px-2">
-                    <div className="flex items-center sm:gap-8 ">
+                  <div className="p-2  sm:px-4 px-2">
+                    <div className="flex mb-2 items-center sm:gap-8 ">
                       <span className="sm:w-24 xl:w-[42px] lg:w-16 w-16  text-[11px] font-bold">
                         Patient
                       </span>
                       <span className=" text-[11px]">{event?.name}</span>
                     </div>
-                    <div className="flex items-center sm:gap-8">
+                    <div className="flex mb-2 items-center sm:gap-8">
                       <span className="sm:w-24 xl:w-10 lg:w-16 w-16  text-[11px] font-bold">
                         Time
                       </span>
@@ -113,7 +113,7 @@ const UpComingSchedule = () => {
                         {formatTime(event?.start)} - {formatTime(event?.end)}
                       </span>
                     </div>
-                    <div className="flex items-center sm:gap-8">
+                    <div className="flex mb-2 items-center sm:gap-8">
                       <span className="sm:w-24 xl:w-10 lg:w-16 w-16 text-[11px] font-bold">
                         Purpose
                       </span>

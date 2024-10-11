@@ -2,7 +2,7 @@
 import { fetchCurrentUser } from "@/app/redux/slices/userSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { Appointment, PatientStatus } from "@/app/types/Type";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addAppointment } from "@/app/redux/slices/addAppointmentSlice";
@@ -129,6 +129,45 @@ export const useAddAppointments = ({
       onClose();
     }
   };
+  const inputs = [
+    {
+      id: "name",
+      label: "Patient",
+      name: "name",
+      value: name,
+      type: "text",
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value),
+      required: true,
+    },
+    {
+      id: "purpose",
+      label: "Purpose of visit",
+      name: "purpose",
+      value: purpose,
+      type: "text",
+      onChange: (e: ChangeEvent<HTMLInputElement>) =>
+        setPurpose(e.target.value),
+      required: true,
+    },
+    {
+      id: "start",
+      label: "Start Date & Time",
+      name: "start",
+      value: start,
+      type: "datetime-local",
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setStart(e.target.value),
+      required: true,
+    },
+    {
+      id: "end",
+      label: "End Date & Time",
+      name: "end",
+      value: end,
+      type: "datetime-local",
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setEnd(e.target.value),
+      required: true,
+    },
+  ];
   return {
     name,
     setName,
@@ -149,5 +188,6 @@ export const useAddAppointments = ({
     isLoading,
     user,
     handleOverlayClick,
+    inputs,
   };
 };

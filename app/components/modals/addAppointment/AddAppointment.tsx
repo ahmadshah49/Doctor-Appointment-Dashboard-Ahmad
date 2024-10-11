@@ -39,6 +39,7 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
     isLoading,
     user,
     handleOverlayClick,
+    inputs,
   } = useAddAppointments({ onClose, isUpdate, data });
 
   return (
