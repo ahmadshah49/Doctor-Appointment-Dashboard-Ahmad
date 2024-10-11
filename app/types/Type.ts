@@ -1,5 +1,5 @@
 import { IconType } from "react-icons";
-export type MenuProps = { title: string };
+export type MenuProps = { title: string; totalPatients?: number };
 export type AddPatientTypes = {
   onClose: () => void;
   isUpdate?: boolean;

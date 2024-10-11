@@ -48,11 +48,7 @@
 .fc-timegrid {
   width: 1500px !important;
 }
-
-.fc-popover-body .fc-event {
-  background-color: #4a90e2 !important;
-  color: black !important;
-}
-.fc-more {
-  background-color: orange;
+.fc-event {
+  border: 0;
+  outline: none;
 }

@@ -5,6 +5,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import Loader from "../loader/Loader";
 import ToogleButton from "../modals/toogleButton/ToogleButton";
 import { usePatientTable } from "./usePatientTable";
+import Menu from "../menu/Menu";
 
 const PatientTable: React.FC = () => {
   const {
@@ -18,6 +19,7 @@ const PatientTable: React.FC = () => {
 
   return (
     <>
+      <Menu title="Total Patients" totalPatients={sortedPatients?.length} />
       <div className="p-4 px-6 rounded-md overflow-x-auto bg-white shadow-md h-full">
         {isLoading && (
           <div className="flex items-center justify-center h-full">
@@ -28,22 +30,22 @@ const PatientTable: React.FC = () => {
           <table className="w-full  min-w-[1000px]">
             <thead className=" h-16 border-b">
               <tr>
-                <th className="w-20  font-normal text-left text-base text-gray-400">
+                <th className="w-20  font-normal text-left text-lg text-gray-400">
                   Name
                 </th>
-                <th className="w-24 font-normal  text-base   text-gray-400">
+                <th className="w-24 font-normal  text-lg   text-gray-400">
                   Diagnosis
                 </th>
-                <th className="w-24 font-normal text-base  text-gray-400">
+                <th className="w-24 font-normal text-lg  text-gray-400">
                   Picture
                 </th>
-                <th className="w-24 font-normal text-base  text-gray-400">
+                <th className="w-24 font-normal text-lg  text-gray-400">
                   Status
                 </th>
-                <th className="w-24 font-normal text-base  text-gray-400">
+                <th className="w-24 font-normal text-lg  text-gray-400">
                   Appointment Date
                 </th>
-                <th className="w-24 left-0 font-normal text-base  text-gray-400">
+                <th className="w-24 left-0 font-normal text-lg  text-gray-400">
                   Actions
                 </th>
               </tr>

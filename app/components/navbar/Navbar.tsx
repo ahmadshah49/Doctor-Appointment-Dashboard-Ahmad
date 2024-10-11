@@ -11,7 +11,7 @@ const Navbar = async () => {
   const today = new Date();
   const formatedDate = today.toLocaleDateString("en-GB", {
     day: "2-digit",
-    month: "short",
+    month: "long",
     year: "numeric",
   });
 
