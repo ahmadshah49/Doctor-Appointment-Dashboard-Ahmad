@@ -8,7 +8,6 @@ import {
 } from "react-icons/md";
 import Loader from "../loader/Loader";
 import { useUpComingSchedule } from "./useUpComingSchedule";
-import moment from "moment";
 
 const UpComingSchedule = () => {
   const {
@@ -75,7 +74,7 @@ const UpComingSchedule = () => {
                   />
                   <span className="md:text-[11px] font-bold">
                     {" "}
-                    {moment(event?.start).local().format("LT")}{" "}
+                    {formatTime(event?.start)}{" "}
                   </span>
                   <h3 className="md:text-[11px] ml-4 text-sm inline-block font-medium">
                     {event?.name}
