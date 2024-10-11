@@ -14,7 +14,7 @@ export const useThreeDots = (id: string | undefined) => {
     (state: RootState) => state.deleteTask
   );
 
-  const toggleMenu = () => {
+  const toogleMenu = () => {
     setIsOpenMenu(!isOpenMenu);
   };
 
@@ -44,7 +44,7 @@ export const useThreeDots = (id: string | undefined) => {
   return {
     handleDelete,
     handleClickOutside,
-    toggleMenu,
+    toogleMenu,
     isError,
     isLoading,
     task,

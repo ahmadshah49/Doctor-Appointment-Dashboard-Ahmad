@@ -25,7 +25,8 @@
 }
 
 .fc-daygrid {
-  width: 1500px;
+  min-width: 1500px;
+  max-width: 100%;
 }
 
 .fc-daygrid-body {
@@ -34,7 +35,8 @@
   gap: 5px;
 }
 .fc-toolbar {
-  width: 1500px;
+  min-width: 1500px;
+  max-width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 10px;

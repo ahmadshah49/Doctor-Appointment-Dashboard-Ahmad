@@ -11,13 +11,13 @@ interface ThreeDotsBoxProps {
 }
 
 const ThreeDotsBox: React.FC<ThreeDotsBoxProps> = ({ children, id, data }) => {
-  const { handleDelete, toggleMenu, isOpenMenu, menuRef } = useThreeDots(id);
+  const { handleDelete, toogleMenu, isOpenMenu, menuRef } = useThreeDots(id);
   return (
     <div ref={menuRef} className="relative cursor-pointer">
       <div
         onClick={(e) => {
           e.stopPropagation();
-          toggleMenu();
+          toogleMenu();
         }}
         className="border border-gray-300 text-sky p-2 rounded-md"
       >

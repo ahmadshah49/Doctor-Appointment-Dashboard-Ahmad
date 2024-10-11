@@ -1,6 +1,7 @@
 "use client";
 
 import { storage } from "@/app/lib/firebase";
+import { deletePatient } from "@/app/redux/slices/deletePatientSlice";
 import { addPatient, getPatient } from "@/app/redux/slices/patientSlice";
 import { updatePatient } from "@/app/redux/slices/updatePatientSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
@@ -102,6 +103,14 @@ export const useAddPatient = ({
     setProfileImage("");
   };
 
+  const handleDelete = async (id: any) => {
+    try {
+      dispatch(deletePatient(id)).unwrap();
+      dispatch(getPatient()).unwrap();
+      toast.success("deleted");
+    } catch (error) {}
+  };
+
   return {
     handleImageClick,
     loading,
@@ -122,5 +131,6 @@ export const useAddPatient = ({
     setProfileImage,
     setAppointmentDate,
     handleRemoveImage,
+    handleDelete,
   };
 };

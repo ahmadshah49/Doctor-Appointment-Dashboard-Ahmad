@@ -35,24 +35,33 @@ const AddPatient: React.FC<AddPatientTypes> = ({
     loading,
     inputRef,
     handleRemoveImage,
+    handleDelete,
   } = useAddPatient({ onClose, isUpdate, id, patient });
 
   return (
-    <div className="bg-gray-100 p-4 backdrop-blur-sm z-50 w-full h-full absolute top-[92px] inset-0">
+    <div className="bg-gray-100 p-4 backdrop-blur-sm z-50 w-full h-full absolute lg:top-[92px] top-[64px] inset-0">
       <h1 className="text-gray-950 text-[18px] font-normal h-[40px]  flex items-center">
-        Patient Register &gt; Add Patient
+        {isUpdate ? "Update Patient" : <p>Patient Register &gt; Add Patient</p>}
       </h1>
       <form onSubmit={submitHandler}>
         <div className="md:p-4 p-2 px-6 rounded-md bg-white my-4 shadow-md flex items-center justify-between">
-          <div className="font-medium  text-xl">
+          <div className="font-medium sm:block hidden  text-xl">
             Add new patient <span className="text-gray-400 font-normal"></span>
           </div>
-          <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center justify-between sm:gap-6 gap-2">
+            {isUpdate && (
+              <button
+                className="bg-red-600 p-2 rounded-md font-semibold text-white"
+                onClick={() => handleDelete(id)}
+              >
+                <MdDelete size={25} color="white" />
+              </button>
+            )}
             <button
               onClick={() => onClose()}
               className="py-2  min-w-[68px] rounded-md ring-[1px] ring-primary "
             >
-              <p className="text-primary font-semibold flex items-center justify-center">
+              <p className="text-primary sm:block font-semibold flex items-center justify-center">
                 Cancel
               </p>
             </button>
@@ -67,8 +76,8 @@ const AddPatient: React.FC<AddPatientTypes> = ({
           </div>
         </div>
         <div className="flex items-center justify-center mt-[43px]">
-          <div className="bg-white rounded-[20px] xl:min-w-[783px] lg:w-[50%] md:w-[80%] w-[90%] py-10">
-            <div className="px-10 text-left">
+          <div className="bg-white rounded-[20px] xl:max-w-[783px]  xl:min-w-[783px] lg:w-[80%] md:w-[85%] w-[90%] py-10">
+            <div className="sm:px-10 px-4 text-left">
               <InputTwo
                 name="name"
                 id="name"
