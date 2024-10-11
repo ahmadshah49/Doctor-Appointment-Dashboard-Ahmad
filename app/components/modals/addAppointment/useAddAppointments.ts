@@ -75,6 +75,7 @@ export const useAddAppointments = ({
         status,
         appointmentType,
       };
+
       dispatch(updateAppointment(updateData)).unwrap();
       dispatch(fetchAppointment()).unwrap();
       toast.success("Appointment Updated!");
@@ -92,17 +93,20 @@ export const useAddAppointments = ({
       )} at ${formatTime(new Date(start))} - ${formatTime(
         new Date(end)
       )}, appointment is ${appointmentType} and Purpose is ${purpose}`;
+      const startUTC = new Date(start).toISOString();
+      const endUTC = new Date(end).toISOString();
 
       dispatch(
         addAppointment({
           name,
-          start,
-          end,
+          start: startUTC,
+          end: endUTC,
           purpose,
           status,
           appointmentType,
         })
       ).unwrap();
+      console.log("Start and end DateTime", start, end);
       dispatch(fetchAppointment()).unwrap();
       dispatch(addNotification(notificationData)).unwrap();
       onClose();
@@ -129,45 +133,6 @@ export const useAddAppointments = ({
       onClose();
     }
   };
-  const inputs = [
-    {
-      id: "name",
-      label: "Patient",
-      name: "name",
-      value: name,
-      type: "text",
-      onChange: (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value),
-      required: true,
-    },
-    {
-      id: "purpose",
-      label: "Purpose of visit",
-      name: "purpose",
-      value: purpose,
-      type: "text",
-      onChange: (e: ChangeEvent<HTMLInputElement>) =>
-        setPurpose(e.target.value),
-      required: true,
-    },
-    {
-      id: "start",
-      label: "Start Date & Time",
-      name: "start",
-      value: start,
-      type: "datetime-local",
-      onChange: (e: ChangeEvent<HTMLInputElement>) => setStart(e.target.value),
-      required: true,
-    },
-    {
-      id: "end",
-      label: "End Date & Time",
-      name: "end",
-      value: end,
-      type: "datetime-local",
-      onChange: (e: ChangeEvent<HTMLInputElement>) => setEnd(e.target.value),
-      required: true,
-    },
-  ];
   return {
     name,
     setName,
@@ -188,6 +153,5 @@ export const useAddAppointments = ({
     isLoading,
     user,
     handleOverlayClick,
-    inputs,
   };
 };
