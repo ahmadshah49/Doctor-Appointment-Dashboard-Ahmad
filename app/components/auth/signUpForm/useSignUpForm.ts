@@ -36,6 +36,11 @@ export const useSignUpForm = () => {
       setLoading(false);
       return;
     }
+    if (password.length >= 20) {
+      setError("The password field must not be greater than 20 characters");
+      setLoading(false);
+      return;
+    }
 
     try {
       await axiosInstance.post(`/api/register`, {
@@ -49,8 +54,8 @@ export const useSignUpForm = () => {
       setError(
         error.response?.data?.message ||
           (error.response && error.response.status === 400
-            ? "Email is already registered"
-            : "Registration failed. Please try again.")
+            ? "Registration failed. Please try again."
+            : "Email Already Exists")
       );
     } finally {
       setLoading(false);
