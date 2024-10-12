@@ -1,7 +1,6 @@
 import { initalStateTypes, Task } from "@/app/types/Type";
-import { BASE_URL } from "@/app/utils/axiosInstance";
+import { axiosInstance } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialState: initalStateTypes = {
   isError: false,
@@ -13,7 +12,7 @@ export const updateTask = createAsyncThunk(
   "task/update",
   async (TaskData: Task, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${BASE_URL}/api/task`, TaskData);
+      const response = await axiosInstance.put(`/api/task`, TaskData);
       const updateTask = response?.data;
 
       return updateTask;

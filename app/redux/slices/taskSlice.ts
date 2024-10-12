@@ -1,7 +1,6 @@
 import { initalStateTypes, Task } from "@/app/types/Type";
-import { BASE_URL } from "@/app/utils/axiosInstance";
+import { axiosInstance } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialState: initalStateTypes = {
   task: [],
@@ -14,7 +13,7 @@ export const addTask = createAsyncThunk(
   "tasks/addTask",
   async (taskData: Task, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${BASE_URL}/api/task`, taskData);
+      const response = await axiosInstance.post(`/api/task`, taskData);
       const newTask = response.data;
 
       return newTask;
@@ -28,7 +27,7 @@ export const fetchTasks = createAsyncThunk(
   "tasks/fetchTask",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/task`);
+      const response = await axiosInstance.get(`/api/task`);
       const Tasks = await response?.data;
 
       return Tasks;

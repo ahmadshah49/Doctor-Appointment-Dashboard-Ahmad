@@ -1,6 +1,5 @@
-import { BASE_URL } from "@/app/utils/axiosInstance";
+import { axiosInstance } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 type checkBoxType = {
   isError: boolean;
   isLoading: boolean;
@@ -19,7 +18,7 @@ export const updateCheckBoxTask = createAsyncThunk(
   "taskCheckbox/update",
   async (data: CheckBoxData, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${BASE_URL}/api/updateTask`, data);
+      const response = await axiosInstance.put(`/api/updateTask`, data);
       const updateCheckBox = response?.data;
 
       return updateCheckBox;

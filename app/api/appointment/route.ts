@@ -66,7 +66,7 @@ export const GET = async (req: Request) => {
 export const PUT = async (req: Request) => {
   try {
     const body = await req.json();
-    const data = await prisma.appointment.updateMany({
+    const data = await prisma.appointment.update({
       where: {
         id: body.id,
       },

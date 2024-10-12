@@ -1,7 +1,6 @@
 import { Patient, patientInitialState } from "@/app/types/Type";
-import { BASE_URL } from "@/app/utils/axiosInstance";
+import { axiosInstance } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialState: patientInitialState = {
   isError: false,
@@ -13,7 +12,7 @@ export const updatePatient = createAsyncThunk(
   "patient/update",
   async (patientData: Patient, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${BASE_URL}/api/patient`, patientData);
+      const response = await axiosInstance.put(`/api/patient`, patientData);
       const updatePatient = response?.data;
 
       return updatePatient;

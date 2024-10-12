@@ -68,6 +68,7 @@ export const useAddAppointments = ({
   const handleUpdateAppointment = () => {
     try {
       const updateData = {
+        id: data?.id,
         name,
         start,
         end,

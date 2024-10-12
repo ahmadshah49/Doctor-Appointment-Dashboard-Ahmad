@@ -1,7 +1,6 @@
 import { Appointment, AppointmentInitialState } from "@/app/types/Type";
-import { BASE_URL } from "@/app/utils/axiosInstance";
+import { axiosInstance } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 const initialState: AppointmentInitialState = {
   appointment: [],
   isError: false,
@@ -12,7 +11,7 @@ export const addAppointment = createAsyncThunk(
   "addAppontent/add",
   async (data: Appointment, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${BASE_URL}/api/appointment`, data);
+      const response = await axiosInstance.post(`/api/appointment`, data);
 
       return response?.data;
     } catch (error) {

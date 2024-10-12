@@ -1,7 +1,6 @@
 import { UserInfo, UserState } from "@/app/types/Type";
-import { BASE_URL } from "@/app/utils/axiosInstance";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { axiosInstance } from "@/app/utils/axiosInstance";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState: UserState = {
   user: null,
@@ -13,7 +12,7 @@ export const updateUser = createAsyncThunk(
   "user/update",
   async (data: UserInfo, { rejectWithValue }) => {
     try {
-      const res = await axios.put(`${BASE_URL}/api/profile`, data);
+      const res = await axiosInstance.put(`/api/profile`, data);
       const resData = res?.data;
       return resData;
     } catch (error) {

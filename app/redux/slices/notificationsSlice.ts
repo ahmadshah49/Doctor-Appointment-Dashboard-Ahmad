@@ -1,7 +1,6 @@
-import { Notification, NotificationInitialState } from "@/app/types/Type";
-import { BASE_URL } from "@/app/utils/axiosInstance";
+import { NotificationInitialState } from "@/app/types/Type";
+import { axiosInstance } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialState: NotificationInitialState = {
   data: [],
@@ -12,7 +11,7 @@ export const addNotification = createAsyncThunk(
   "notification/add",
   async (data: string, { rejectWithValue }) => {
     try {
-      const res = await axios.post(`${BASE_URL}/api/notification`, { data });
+      const res = await axiosInstance.post(`/api/notification`, { data });
 
       const notification = res?.data;
       return notification;
@@ -25,7 +24,7 @@ export const getNotification = createAsyncThunk(
   "notification/get",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`${BASE_URL}/api/notification`);
+      const res = await axiosInstance.get(`/api/notification`);
       console.log(res?.data);
       const data = res?.data;
       return data;
@@ -38,7 +37,7 @@ export const deleteNotifications = createAsyncThunk(
   "notification/delete",
   async (id: any, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`${BASE_URL}/api/notification`, {
+      const response = await axiosInstance.delete(`/api/notification`, {
         data: { id },
       });
       const deleteNotification = response?.data;
@@ -53,8 +52,8 @@ export const deleteAllNotifications = createAsyncThunk(
   "notification/deleteAll",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(
-        `${BASE_URL}/api/deleteAllNotifications`
+      const response = await axiosInstance.delete(
+        `/api/deleteAllNotifications`
       );
       const deleteAllNotifications = response?.data;
       return deleteAllNotifications;

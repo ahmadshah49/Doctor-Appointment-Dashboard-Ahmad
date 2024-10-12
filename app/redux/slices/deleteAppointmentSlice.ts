@@ -1,7 +1,6 @@
 import { AppointmentInitialState } from "@/app/types/Type";
-import { BASE_URL } from "@/app/utils/axiosInstance";
+import { axiosInstance } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialState: AppointmentInitialState = {
   isError: false,
@@ -13,7 +12,7 @@ export const deleteAppointment = createAsyncThunk(
   "appointment/delete",
   async (id: any, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`${BASE_URL}/api/appointment`, {
+      const response = await axiosInstance.delete(`/api/appointment`, {
         data: { id },
       });
       const deleteAppointment = response?.data;

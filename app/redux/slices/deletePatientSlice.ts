@@ -1,7 +1,6 @@
 import { patientInitialState } from "@/app/types/Type";
-import { BASE_URL } from "@/app/utils/axiosInstance";
+import { axiosInstance } from "@/app/utils/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialState: patientInitialState = {
   isError: false,
@@ -13,7 +12,7 @@ export const deletePatient = createAsyncThunk(
   "patient/delete",
   async (id: any, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`${BASE_URL}/api/patient`, {
+      const response = await axiosInstance.delete(`/api/patient`, {
         data: { id },
       });
       const deletePatient = response?.data;

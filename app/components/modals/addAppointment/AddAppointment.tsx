@@ -112,26 +112,30 @@ const AddAppointment: React.FC<AddAppointmentTypes> = ({
               onChange={(e) => setPurpose(e)}
               sup
             />
-            <InputTwo
-              name="start"
-              id="start"
-              label="Start Date & Time"
-              value={start}
-              type="datetime-local"
-              required
-              onChange={(e) => setStart(e)}
-              sup
-            />
-            <InputTwo
-              name="end"
-              id="end"
-              label="End Date & Time"
-              value={end}
-              type="datetime-local"
-              required
-              onChange={(e) => setEnd(e)}
-              sup
-            />
+            {!isUpdate && (
+              <>
+                <InputTwo
+                  name="start"
+                  id="start"
+                  label="Start Date & Time"
+                  value={start}
+                  type="datetime-local"
+                  required
+                  onChange={(e) => setStart(e)}
+                  sup
+                />
+                <InputTwo
+                  name="end"
+                  id="end"
+                  label="End Date & Time"
+                  value={end}
+                  type="datetime-local"
+                  required
+                  onChange={(e) => setEnd(e)}
+                  sup
+                />
+              </>
+            )}
             <CheckBox
               label="Appointment Status"
               options={Object.values(PatientStatus)}

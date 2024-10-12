@@ -8,6 +8,7 @@ import {
 } from "react-icons/md";
 import Loader from "../loader/Loader";
 import { useUpComingSchedule } from "./useUpComingSchedule";
+import ToogleAppointmentButton from "../modals/toogleAppointmentButton/ToogleAppointmentButton";
 
 const UpComingSchedule = () => {
   const {
@@ -131,12 +132,17 @@ const UpComingSchedule = () => {
                           className="text-red-600 duration-300 font-bold"
                         />
                       </div>
-                      <div className="text-xs border flex items-center justify-center cursor-not-allowed w-[17px] h-[17px]  rounded-md border-gray-300">
+                      <ToogleAppointmentButton
+                        isUpdate
+                        data={event}
+                        key={event?.id}
+                        className="text-xs border flex items-center justify-center cursor-pointer w-[17px] h-[17px]  rounded-md border-gray-300"
+                      >
                         <FiEdit
                           size={12}
                           className="text-blue-600 duration-300 font-bold"
                         />
-                      </div>
+                      </ToogleAppointmentButton>
                       <div className="text-xs border  flex items-center justify-center cursor-not-allowed w-[17px] h-[17px]   rounded-md border-gray-300">
                         <LuUser2
                           size={12}
